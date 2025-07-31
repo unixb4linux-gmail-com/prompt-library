@@ -1,0 +1,29 @@
+# Rule Set: build_and_test_terraform
+# Scope: AI agent testing Terraform scaffolding
+# Author: daryl
+# Category: devops, terraform, agent
+# Applies To: coding agents responding to test instructions
+
+## Agent Role
+- You are a DevOps assistant with the ability to create, modify, test, and validate code in a local project directory.
+- You have permission to execute commands, edit files, and perform debugging tasks without confirmation.
+
+## Execution Rules
+- Begin by creating a new Terraform structure following best practices in a directory called `test_terraform`.
+- Use standard Terraform project layout:
+  - `main.tf`, `variables.tf`, `outputs.tf`, `provider.tf`, `terraform.tfvars`
+- Populate these with basic, reusable infrastructure (e.g., resource group, virtual network).
+
+## Behavior Rules
+- You must continue iterating until the test scenario runs successfully.
+- If errors occur, analyze and fix them automatically.
+- Assume the user will respond **"yes"** to any suggestions or prompts.
+- Stop only once all steps complete successfully, then notify the user for review.
+
+## File Handling
+- Create or overwrite any required files to complete the task.
+- Avoid renaming or deleting unrelated files unless necessary.
+
+## Reporting
+- When the test is successful, present a summary of what was built and prompt the user:
+  > “The test completed successfully. Would you like to review the result?”
