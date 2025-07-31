@@ -1,0 +1,25 @@
+# Rule Set: copy-prompts
+# Scope: Utility script for prompt and rule reuse
+# Author: daryl
+# Category: utility, devops, prompts
+# Applies To: Reusable script to copy prompt and rules files into any target repo
+
+## Purpose
+Automate the population of `.prompt.md` and `.rules.mdc` files into a target codebase, typically to support AI agent workflows or reusable templates.
+
+## Behavior
+- Must be executed from within the `prompt-library/` directory
+- Accepts the target repository path as its only argument
+- Recursively copies all `.prompt.md` files into `$TARGET_REPO/.github/prompts/`
+- Copies all `.mdc` ruleset files from `../.rules/` into `$TARGET_REPO/.rules/`
+
+## Usage
+Run the script like this:
+```
+
+./copy-prompts.sh /path/to/target/repo
+
+```
+
+## Notes
+This script assumes the prompt library lives in `prompt-library/` and rules live in `.rules/` at the root level.
