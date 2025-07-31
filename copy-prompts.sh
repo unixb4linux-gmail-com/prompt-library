@@ -13,6 +13,6 @@ find . -type f -name '*.prompt.md' -exec cp {} "$TARGET_DIR/.github/prompts/" \;
 
 echo "📁 Copying rules..."
 mkdir -p "$TARGET_DIR/.rules"
-cp ../.rules/*.mdc "$TARGET_DIR/.rules/"
+cp .rules/*.mdc "$TARGET_DIR/.rules/"
 
 echo "✅ All prompt and rule files copied to $TARGET_DIR"
