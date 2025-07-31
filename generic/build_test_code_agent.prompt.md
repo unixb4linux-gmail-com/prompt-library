@@ -1,4 +1,4 @@
-# Prompt: Self-Test AI Coding Agent with Iterative Execution
+# Prompt: Build andTest AI Coding Agent with Iterative Execution
 # Category: devops, testing, agent
 # Author: daryl
 # Use Case: Test an AI agent’s ability to build, debug, and complete tasks in a code project iteratively
