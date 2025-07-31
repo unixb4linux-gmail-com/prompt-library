@@ -16,4 +16,5 @@ A collection of reusable prompt engineering files for DevOps, automation, and co
 - **write_tests.prompt.md**: Generate tests for your codebase.
 - **deploy_aks_terraform.prompt.md**: Deploy to AKS using Terraform.
 - **build_and_test_terraform.prompt.md**: Iteratively test tool functionality with AI agent.
+- **self_test_code_agent.prompt.md**: Generic self-test prompt for building and verifying any coding project using an AI agent.
 # prompt-library
