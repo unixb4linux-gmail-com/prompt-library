@@ -11,7 +11,7 @@ fi
 
 echo "📁 Copying prompts..."
 mkdir -p "$DEST/.github/prompts"
-cp -v "$SRC_PROMPTS"/*.prompt.md "$DEST/.github/prompts/"
+find prompt-library -name '*.prompt.md' -exec cp {} "$DEST/.github/prompts/" \;
 
 echo "📁 Copying rules..."
 mkdir -p "$DEST/.rules"
