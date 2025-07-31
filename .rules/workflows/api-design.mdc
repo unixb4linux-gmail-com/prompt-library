@@ -1,0 +1,63 @@
+---
+description: Design consistent API endpoints and data structures
+globs:
+alwaysApply: false
+---
+
+# API Design Workflow
+
+Use this workflow to design clean, consistent, and well-documented API endpoints.
+
+## Step 1: Requirements Gathering
+
+Prompt:
+> Based on the feature requirements, define:
+- What data needs to be exposed/consumed
+- Who are the API consumers (frontend, mobile, third-party)
+- What operations are needed (CRUD, search, bulk operations)
+- Authentication/authorization requirements
+- Performance and scalability considerations
+
+Document the API requirements and constraints.
+
+## Step 2: Design & Documentation
+
+Prompt:
+> Design the API following these principles:
+- **Consistent naming**: Use clear, predictable URL patterns
+- **HTTP methods**: GET, POST, PUT, DELETE appropriately
+- **Status codes**: Return meaningful HTTP status codes
+- **Data formats**: Consistent JSON structure, error responses
+- **Versioning**: Plan for API evolution
+- **Documentation**: Include request/response examples
+
+Create OpenAPI/Swagger documentation or equivalent.
+
+## Step 3: Implementation Plan
+
+Prompt:
+> Break down the API implementation into tasks:
+- Route definitions and handlers
+- Data validation and serialization
+- Authentication/authorization middleware
+- Error handling and logging
+- Testing strategy (unit, integration, contract tests)
+
+☑ Output as a development checklist with dependencies.
+
+## Step 4: Review & Iterate
+
+Prompt:
+> Before final implementation:
+- Review API design with stakeholders
+- Validate against real use cases
+- Consider developer experience (DX)
+- Plan for monitoring and observability
+
+Wait for approval before proceeding with implementation.
+
+## Success Metrics
+- Consistent API patterns across the application
+- Clear, comprehensive API documentation
+- Positive developer feedback on API usability
+- Reduced API-related support requests

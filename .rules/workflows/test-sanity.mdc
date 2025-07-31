@@ -1,0 +1,30 @@
+---
+description:
+globs:
+alwaysApply: false
+---
+# Test Sanity Sweep
+
+Use this workflow to periodically audit and improve your test suite with minimal effort.
+
+## Step 1: Alphabetical Review
+
+Prompt:
+> Review tests alphabetically by file name or structure. Flag tests that are redundant, flaky, or offer no meaningful coverage.
+
+## Step 2: Generate Fix Tasks
+
+Prompt:
+> For each flagged test, suggest a fix:
+- Delete / merge / rewrite
+- Improve assertions
+- Refactor setup logic
+
+☑ Output a fix plan as a checklist.
+
+## Step 3: Focused Fix Mode
+
+Prompt:
+> Pick one task from the checklist and execute. Wait for user approval before continuing.
+
+Repeat as needed — this can run continuously as a background hygiene workflow.

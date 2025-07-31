@@ -1,0 +1,49 @@
+---
+description: Remove redundant, flaky, and low-value tests
+globs:
+alwaysApply: false
+---
+
+# Test Pruning Workflow
+
+Use this workflow to clean up your test suite by removing redundant, flaky, and low-value tests.
+
+## Step 1: Test Audit
+
+Prompt:
+> Review the test suite and identify:
+- Duplicate tests (same functionality tested multiple times)
+- Flaky tests (inconsistent pass/fail)
+- Obsolete tests (testing removed features)
+- Low-value tests (trivial assertions, no real coverage)
+- Slow tests that could be optimized or removed
+
+Create a categorized list of problematic tests.
+
+## Step 2: Pruning Strategy
+
+Prompt:
+> For each flagged test, determine action:
+- **Delete**: Truly redundant or obsolete tests
+- **Merge**: Combine similar tests into comprehensive ones
+- **Fix**: Repair flaky tests if they provide value
+- **Optimize**: Speed up slow but valuable tests
+- **Keep**: Document why apparently redundant tests should stay
+
+☑ Output as an action plan with justifications.
+
+## Step 3: Execute Pruning
+
+Prompt:
+> Execute one pruning action at a time:
+- Remove/modify the identified test(s)
+- Run the remaining test suite to ensure coverage isn't lost
+- Update any related documentation or CI configurations
+
+Wait for user approval before proceeding to next action.
+
+## Success Metrics
+- Faster test suite execution
+- More reliable CI/CD pipeline
+- Cleaner, more maintainable test code
+- Reduced false positive failures

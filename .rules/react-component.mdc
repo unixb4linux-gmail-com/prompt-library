@@ -1,0 +1,207 @@
+---
+description:
+globs:
+alwaysApply: false
+---
+# React Component Development Rules
+
+## Core Philosophy
+- **Component-Driven**: Build UIs from small, reusable, and self-contained components.
+- **Declarative**: Describe what the UI should look like for a given state.
+- **Type-Safe**: Use TypeScript interfaces for props to ensure type safety.
+- **Functional**: Prefer pure functions and hooks over class components.
+- **Focused**: Each component should have a single, clear responsibility.
+
+## Component Structure
+
+### File Naming
+- **Component File**: `kebab-case.tsx` (e.g., `user-profile-card.tsx`)
+- **Props Type File**: `kebab-case.types.ts` (if props are complex and shared)
+
+### Component Definition
+- Use the `function` keyword for component definitions.
+- Define props using a TypeScript `interface`, named `ComponentNameProps`.
+- Use object destructuring for props.
+
+```typescript
+// ✅ Good: Clear, typed, and uses the function keyword.
+interface UserProfileCardProps {
+  userId: string;
+  name: string;
+  avatarUrl: string;
+  isActive: boolean;
+}
+
+function UserProfileCard({
+  userId,
+  name,
+  avatarUrl,
+  isActive,
+}: UserProfileCardProps) {
+  // Component logic
+}
+
+// ❌ Avoid: Using const for components.
+const UserProfileCard = (props: UserProfileCardProps) => {
+  // ...
+}
+```
+
+## JSX and Styling
+
+### Styling
+- Use **Tailwind CSS** for all styling via the `className` prop.
+- Avoid inline styles (`style={{}}`) and separate CSS files for components.
+- Use a utility-first approach to keep styling co-located with the markup.
+
+### JSX Readability
+- Keep JSX clean, readable, and minimal.
+- Extract complex conditional logic into variables or helper functions.
+
+```jsx
+// ✅ Good: Conditional classes and logic extracted.
+function UserStatusBadge({ isActive }: { isActive: boolean }) {
+  const badgeClasses = isActive
+    ? 'bg-green-100 text-green-800'
+    : 'bg-gray-100 text-gray-800';
+  const statusText = isActive ? 'Active' : 'Inactive';
+
+  return (
+    <span className={`px-2 py-1 text-xs font-medium rounded-full ${badgeClasses}`}>
+      {statusText}
+    </span>
+  );
+}
+
+// ❌ Avoid: Complex ternaries directly in className.
+<span className={`px-2 py-1 ${isActive ? 'bg-green-100' : 'bg-gray-100'}`}>
+  {isActive ? 'Active' : 'Inactive'}
+</span>
+```
+
+## Accessibility (a11y)
+
+- Interactive elements must be keyboard accessible.
+- Provide `aria-` labels for elements that need them (e.g., icon-only buttons).
+- Use semantic HTML where possible (`<button>`, `<nav>`, `<main>`).
+- For custom interactive elements (like a `div` with an `onClick`), add `role="button"` and `tabIndex="0"`.
+
+```jsx
+// ✅ Good: Accessible button
+<button
+  onClick={handleClick}
+  className="p-2 rounded-full hover:bg-gray-200"
+  aria-label="Close dialog"
+>
+  <CloseIcon />
+</button>
+
+// ✅ Good: Accessible custom element
+<div
+  role="button"
+  tabIndex="0"
+  onClick={handleSelect}
+  onKeyDown={handleKeyDown}
+  className="p-4 border rounded-lg cursor-pointer"
+>
+  Selectable Item
+</div>
+```
+
+## Props Handling
+
+- Follow the **RORO** pattern (Receive an Object, Return an Object).
+- Clearly define all props in the component's interface.
+- Avoid using `props` directly; always destructure.
+
+```typescript
+// ✅ Good: Destructured props from a clear interface.
+interface UserAvatarProps {
+  src: string;
+  alt: string;
+  size?: 'sm' | 'md' | 'lg';
+}
+
+function UserAvatar({ src, alt, size = 'md' }: UserAvatarProps) {
+  // ...
+}
+
+// ❌ Avoid: Passing the whole props object around.
+function UserAvatar(props: UserAvatarProps) {
+  return <img src={props.src} alt={props.alt} />;
+}
+```
+
+## State and Logic
+
+- Use `useState` for simple component-level state.
+- Use `useEffect` for synchronization with external systems (e.g., browser APIs, timers), not for data fetching if using a framework like Next.js.
+- Extract complex or reusable stateful logic into custom hooks (e.g., `useToggle`, `useForm`).
+
+## Complete Component Example
+
+This example brings all the rules together into a single, well-structured component.
+
+```typescript
+import React, { useState } from 'react';
+
+// 1. Props Interface
+interface UserProfileCardProps {
+  user: {
+    id: string;
+    name: string;
+    email: string;
+    avatarUrl: string;
+    isActive: boolean;
+  };
+  onDelete: (userId: string) => void;
+}
+
+// 2. Component Definition (function, destructuring)
+function UserProfileCard({ user, onDelete }: UserProfileCardProps) {
+  const [isDeleting, setIsDeleting] = useState(false);
+
+  const handleDeleteClick = () => {
+    setIsDeleting(true);
+    // Simulate async operation
+    setTimeout(() => {
+      onDelete(user.id);
+      setIsDeleting(false);
+    }, 1000);
+  };
+
+  // 3. Extracted logic for readability
+  const statusBadgeClasses = user.isActive
+    ? 'bg-green-100 text-green-800'
+    : 'bg-gray-100 text-gray-800';
+
+  return (
+    <div className="flex items-center p-4 space-x-4 bg-white border rounded-lg shadow-sm">
+      <img
+        src={user.avatarUrl}
+        alt={`${user.name}'s avatar`}
+        className="w-16 h-16 rounded-full"
+      />
+      <div className="flex-grow">
+        <h3 className="text-lg font-semibold">{user.name}</h3>
+        <p className="text-gray-500">{user.email}</p>
+        <span
+          className={`mt-2 inline-block px-2 py-0.5 text-xs font-medium rounded-full ${statusBadgeClasses}`}
+        >
+          {user.isActive ? 'Active' : 'Inactive'}
+        </span>
+      </div>
+      <button
+        onClick={handleDeleteClick}
+        disabled={isDeleting}
+        className="px-3 py-1 text-sm font-medium text-red-600 border border-red-300 rounded-md hover:bg-red-50 disabled:opacity-50"
+        aria-label={`Delete user ${user.name}`} // 4. Accessibility
+      >
+        {isDeleting ? 'Deleting...' : 'Delete'}
+      </button>
+    </div>
+  );
+}
+
+export default UserProfileCard;
+```

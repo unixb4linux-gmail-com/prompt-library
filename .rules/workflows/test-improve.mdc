@@ -1,0 +1,47 @@
+---
+description: Systematically improve test coverage and quality
+globs:
+alwaysApply: false
+---
+
+# Test Improvement Workflow
+
+Use this workflow to systematically enhance your test suite's coverage and quality.
+
+## Step 1: Coverage Analysis
+
+Prompt:
+> Analyze the current test coverage. Identify files/functions with:
+- No tests at all
+- Insufficient edge case coverage
+- Missing integration test scenarios
+- Weak assertion quality
+
+Generate a prioritized list of improvement opportunities.
+
+## Step 2: Test Enhancement Plan
+
+Prompt:
+> For each identified gap, create specific test improvements:
+- Add missing unit tests for uncovered functions
+- Strengthen assertions (more specific, better error messages)
+- Add edge case scenarios (null/undefined, boundary conditions)
+- Create integration tests for critical workflows
+
+☑ Output as a prioritized checklist with effort estimates.
+
+## Step 3: Implement & Verify
+
+Prompt:
+> Pick the highest priority item and implement the test improvements. After implementation:
+- Run the new tests to verify they pass
+- Run the full test suite to ensure no regressions
+- Update coverage reports if available
+
+Wait for user approval before moving to next item.
+
+## Success Metrics
+- Increased test coverage percentage
+- Reduced bug reports in covered areas
+- Faster debugging when tests fail
+- More confident deployments

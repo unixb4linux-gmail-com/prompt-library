@@ -1,0 +1,54 @@
+---
+description: Simplify complex functions and reduce cognitive load
+globs:
+alwaysApply: false
+---
+# Code Simplification Workflow
+
+Use this workflow to identify and simplify overly complex code that's hard to understand and maintain.
+
+## Step 1: Complexity Analysis
+
+Prompt:
+> Analyze the codebase for complexity indicators:
+- Functions with high cyclomatic complexity (multiple if/else branches)
+- Long functions (>50 lines)
+- Deep nesting levels (>3 levels)
+- Functions with many parameters (>5)
+- Unclear variable/function names
+- Mixed abstraction levels in single functions
+
+Identify the most problematic areas and prioritize by impact.
+
+## Step 2: Simplification Strategy
+
+Prompt:
+> For each complex function/area, choose simplification approaches:
+- **Extract methods**: Break large functions into smaller, focused ones
+- **Reduce nesting**: Use early returns, guard clauses
+- **Simplify conditionals**: Use switch statements, lookup tables, or strategy pattern
+- **Improve naming**: Use descriptive, intention-revealing names
+- **Separate concerns**: Split functions doing multiple things
+- **Remove dead code**: Eliminate unused or redundant code
+
+Create a refactoring plan with before/after examples.
+
+## Step 3: Refactor & Verify
+
+Prompt:
+> Implement one simplification at a time:
+- Refactor the targeted code
+- Ensure all tests still pass
+- Verify the behavior is unchanged
+- Update any related documentation
+- Consider if new tests are needed for the cleaner structure
+
+Wait for user approval before moving to next simplification.
+
+## Success Metrics
+- Reduced cyclomatic complexity scores
+- Shorter, more focused functions
+- Improved code readability scores
+- Faster onboarding for new developers
+- Reduced bug reports in refactored areas
+---

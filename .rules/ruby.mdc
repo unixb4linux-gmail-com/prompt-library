@@ -1,0 +1,851 @@
+---
+description:
+globs:
+alwaysApply: false
+---
+# Ruby Development Rules
+
+## Core Philosophy
+- Follow the Ruby principle: "Matz is nice, so we are nice" (MINASWAN)
+- Write code that is expressive and readable
+- Embrace Ruby's expressiveness and metaprogramming capabilities responsibly
+- Favor convention over configuration
+- Write code that feels natural and intuitive
+
+## Code Style and Formatting
+
+### Naming Conventions
+- **snake_case**: Variables, methods, files, directories
+- **SCREAMING_SNAKE_CASE**: Constants
+- **PascalCase**: Classes and modules
+- **@instance_variables**: Instance variables
+- **@@class_variables**: Class variables (avoid when possible)
+- **$global_variables**: Global variables (avoid)
+
+```ruby
+# ✅ Good naming
+class UserManager
+  DEFAULT_TIMEOUT = 30
+
+  def initialize
+    @users = []
+    @cache_enabled = true
+  end
+
+  def find_user_by_email(email)
+    # Implementation
+  end
+
+  private
+
+  def validate_email_format(email)
+    # Implementation
+  end
+end
+
+# ❌ Avoid
+class userManager  # Wrong case
+  defaultTimeout = 30  # Should be constant
+
+  def findUserByEmail(email)  # Wrong case
+    # Implementation
+  end
+end
+```
+
+### Code Structure and Formatting
+- Use 2 spaces for indentation (never tabs)
+- Keep line length under 120 characters
+- Use blank lines to separate logical sections
+- Align method parameters when they span multiple lines
+
+```ruby
+# ✅ Good formatting
+def create_user(
+  name:,
+  email:,
+  role: 'user',
+  permissions: [],
+  metadata: {}
+)
+  validate_user_data(name, email)
+
+  user = User.new(
+    name: name,
+    email: email,
+    role: role,
+    permissions: permissions,
+    metadata: metadata
+  )
+
+  user.save!
+  send_welcome_email(user)
+
+  user
+end
+
+# ✅ Good hash formatting
+user_attributes = {
+  name: 'John Doe',
+  email: 'john@example.com',
+  preferences: {
+    theme: 'dark',
+    notifications: true,
+    language: 'en'
+  }
+}
+```
+
+## Method Design
+
+### Method Guidelines
+- Keep methods small and focused (single responsibility)
+- Use descriptive names that explain what the method does
+- Prefer keyword arguments for methods with multiple parameters
+- Use meaningful return values
+- Avoid side effects when possible
+
+```ruby
+# ✅ Good method design
+def calculate_discount(
+  base_price:,
+  discount_percentage:,
+  customer_tier: :regular,
+  promotional_code: nil
+)
+  return 0 if base_price <= 0
+  return 0 unless valid_discount_percentage?(discount_percentage)
+
+  discount = base_price * (discount_percentage / 100.0)
+  discount = apply_tier_bonus(discount, customer_tier)
+  discount = apply_promotional_code(discount, promotional_code) if promotional_code
+
+  [discount, base_price].min
+end
+
+# ✅ Predicate methods end with ?
+def user_admin?(user)
+  user&.role == 'admin'
+end
+
+# ✅ Dangerous methods end with !
+def update_user!(user_id, attributes)
+  user = User.find(user_id) # Raises if not found
+  user.update!(attributes)  # Raises if validation fails
+  user
+end
+
+# ✅ Query methods
+def find_users_by_role(role)
+  User.where(role: role)
+end
+```
+
+### Return Values and Control Flow
+```ruby
+# ✅ Early returns for guard clauses
+def process_payment(amount, payment_method)
+  return failure('Amount must be positive') if amount <= 0
+  return failure('Payment method required') unless payment_method
+  return failure('Invalid payment method') unless valid_payment_method?(payment_method)
+
+  # Happy path
+  charge = payment_method.charge(amount)
+  success(charge)
+end
+
+# ✅ Use meaningful return objects
+def success(data = nil)
+  { success: true, data: data }
+end
+
+def failure(message, code: nil)
+  { success: false, error: message, code: code }
+end
+
+# ✅ Implicit returns are fine for simple methods
+def full_name
+  "#{first_name} #{last_name}".strip
+end
+```
+
+## Class Design
+
+### Class Structure
+- Order methods logically: public, protected, private
+- Use modules for shared behavior
+- Prefer composition over inheritance when appropriate
+- Implement proper `initialize` methods
+
+```ruby
+# ✅ Good class structure
+class User
+  include Comparable
+  extend Forwardable
+
+  attr_reader :id, :email, :created_at
+  attr_accessor :name, :preferences
+
+  def_delegators :@profile, :avatar_url, :bio
+
+  def initialize(id:, name:, email:)
+    @id = id
+    @name = name
+    @email = email
+    @created_at = Time.current
+    @preferences = {}
+    @profile = UserProfile.new
+  end
+
+  def admin?
+    role == 'admin'
+  end
+
+  def update_preferences(new_preferences)
+    @preferences.merge!(new_preferences)
+    save_preferences
+  end
+
+  def <=>(other)
+    created_at <=> other.created_at
+  end
+
+  protected
+
+  def role
+    @role ||= determine_role
+  end
+
+  private
+
+  def determine_role
+    # Implementation
+    'user'
+  end
+
+  def save_preferences
+    # Implementation
+  end
+end
+```
+
+### Modules and Mixins
+```ruby
+# ✅ Modules for shared behavior
+module Timestampable
+  extend ActiveSupport::Concern
+
+  included do
+    attr_reader :created_at, :updated_at
+  end
+
+  def touch
+    @updated_at = Time.current
+  end
+
+  def age
+    Time.current - created_at
+  end
+end
+
+# ✅ Modules for namespacing
+module UserServices
+  class CreationService
+    def call(attributes)
+      # Implementation
+    end
+  end
+
+  class ValidationService
+    def call(user)
+      # Implementation
+    end
+  end
+end
+
+# ✅ Module usage
+class User
+  include Timestampable
+
+  def initialize(attributes)
+    @created_at = Time.current
+    @updated_at = Time.current
+    # Other initialization
+  end
+end
+```
+
+## Error Handling
+
+### Exception Handling Patterns
+```ruby
+# ✅ Specific exception handling
+def fetch_user_data(user_id)
+  User.find(user_id)
+rescue ActiveRecord::RecordNotFound
+  raise UserNotFoundError, "User #{user_id} not found"
+rescue ActiveRecord::ConnectionNotEstablished
+  raise DatabaseConnectionError, "Cannot connect to database"
+rescue StandardError => e
+  logger.error("Unexpected error fetching user #{user_id}: #{e.message}")
+  raise UnexpectedError, "Failed to fetch user data"
+end
+
+# ✅ Custom exception classes
+class UserError < StandardError; end
+class UserNotFoundError < UserError; end
+class UserValidationError < UserError
+  attr_reader :validation_errors
+
+  def initialize(message, validation_errors = {})
+    super(message)
+    @validation_errors = validation_errors
+  end
+end
+
+# ✅ Result pattern for operations
+class Result
+  attr_reader :value, :error
+
+  def initialize(success:, value: nil, error: nil)
+    @success = success
+    @value = value
+    @error = error
+  end
+
+  def success?
+    @success
+  end
+
+  def failure?
+    !@success
+  end
+
+  def self.success(value = nil)
+    new(success: true, value: value)
+  end
+
+  def self.failure(error)
+    new(success: false, error: error)
+  end
+end
+
+# ✅ Using Result pattern
+def create_user(attributes)
+  return Result.failure('Name is required') if attributes[:name].blank?
+  return Result.failure('Email is required') if attributes[:email].blank?
+
+  user = User.new(attributes)
+
+  if user.valid?
+    user.save!
+    Result.success(user)
+  else
+    Result.failure(user.errors.full_messages)
+  end
+rescue StandardError => e
+  Result.failure("Failed to create user: #{e.message}")
+end
+```
+
+## Collections and Iterators
+
+### Array and Hash Operations
+```ruby
+# ✅ Prefer functional methods over loops
+users = [
+  { name: 'Alice', age: 30, active: true },
+  { name: 'Bob', age: 25, active: false },
+  { name: 'Charlie', age: 35, active: true }
+]
+
+# ✅ Good - functional approach
+active_users = users.select { |user| user[:active] }
+user_names = users.map { |user| user[:name] }
+adult_users = users.filter { |user| user[:age] >= 18 }
+
+# ✅ Method chaining
+active_adult_names = users
+  .select { |user| user[:active] }
+  .filter { |user| user[:age] >= 18 }
+  .map { |user| user[:name] }
+  .sort
+
+# ✅ Use each_with_object for building collections
+user_ages_by_name = users.each_with_object({}) do |user, hash|
+  hash[user[:name]] = user[:age]
+end
+
+# ✅ Use reduce for accumulation
+total_age = users.reduce(0) { |sum, user| sum + user[:age] }
+
+# ✅ Use find for single items
+admin_user = users.find { |user| user[:role] == 'admin' }
+
+# ✅ Use any? and all? for boolean checks
+has_admin = users.any? { |user| user[:role] == 'admin' }
+all_active = users.all? { |user| user[:active] }
+```
+
+### Block and Proc Usage
+```ruby
+# ✅ Block conventions
+def measure_time(&block)
+  start_time = Time.current
+  result = block.call
+  end_time = Time.current
+
+  {
+    result: result,
+    duration: end_time - start_time
+  }
+end
+
+# ✅ Proc for reusable blocks
+positive_number = proc { |n| n > 0 }
+numbers = [1, -2, 3, -4, 5]
+positive_numbers = numbers.select(&positive_number)
+
+# ✅ Lambda for strict arity
+calculate_discount = lambda do |price, percentage|
+  price * (percentage / 100.0)
+end
+
+discounts = prices.map { |price| calculate_discount.call(price, 10) }
+
+# ✅ Method to proc conversion
+user_names = users.map(&:name)
+active_users = users.select(&:active?)
+```
+
+## Metaprogramming
+
+### Responsible Metaprogramming
+```ruby
+# ✅ Good use of metaprogramming
+class ApiClient
+  ENDPOINTS = {
+    users: '/api/users',
+    posts: '/api/posts',
+    comments: '/api/comments'
+  }.freeze
+
+  # Generate methods for each endpoint
+  ENDPOINTS.each do |name, path|
+    define_method("fetch_#{name}") do |params = {}|
+      get(path, params)
+    end
+
+    define_method("create_#{name.to_s.singularize}") do |data|
+      post(path, data)
+    end
+  end
+
+  private
+
+  def get(path, params)
+    # HTTP GET implementation
+  end
+
+  def post(path, data)
+    # HTTP POST implementation
+  end
+end
+
+# ✅ Dynamic attribute methods
+class Configuration
+  VALID_OPTIONS = %i[timeout retries base_url].freeze
+
+  attr_reader :options
+
+  def initialize
+    @options = {}
+  end
+
+  VALID_OPTIONS.each do |option|
+    define_method(option) do
+      @options[option]
+    end
+
+    define_method("#{option}=") do |value|
+      @options[option] = value
+    end
+  end
+
+  def method_missing(method_name, *args, &block)
+    if method_name.to_s.end_with?('=') && args.length == 1
+      option_name = method_name.to_s.chomp('=').to_sym
+      raise ArgumentError, "Unknown option: #{option_name}" unless VALID_OPTIONS.include?(option_name)
+      @options[option_name] = args.first
+    elsif args.empty? && !block_given?
+      option_name = method_name.to_sym
+      raise ArgumentError, "Unknown option: #{option_name}" unless VALID_OPTIONS.include?(option_name)
+      @options[option_name]
+    else
+      super
+    end
+  end
+
+  def respond_to_missing?(method_name, include_private = false)
+    option_name = method_name.to_s.end_with?('=') ?
+      method_name.to_s.chomp('=').to_sym :
+      method_name.to_sym
+    VALID_OPTIONS.include?(option_name) || super
+  end
+end
+```
+
+## Testing with RSpec
+
+### Test Structure and Organization
+```ruby
+# spec/models/user_spec.rb
+require 'rails_helper'
+
+RSpec.describe User, type: :model do
+  describe 'validations' do
+    it { should validate_presence_of(:name) }
+    it { should validate_presence_of(:email) }
+    it { should validate_uniqueness_of(:email) }
+    it { should validate_format_of(:email).with(/\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i) }
+  end
+
+  describe 'associations' do
+    it { should have_many(:posts) }
+    it { should have_one(:profile) }
+  end
+
+  describe '#full_name' do
+    context 'when both first and last names are present' do
+      let(:user) { build(:user, first_name: 'John', last_name: 'Doe') }
+
+      it 'returns the full name' do
+        expect(user.full_name).to eq('John Doe')
+      end
+    end
+
+    context 'when only first name is present' do
+      let(:user) { build(:user, first_name: 'John', last_name: nil) }
+
+      it 'returns only the first name' do
+        expect(user.full_name).to eq('John')
+      end
+    end
+  end
+
+  describe '#admin?' do
+    subject { user.admin? }
+
+    context 'when user has admin role' do
+      let(:user) { build(:user, role: 'admin') }
+      it { is_expected.to be true }
+    end
+
+    context 'when user has regular role' do
+      let(:user) { build(:user, role: 'user') }
+      it { is_expected.to be false }
+    end
+  end
+end
+
+# spec/services/user_creation_service_spec.rb
+RSpec.describe UserCreationService do
+  describe '#call' do
+    subject(:result) { service.call(user_params) }
+
+    let(:service) { described_class.new }
+    let(:user_params) do
+      {
+        name: 'John Doe',
+        email: 'john@example.com',
+        role: 'user'
+      }
+    end
+
+    context 'with valid parameters' do
+      it 'creates a user successfully' do
+        expect { result }.to change(User, :count).by(1)
+      end
+
+      it 'returns a success result' do
+        expect(result).to be_success
+        expect(result.value).to be_a(User)
+      end
+
+      it 'sets the correct attributes' do
+        user = result.value
+        expect(user.name).to eq('John Doe')
+        expect(user.email).to eq('john@example.com')
+        expect(user.role).to eq('user')
+      end
+    end
+
+    context 'with invalid parameters' do
+      let(:user_params) { { name: '', email: 'invalid-email' } }
+
+      it 'does not create a user' do
+        expect { result }.not_to change(User, :count)
+      end
+
+      it 'returns a failure result' do
+        expect(result).to be_failure
+        expect(result.error).to include('validation errors')
+      end
+    end
+  end
+end
+```
+
+### Test Helpers and Factories
+```ruby
+# spec/factories/users.rb
+FactoryBot.define do
+  factory :user do
+    sequence(:name) { |n| "User #{n}" }
+    sequence(:email) { |n| "user#{n}@example.com" }
+    role { 'user' }
+    active { true }
+
+    trait :admin do
+      role { 'admin' }
+    end
+
+    trait :inactive do
+      active { false }
+    end
+
+    trait :with_posts do
+      after(:create) do |user|
+        create_list(:post, 3, user: user)
+      end
+    end
+  end
+end
+
+# spec/support/shared_examples/timestampable.rb
+RSpec.shared_examples 'timestampable' do
+  it 'sets created_at on initialization' do
+    expect(subject.created_at).to be_within(1.second).of(Time.current)
+  end
+
+  describe '#touch' do
+    it 'updates the updated_at timestamp' do
+      original_time = subject.updated_at
+      travel 1.hour
+
+      expect { subject.touch }.to change { subject.updated_at }
+    end
+  end
+end
+
+# spec/support/helpers/authentication_helpers.rb
+module AuthenticationHelpers
+  def sign_in_as(user)
+    allow(controller).to receive(:current_user).and_return(user)
+    allow(controller).to receive(:user_signed_in?).and_return(true)
+  end
+
+  def sign_out
+    allow(controller).to receive(:current_user).and_return(nil)
+    allow(controller).to receive(:user_signed_in?).and_return(false)
+  end
+end
+
+RSpec.configure do |config|
+  config.include AuthenticationHelpers, type: :controller
+end
+```
+
+## Performance Considerations
+
+### Memory and Performance Optimization
+```ruby
+# ✅ Use symbols for hash keys when possible
+user_data = {
+  name: 'John',      # Symbol keys are more memory efficient
+  email: 'john@example.com',
+  active: true
+}
+
+# ✅ Avoid creating unnecessary objects in loops
+# ❌ Bad - creates new string objects
+users.each do |user|
+  puts "User: " + user.name  # String concatenation creates new objects
+end
+
+# ✅ Good - use interpolation or join
+users.each do |user|
+  puts "User: #{user.name}"  # Interpolation is more efficient
+end
+
+# ✅ Use lazy evaluation for large datasets
+def process_large_dataset(data)
+  data
+    .lazy
+    .select { |item| expensive_filter?(item) }
+    .map { |item| expensive_transformation(item) }
+    .first(100)  # Only processes first 100 matching items
+end
+
+# ✅ Use tap for object initialization
+def create_configured_client
+  ApiClient.new.tap do |client|
+    client.timeout = 30
+    client.retries = 3
+    client.base_url = 'https://api.example.com'
+  end
+end
+
+# ✅ Use freeze for immutable objects
+DEFAULT_CONFIG = {
+  timeout: 30,
+  retries: 3,
+  base_url: 'https://api.example.com'
+}.freeze
+
+ALLOWED_ROLES = %w[admin user guest].freeze
+```
+
+## Gems and Dependencies
+
+### Gem Organization
+```ruby
+# Gemfile
+source 'https://rubygems.org'
+ruby '3.2.0'
+
+# Core gems
+gem 'rails', '~> 7.0.0'
+gem 'pg', '~> 1.1'
+gem 'redis', '~> 4.0'
+
+# Authentication and Authorization
+gem 'devise'
+gem 'cancancan'
+
+# API and Serialization
+gem 'jbuilder'
+gem 'fast_jsonapi'
+
+# Background Jobs
+gem 'sidekiq'
+gem 'sidekiq-cron'
+
+# Monitoring and Logging
+gem 'lograge'
+gem 'sentry-ruby'
+gem 'sentry-rails'
+
+group :development, :test do
+  gem 'rspec-rails'
+  gem 'factory_bot_rails'
+  gem 'faker'
+  gem 'pry-byebug'
+  gem 'rubocop', require: false
+  gem 'rubocop-rails', require: false
+  gem 'rubocop-rspec', require: false
+end
+
+group :development do
+  gem 'listen'
+  gem 'spring'
+  gem 'spring-watcher-listen'
+  gem 'annotate'
+end
+
+group :test do
+  gem 'shoulda-matchers'
+  gem 'webmock'
+  gem 'vcr'
+  gem 'database_cleaner-active_record'
+end
+```
+
+## Code Quality and Style
+
+### RuboCop Configuration
+```yaml
+# .rubocop.yml
+require:
+  - rubocop-rails
+  - rubocop-rspec
+
+AllCops:
+  TargetRubyVersion: 3.2
+  NewCops: enable
+  Exclude:
+    - 'db/schema.rb'
+    - 'db/migrate/**/*'
+    - 'vendor/**/*'
+    - 'bin/**/*'
+    - 'node_modules/**/*'
+
+Style/Documentation:
+  Enabled: false
+
+Style/FrozenStringLiteralComment:
+  Enabled: true
+
+Layout/LineLength:
+  Max: 120
+  AllowedPatterns:
+    - '\A\s*#'  # Allow long comments
+
+Metrics/BlockLength:
+  Exclude:
+    - 'spec/**/*'
+    - 'config/routes.rb'
+
+Style/StringLiterals:
+  EnforcedStyle: single_quotes
+
+Style/TrailingCommaInHashLiteral:
+  EnforcedStyleForMultiline: consistent_comma
+
+Style/TrailingCommaInArrayLiteral:
+  EnforcedStyleForMultiline: consistent_comma
+```
+
+## Documentation and Comments
+
+### Code Documentation
+```ruby
+# ✅ Good documentation
+# Calculates the compound interest for a given principal, rate, and time period.
+#
+# @param principal [Numeric] The initial amount of money
+# @param rate [Numeric] The annual interest rate (as a decimal, e.g., 0.05 for 5%)
+# @param time [Numeric] The number of years
+# @param compounds_per_year [Integer] How many times per year interest is compounded
+# @return [Numeric] The final amount after compound interest
+# @raise [ArgumentError] if any parameter is negative
+#
+# @example
+#   calculate_compound_interest(1000, 0.05, 10)
+#   #=> 1628.89
+#
+def calculate_compound_interest(principal, rate, time, compounds_per_year: 12)
+  raise ArgumentError, 'All parameters must be non-negative' if [principal, rate, time, compounds_per_year].any?(&:negative?)
+
+  principal * (1 + rate / compounds_per_year) ** (compounds_per_year * time)
+end
+
+# ✅ Class documentation
+# Manages user authentication and session handling.
+#
+# This class provides methods for user login, logout, and session validation.
+# It integrates with various authentication providers and handles token refresh.
+#
+# @example
+#   auth_manager = AuthenticationManager.new(provider: :oauth2)
+#   result = auth_manager.authenticate(email: 'user@example.com', password: 'secret')
+#   if result.success?
+#     puts "User authenticated: #{result.user.name}"
+#   end
+#
+class AuthenticationManager
+  # ... implementation
+end
+```
+
+This comprehensive Ruby rules file covers the essential practices for writing clean, maintainable Ruby code. It emphasizes Ruby's strengths while providing practical guidelines for real-world development scenarios.

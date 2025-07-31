@@ -1,0 +1,1194 @@
+---
+description:
+globs:
+alwaysApply: false
+---
+# Ruby on Rails Development Rules
+
+## Core Philosophy
+- Follow Rails conventions: "Convention over Configuration"
+- Embrace the Rails Way: use framework patterns and idioms
+- Keep controllers thin, models fat (with proper service layer)
+- Use RESTful design principles
+- Prioritize developer happiness and productivity
+- Maintain the principle of least surprise
+
+## Application Structure
+
+### Directory Organization
+```
+app/
+├── controllers/
+│   ├── concerns/
+│   ├── api/
+│   │   └── v1/
+│   └── application_controller.rb
+├── models/
+│   ├── concerns/
+│   └── application_record.rb
+├── views/
+│   ├── layouts/
+│   ├── shared/
+│   └── users/
+├── services/
+│   ├── base_service.rb
+│   └── users/
+├── serializers/
+├── decorators/
+├── jobs/
+├── mailers/
+└── helpers/
+
+config/
+├── environments/
+├── initializers/
+├── locales/
+├── routes.rb
+└── application.rb
+
+db/
+├── migrate/
+├── seeds.rb
+└── schema.rb
+
+lib/
+├── tasks/
+└── modules/
+
+spec/ (or test/)
+├── controllers/
+├── models/
+├── services/
+├── factories/
+├── fixtures/
+└── support/
+```
+
+## MVC Architecture
+
+### Controllers
+- Keep controllers thin and focused on HTTP concerns
+- Use before_actions for common operations
+- Handle only one responsibility per action
+- Use strong parameters for mass assignment protection
+
+```ruby
+# ✅ Good controller design
+class UsersController < ApplicationController
+  before_action :authenticate_user!
+  before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_action :authorize_user, only: [:edit, :update, :destroy]
+
+  def index
+    @users = User.includes(:profile)
+                 .page(params[:page])
+                 .per(params[:per_page] || 25)
+  end
+
+  def show
+    @posts = @user.posts.published.limit(5)
+  end
+
+  def create
+    result = Users::CreationService.call(user_params)
+
+    if result.success?
+      redirect_to user_path(result.user), notice: 'User created successfully'
+    else
+      @user = result.user
+      flash.now[:alert] = result.errors.join(', ')
+      render :new, status: :unprocessable_entity
+    end
+  end
+
+  def update
+    if @user.update(user_params)
+      redirect_to @user, notice: 'User updated successfully'
+    else
+      render :edit, status: :unprocessable_entity
+    end
+  end
+
+  private
+
+  def set_user
+    @user = User.find(params[:id])
+  end
+
+  def user_params
+    params.require(:user).permit(:name, :email, :bio, profile_attributes: [:avatar, :website])
+  end
+
+  def authorize_user
+    redirect_to root_path, alert: 'Not authorized' unless can?(:manage, @user)
+  end
+end
+
+# ✅ API controller
+class Api::V1::UsersController < Api::V1::BaseController
+  def index
+    users = User.includes(:profile).page(params[:page])
+    render json: UserSerializer.new(users, include: [:profile]).serializable_hash
+  end
+
+  def show
+    user = User.find(params[:id])
+    render json: UserSerializer.new(user).serializable_hash
+  end
+
+  def create
+    result = Users::CreationService.call(user_params)
+
+    if result.success?
+      render json: UserSerializer.new(result.user).serializable_hash, status: :created
+    else
+      render json: { errors: result.errors }, status: :unprocessable_entity
+    end
+  end
+
+  private
+
+  def user_params
+    params.require(:user).permit(:name, :email, :bio)
+  end
+end
+```
+
+### Models
+- Use ActiveRecord validations and callbacks appropriately
+- Keep business logic in models, but extract complex operations to services
+- Use scopes for common queries
+- Implement proper associations with meaningful names
+
+```ruby
+# ✅ Good model design
+class User < ApplicationRecord
+  include Timestampable
+  include Searchable
+
+  # Associations
+  has_one :profile, dependent: :destroy
+  has_many :posts, dependent: :destroy
+  has_many :comments, dependent: :destroy
+  has_many :authored_posts, -> { published }, class_name: 'Post', foreign_key: 'author_id'
+
+  # Validations
+  validates :email, presence: true, uniqueness: { case_sensitive: false }
+  validates :name, presence: true, length: { minimum: 2, maximum: 100 }
+  validates :role, inclusion: { in: %w[user admin moderator] }
+
+  # Callbacks
+  before_validation :normalize_email
+  after_create :create_default_profile
+  after_create :send_welcome_email
+
+  # Enums
+  enum status: { inactive: 0, active: 1, suspended: 2 }
+  enum role: { user: 0, moderator: 1, admin: 2 }
+
+  # Scopes
+  scope :active, -> { where(status: :active) }
+  scope :by_role, ->(role) { where(role: role) }
+  scope :recent, -> { order(created_at: :desc) }
+  scope :with_posts, -> { joins(:posts).distinct }
+
+  # Nested attributes
+  accepts_nested_attributes_for :profile, reject_if: :all_blank
+
+  # Delegations
+  delegate :avatar_url, :bio, :website, to: :profile, allow_nil: true
+
+  def full_name
+    "#{first_name} #{last_name}".strip
+  end
+
+  def admin?
+    role == 'admin'
+  end
+
+  def can_edit?(resource)
+    admin? || resource.user == self
+  end
+
+  def posts_count
+    Rails.cache.fetch("user:#{id}:posts_count", expires_in: 1.hour) do
+      posts.published.count
+    end
+  end
+
+  private
+
+  def normalize_email
+    self.email = email.downcase.strip if email.present?
+  end
+
+  def create_default_profile
+    create_profile! unless profile.present?
+  end
+
+  def send_welcome_email
+    UserMailer.welcome_email(self).deliver_later
+  end
+end
+
+# ✅ Model concerns
+module Timestampable
+  extend ActiveSupport::Concern
+
+  included do
+    scope :created_between, ->(start_date, end_date) { where(created_at: start_date..end_date) }
+    scope :recent, -> { order(created_at: :desc) }
+  end
+
+  def age
+    Time.current - created_at
+  end
+end
+
+module Searchable
+  extend ActiveSupport::Concern
+
+  included do
+    scope :search, ->(query) { where('name ILIKE ? OR email ILIKE ?', "%#{query}%", "%#{query}%") }
+  end
+
+  class_methods do
+    def fuzzy_search(query)
+      return all if query.blank?
+
+      search(query)
+    end
+  end
+end
+```
+
+### Views
+- Use partials to keep views DRY
+- Implement proper view helpers for complex logic
+- Use local variables instead of instance variables in partials
+- Follow semantic HTML principles
+
+```erb
+<!-- ✅ Good view structure -->
+<!-- app/views/users/index.html.erb -->
+<%= content_for :title, "Users" %>
+
+<div class="users-index">
+  <div class="header">
+    <h1>Users</h1>
+    <%= link_to "New User", new_user_path, class: "btn btn-primary" if can?(:create, User) %>
+  </div>
+
+  <%= render "search_form" %>
+
+  <div class="users-grid">
+    <%= render partial: "user_card", collection: @users, as: :user %>
+  </div>
+
+  <%= paginate @users if respond_to?(:paginate) %>
+</div>
+
+<!-- ✅ Partial with local variables -->
+<!-- app/views/users/_user_card.html.erb -->
+<div class="user-card" data-user-id="<%= user.id %>">
+  <div class="avatar">
+    <%= image_tag user.avatar_url, alt: user.name if user.avatar_url.present? %>
+  </div>
+
+  <div class="details">
+    <h3><%= link_to user.name, user_path(user) %></h3>
+    <p class="email"><%= user.email %></p>
+    <p class="bio"><%= truncate(user.bio, length: 100) if user.bio.present? %></p>
+
+    <div class="meta">
+      <span class="role"><%= user.role.humanize %></span>
+      <span class="status <%= user.status %>"><%= user.status.humanize %></span>
+    </div>
+  </div>
+
+  <div class="actions">
+    <%= link_to "Edit", edit_user_path(user), class: "btn btn-sm" if can?(:edit, user) %>
+    <%= link_to "Delete", user_path(user), method: :delete,
+                confirm: "Are you sure?", class: "btn btn-sm btn-danger" if can?(:destroy, user) %>
+  </div>
+</div>
+
+<!-- ✅ Form partial -->
+<!-- app/views/users/_form.html.erb -->
+<%= form_with model: user, local: true, class: "user-form" do |form| %>
+  <%= render "shared/error_messages", resource: user %>
+
+  <div class="field">
+    <%= form.label :name, class: "required" %>
+    <%= form.text_field :name, required: true %>
+  </div>
+
+  <div class="field">
+    <%= form.label :email, class: "required" %>
+    <%= form.email_field :email, required: true %>
+  </div>
+
+  <div class="field">
+    <%= form.label :bio %>
+    <%= form.text_area :bio, rows: 4 %>
+  </div>
+
+  <%= form.fields_for :profile do |profile_form| %>
+    <div class="field">
+      <%= profile_form.label :website %>
+      <%= profile_form.url_field :website %>
+    </div>
+  <% end %>
+
+  <div class="actions">
+    <%= form.submit class: "btn btn-primary" %>
+    <%= link_to "Cancel", user_path(user), class: "btn btn-secondary" %>
+  </div>
+<% end %>
+```
+
+## Service Layer
+
+### Service Objects
+- Use service objects for complex business logic
+- Keep services focused on a single responsibility
+- Use a consistent interface (call method)
+- Return result objects for better error handling
+
+```ruby
+# ✅ Base service class
+class BaseService
+  include ActiveModel::Model
+  include ActiveModel::Attributes
+
+  def self.call(*args, **kwargs)
+    new(*args, **kwargs).call
+  end
+
+  def call
+    raise NotImplementedError, "#{self.class} must implement #call"
+  end
+
+  private
+
+  def success(data = nil)
+    ServiceResult.success(data)
+  end
+
+  def failure(errors)
+    ServiceResult.failure(errors)
+  end
+end
+
+# ✅ Service result object
+class ServiceResult
+  attr_reader :data, :errors
+
+  def initialize(success:, data: nil, errors: [])
+    @success = success
+    @data = data
+    @errors = Array(errors)
+  end
+
+  def success?
+    @success
+  end
+
+  def failure?
+    !@success
+  end
+
+  def self.success(data = nil)
+    new(success: true, data: data)
+  end
+
+  def self.failure(errors)
+    new(success: false, errors: errors)
+  end
+end
+
+# ✅ User creation service
+module Users
+  class CreationService < BaseService
+    attribute :user_params, :hash
+    attribute :current_user
+
+    validates :user_params, presence: true
+
+    def call
+      return failure(errors.full_messages) unless valid?
+
+      ActiveRecord::Base.transaction do
+        user = build_user
+
+        if user.save
+          send_notifications(user)
+          success(user)
+        else
+          failure(user.errors.full_messages)
+        end
+      end
+    rescue StandardError => e
+      Rails.logger.error("User creation failed: #{e.message}")
+      failure(["User creation failed: #{e.message}"])
+    end
+
+    private
+
+    def build_user
+      User.new(user_params).tap do |user|
+        user.created_by = current_user if current_user
+        user.status = :active
+      end
+    end
+
+    def send_notifications(user)
+      UserMailer.welcome_email(user).deliver_later
+      AdminNotificationJob.perform_later(user.id) if user.admin?
+    end
+  end
+end
+
+# ✅ Complex business logic service
+module Posts
+  class PublishingService < BaseService
+    attribute :post
+    attribute :publisher
+
+    validates :post, presence: true
+    validates :publisher, presence: true
+
+    def call
+      return failure(errors.full_messages) unless valid?
+      return failure(['Post is already published']) if post.published?
+      return failure(['Not authorized to publish']) unless can_publish?
+
+      ActiveRecord::Base.transaction do
+        post.update!(
+          status: :published,
+          published_at: Time.current,
+          published_by: publisher
+        )
+
+        notify_subscribers
+        update_search_index
+        track_analytics_event
+
+        success(post)
+      end
+    rescue ActiveRecord::RecordInvalid => e
+      failure(e.record.errors.full_messages)
+    rescue StandardError => e
+      Rails.logger.error("Post publishing failed: #{e.message}")
+      failure(['Failed to publish post'])
+    end
+
+    private
+
+    def can_publish?
+      publisher.admin? || post.author == publisher
+    end
+
+    def notify_subscribers
+      post.author.followers.find_each do |follower|
+        PostNotificationJob.perform_later(post.id, follower.id)
+      end
+    end
+
+    def update_search_index
+      SearchIndexUpdateJob.perform_later(post.id)
+    end
+
+    def track_analytics_event
+      AnalyticsTrackingJob.perform_later(
+        event: 'post_published',
+        user_id: publisher.id,
+        post_id: post.id
+      )
+    end
+  end
+end
+```
+
+## Background Jobs
+
+### Job Organization
+```ruby
+# ✅ Base job class
+class ApplicationJob < ActiveJob::Base
+  include ActiveJob::Retry
+
+  retry_on StandardError, wait: :exponentially_longer, attempts: 3
+  discard_on ArgumentError
+
+  around_perform do |job, block|
+    Rails.logger.info("Starting job: #{job.class.name} with arguments: #{job.arguments}")
+    start_time = Time.current
+
+    block.call
+
+    duration = Time.current - start_time
+    Rails.logger.info("Completed job: #{job.class.name} in #{duration} seconds")
+  end
+
+  private
+
+  def with_error_handling
+    yield
+  rescue StandardError => e
+    Rails.logger.error("Job failed: #{self.class.name} - #{e.message}")
+    raise
+  end
+end
+
+# ✅ Email job
+class UserMailerJob < ApplicationJob
+  queue_as :mailers
+
+  def perform(user_id, mail_type, options = {})
+    with_error_handling do
+      user = User.find(user_id)
+      UserMailer.public_send(mail_type, user, options).deliver_now
+    end
+  end
+end
+
+# ✅ Data processing job
+class DataProcessingJob < ApplicationJob
+  queue_as :data_processing
+
+  def perform(data_file_id)
+    with_error_handling do
+      data_file = DataFile.find(data_file_id)
+      processor = DataProcessor.new(data_file)
+
+      data_file.update!(status: :processing)
+      result = processor.process
+
+      if result.success?
+        data_file.update!(
+          status: :completed,
+          processed_at: Time.current,
+          records_processed: result.count
+        )
+      else
+        data_file.update!(
+          status: :failed,
+          error_message: result.errors.join(', ')
+        )
+      end
+    end
+  end
+end
+
+# ✅ Scheduled job
+class DailyReportJob < ApplicationJob
+  queue_as :reports
+
+  def perform(date = Date.current)
+    with_error_handling do
+      report_data = generate_report_data(date)
+
+      AdminMailer.daily_report(report_data).deliver_now
+
+      Rails.logger.info("Daily report sent for #{date}")
+    end
+  end
+
+  private
+
+  def generate_report_data(date)
+    {
+      date: date,
+      users_created: User.where(created_at: date.beginning_of_day..date.end_of_day).count,
+      posts_published: Post.published.where(published_at: date.beginning_of_day..date.end_of_day).count,
+      total_active_users: User.active.count
+    }
+  end
+end
+```
+
+## Database and Migrations
+
+### Migration Best Practices
+```ruby
+# ✅ Good migration structure
+class CreateUsers < ActiveRecord::Migration[7.0]
+  def change
+    create_table :users do |t|
+      t.string :email, null: false
+      t.string :name, null: false
+      t.text :bio
+      t.integer :status, default: 0, null: false
+      t.integer :role, default: 0, null: false
+      t.references :created_by, null: true, foreign_key: { to_table: :users }
+
+      t.timestamps null: false
+    end
+
+    add_index :users, :email, unique: true
+    add_index :users, :status
+    add_index :users, :role
+    add_index :users, :created_at
+  end
+end
+
+# ✅ Data migration
+class UpdateUserRoles < ActiveRecord::Migration[7.0]
+  def up
+    # Use connection.execute for better performance with large datasets
+    connection.execute(<<~SQL)
+      UPDATE users
+      SET role = 1
+      WHERE email IN (
+        SELECT email
+        FROM admin_emails
+        WHERE active = true
+      )
+    SQL
+  end
+
+  def down
+    # Provide a way to rollback the migration
+    User.where(role: 1).update_all(role: 0)
+  end
+end
+
+# ✅ Complex migration with safety checks
+class AddIndexToLargeTable < ActiveRecord::Migration[7.0]
+  disable_ddl_transaction!
+
+  def up
+    add_index :posts, :user_id, algorithm: :concurrently
+  end
+
+  def down
+    remove_index :posts, :user_id
+  end
+end
+```
+
+## Testing
+
+### RSpec Configuration
+```ruby
+# spec/rails_helper.rb
+require 'spec_helper'
+ENV['RAILS_ENV'] ||= 'test'
+require_relative '../config/environment'
+
+abort("The Rails environment is running in production mode!") if Rails.env.production?
+require 'rspec/rails'
+
+Dir[Rails.root.join('spec', 'support', '**', '*.rb')].sort.each { |f| require f }
+
+begin
+  ActiveRecord::Migration.maintain_test_schema!
+rescue ActiveRecord::PendingMigrationError => e
+  abort e.to_s.strip
+end
+
+RSpec.configure do |config|
+  config.fixture_path = "#{::Rails.root}/spec/fixtures"
+  config.use_transactional_fixtures = true
+  config.infer_spec_type_from_file_location!
+  config.filter_rails_from_backtrace!
+
+  # Include helper modules
+  config.include FactoryBot::Syntax::Methods
+  config.include Devise::Test::ControllerHelpers, type: :controller
+  config.include Devise::Test::IntegrationHelpers, type: :request
+
+  # Database cleaner configuration
+  config.before(:suite) do
+    DatabaseCleaner.strategy = :transaction
+    DatabaseCleaner.clean_with(:truncation)
+  end
+
+  config.around(:each) do |example|
+    DatabaseCleaner.cleaning do
+      example.run
+    end
+  end
+end
+
+Shoulda::Matchers.configure do |config|
+  config.integrate do |with|
+    with.test_framework :rspec
+    with.library :rails
+  end
+end
+```
+
+### Test Examples
+```ruby
+# spec/models/user_spec.rb
+RSpec.describe User, type: :model do
+  subject(:user) { build(:user) }
+
+  describe 'validations' do
+    it { is_expected.to validate_presence_of(:email) }
+    it { is_expected.to validate_presence_of(:name) }
+    it { is_expected.to validate_uniqueness_of(:email).case_insensitive }
+    it { is_expected.to validate_inclusion_of(:role).in_array(%w[user admin moderator]) }
+  end
+
+  describe 'associations' do
+    it { is_expected.to have_one(:profile).dependent(:destroy) }
+    it { is_expected.to have_many(:posts).dependent(:destroy) }
+  end
+
+  describe 'callbacks' do
+    it 'normalizes email before validation' do
+      user.email = '  TEST@EXAMPLE.COM  '
+      user.valid?
+      expect(user.email).to eq('test@example.com')
+    end
+
+    it 'creates a default profile after creation' do
+      user.save!
+      expect(user.profile).to be_present
+    end
+  end
+
+  describe '#admin?' do
+    context 'when user is admin' do
+      let(:user) { build(:user, :admin) }
+      it { expect(user).to be_admin }
+    end
+
+    context 'when user is not admin' do
+      let(:user) { build(:user, role: 'user') }
+      it { expect(user).not_to be_admin }
+    end
+  end
+end
+
+# spec/controllers/users_controller_spec.rb
+RSpec.describe UsersController, type: :controller do
+  let(:user) { create(:user) }
+
+  before { sign_in user }
+
+  describe 'GET #index' do
+    let!(:users) { create_list(:user, 3) }
+
+    it 'returns a successful response' do
+      get :index
+      expect(response).to be_successful
+    end
+
+    it 'assigns @users' do
+      get :index
+      expect(assigns(:users)).to match_array(User.all)
+    end
+  end
+
+  describe 'POST #create' do
+    context 'with valid parameters' do
+      let(:valid_params) { { user: attributes_for(:user) } }
+
+      it 'creates a new user' do
+        expect {
+          post :create, params: valid_params
+        }.to change(User, :count).by(1)
+      end
+
+      it 'redirects to the user' do
+        post :create, params: valid_params
+        expect(response).to redirect_to(User.last)
+      end
+    end
+
+    context 'with invalid parameters' do
+      let(:invalid_params) { { user: { name: '', email: 'invalid' } } }
+
+      it 'does not create a user' do
+        expect {
+          post :create, params: invalid_params
+        }.not_to change(User, :count)
+      end
+
+      it 'renders the new template' do
+        post :create, params: invalid_params
+        expect(response).to render_template(:new)
+      end
+    end
+  end
+end
+
+# spec/services/users/creation_service_spec.rb
+RSpec.describe Users::CreationService, type: :service do
+  subject(:service) { described_class.new(user_params: user_params) }
+
+  let(:user_params) { attributes_for(:user) }
+
+  describe '#call' do
+    context 'with valid parameters' do
+      it 'creates a user' do
+        expect { service.call }.to change(User, :count).by(1)
+      end
+
+      it 'returns a successful result' do
+        result = service.call
+        expect(result).to be_success
+        expect(result.data).to be_a(User)
+      end
+
+      it 'sends a welcome email' do
+        expect {
+          service.call
+        }.to have_enqueued_job(ActionMailer::MailDeliveryJob)
+      end
+    end
+
+    context 'with invalid parameters' do
+      let(:user_params) { { name: '', email: 'invalid' } }
+
+      it 'does not create a user' do
+        expect { service.call }.not_to change(User, :count)
+      end
+
+      it 'returns a failed result' do
+        result = service.call
+        expect(result).to be_failure
+        expect(result.errors).to be_present
+      end
+    end
+  end
+end
+
+# spec/requests/api/v1/users_spec.rb
+RSpec.describe 'Api::V1::Users', type: :request do
+  let(:user) { create(:user) }
+  let(:headers) { { 'Authorization' => "Bearer #{jwt_token(user)}" } }
+
+  describe 'GET /api/v1/users' do
+    let!(:users) { create_list(:user, 3) }
+
+    it 'returns users' do
+      get '/api/v1/users', headers: headers
+
+      expect(response).to have_http_status(:ok)
+      expect(json_response['data']).to have(4).items # 3 created + 1 current user
+    end
+  end
+
+  describe 'POST /api/v1/users' do
+    let(:user_params) { attributes_for(:user) }
+
+    context 'with valid parameters' do
+      it 'creates a user' do
+        expect {
+          post '/api/v1/users', params: { user: user_params }, headers: headers
+        }.to change(User, :count).by(1)
+      end
+
+      it 'returns the created user' do
+        post '/api/v1/users', params: { user: user_params }, headers: headers
+
+        expect(response).to have_http_status(:created)
+        expect(json_response['data']['attributes']['email']).to eq(user_params[:email])
+      end
+    end
+  end
+end
+```
+
+## Caching and Performance
+
+### Caching Strategies
+```ruby
+# ✅ Model-level caching
+class User < ApplicationRecord
+  def posts_count
+    Rails.cache.fetch("user:#{id}:posts_count", expires_in: 1.hour) do
+      posts.published.count
+    end
+  end
+
+  def invalidate_cache
+    Rails.cache.delete("user:#{id}:posts_count")
+  end
+
+  after_update :invalidate_cache
+end
+
+# ✅ Controller-level caching
+class PostsController < ApplicationController
+  def index
+    @posts = Rails.cache.fetch("posts:index:#{cache_key}", expires_in: 30.minutes) do
+      Post.published
+          .includes(:author, :tags)
+          .order(published_at: :desc)
+          .limit(20)
+          .to_a
+    end
+  end
+
+  private
+
+  def cache_key
+    [
+      params[:page] || 1,
+      params[:category],
+      Post.published.maximum(:updated_at)&.to_i
+    ].join('-')
+  end
+end
+
+# ✅ View fragment caching
+<!-- app/views/posts/_post.html.erb -->
+<% cache post do %>
+  <article class="post">
+    <h2><%= link_to post.title, post %></h2>
+    <p class="meta">
+      By <%= link_to post.author.name, post.author %>
+      on <%= post.published_at.strftime('%B %d, %Y') %>
+    </p>
+    <div class="content">
+      <%= simple_format(post.excerpt) %>
+    </div>
+  </article>
+<% end %>
+
+# ✅ Service-level caching
+module Analytics
+  class ReportService < BaseService
+    attribute :date_range
+    attribute :user_id
+
+    def call
+      report_data = Rails.cache.fetch(cache_key, expires_in: 6.hours) do
+        generate_report_data
+      end
+
+      success(report_data)
+    end
+
+    private
+
+    def cache_key
+      "analytics:report:#{user_id}:#{date_range.begin}:#{date_range.end}"
+    end
+
+    def generate_report_data
+      # Expensive analytics calculations
+    end
+  end
+end
+```
+
+## Security Best Practices
+
+### Authentication and Authorization
+```ruby
+# ✅ Strong parameters
+class UsersController < ApplicationController
+  private
+
+  def user_params
+    params.require(:user).permit(:name, :email, :bio, profile_attributes: [:avatar, :website])
+  end
+end
+
+# ✅ Authorization with CanCanCan
+class Ability
+  include CanCan::Ability
+
+  def initialize(user)
+    user ||= User.new # guest user
+
+    if user.admin?
+      can :manage, :all
+    elsif user.moderator?
+      can :read, :all
+      can :manage, Post, author: user
+      can :moderate, Comment
+    else
+      can :read, Post, status: 'published'
+      can :manage, Post, author: user
+      can :create, Comment
+      can :manage, Comment, user: user
+    end
+  end
+end
+
+# ✅ CSRF protection
+class ApplicationController < ActionController::Base
+  protect_from_forgery with: :exception
+
+  # For API controllers
+  # protect_from_forgery with: :null_session
+end
+
+# ✅ SQL injection prevention
+class PostsController < ApplicationController
+  def search
+    # ✅ Good - parameterized query
+    @posts = Post.where('title ILIKE ?', "%#{params[:q]}%")
+
+    # ❌ Bad - SQL injection vulnerability
+    # @posts = Post.where("title ILIKE '%#{params[:q]}%'")
+  end
+end
+
+# ✅ Mass assignment protection
+class User < ApplicationRecord
+  # Use attr_accessible (older Rails) or strong parameters (newer Rails)
+  # Never use attr_accessible :all or permit!
+end
+```
+
+## Configuration and Environment Management
+
+### Environment Configuration
+```ruby
+# config/application.rb
+module MyApp
+  class Application < Rails::Application
+    config.load_defaults 7.0
+
+    # Configuration for the application
+    config.time_zone = 'UTC'
+    config.active_job.queue_adapter = :sidekiq
+
+    # Security headers
+    config.force_ssl = true if Rails.env.production?
+
+    # CORS configuration
+    config.middleware.insert_before 0, Rack::Cors do
+      allow do
+        origins Rails.env.production? ? ENV['ALLOWED_ORIGINS'] : '*'
+        resource '*', headers: :any, methods: [:get, :post, :put, :patch, :delete, :options]
+      end
+    end
+  end
+end
+
+# config/environments/production.rb
+Rails.application.configure do
+  config.cache_classes = true
+  config.eager_load = true
+  config.consider_all_requests_local = false
+  config.public_file_server.enabled = ENV['RAILS_SERVE_STATIC_FILES'].present?
+
+  # Logging
+  config.log_level = :info
+  config.log_tags = [:request_id]
+
+  # Caching
+  config.cache_store = :redis_cache_store, { url: ENV['REDIS_URL'] }
+
+  # Asset compilation
+  config.assets.compile = false
+  config.assets.digest = true
+
+  # Active Job
+  config.active_job.queue_adapter = :sidekiq
+
+  # Action Mailer
+  config.action_mailer.perform_caching = false
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.default_url_options = { host: ENV['HOST'] }
+end
+
+# config/initializers/sidekiq.rb
+Sidekiq.configure_server do |config|
+  config.redis = { url: ENV['REDIS_URL'] }
+end
+
+Sidekiq.configure_client do |config|
+  config.redis = { url: ENV['REDIS_URL'] }
+end
+```
+
+## API Design
+
+### RESTful API Structure
+```ruby
+# config/routes.rb
+Rails.application.routes.draw do
+  root 'home#index'
+
+  # Standard RESTful resources
+  resources :users do
+    resources :posts, except: [:show]
+    member do
+      patch :activate
+      patch :deactivate
+    end
+  end
+
+  resources :posts do
+    resources :comments, except: [:show, :edit, :update]
+    member do
+      patch :publish
+      patch :unpublish
+    end
+  end
+
+  # API versioning
+  namespace :api do
+    namespace :v1 do
+      resources :users, only: [:index, :show, :create, :update]
+      resources :posts, only: [:index, :show, :create, :update, :destroy] do
+        resources :comments, only: [:index, :create]
+      end
+    end
+  end
+
+  # Health check
+  get 'health', to: 'health#check'
+end
+
+# ✅ API serialization
+class UserSerializer
+  include JSONAPI::Serializer
+
+  attributes :name, :email, :created_at
+
+  has_one :profile
+  has_many :posts
+
+  attribute :posts_count do |user|
+    user.posts.published.count
+  end
+end
+
+# ✅ API error handling
+class Api::V1::BaseController < ApplicationController
+  protect_from_forgery with: :null_session
+
+  rescue_from ActiveRecord::RecordNotFound, with: :render_not_found
+  rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity
+  rescue_from StandardError, with: :render_internal_server_error
+
+  private
+
+  def render_not_found(exception)
+    render json: {
+      error: 'Not Found',
+      message: exception.message
+    }, status: :not_found
+  end
+
+  def render_unprocessable_entity(exception)
+    render json: {
+      error: 'Validation Failed',
+      details: exception.record.errors.full_messages
+    }, status: :unprocessable_entity
+  end
+
+  def render_internal_server_error(exception)
+    Rails.logger.error("API Error: #{exception.message}")
+    Rails.logger.error(exception.backtrace.join("\n"))
+
+    render json: {
+      error: 'Internal Server Error'
+    }, status: :internal_server_error
+  end
+end
+```
+
+This comprehensive Rails rules file covers the essential patterns and practices for building maintainable, scalable Rails applications while following Rails conventions and modern best practices.

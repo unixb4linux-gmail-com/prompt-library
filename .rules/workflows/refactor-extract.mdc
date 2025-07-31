@@ -1,0 +1,65 @@
+---
+description: Identify and extract reusable components and functions
+globs:
+alwaysApply: false
+---
+
+# Code Extraction Workflow
+
+Use this workflow to identify opportunities for extracting reusable components, functions, and utilities.
+
+## Step 1: Duplication Analysis
+
+Prompt:
+> Scan the codebase for extraction opportunities:
+- **Code duplication**: Similar logic repeated across files
+- **UI patterns**: Repeated component structures or styles
+- **Business logic**: Domain-specific functions scattered throughout
+- **Utility functions**: Helper functions that could be centralized
+- **Configuration**: Hard-coded values that should be constants
+- **Data transformations**: Repeated data processing patterns
+
+Create a list of extraction candidates with duplication frequency.
+
+## Step 2: Extraction Planning
+
+Prompt:
+> For each extraction candidate, plan the approach:
+- **Shared utilities**: Extract to `lib/utils/` or similar
+- **Reusable components**: Create in shared component library
+- **Business logic**: Move to service/domain layer
+- **Constants**: Centralize in configuration files
+- **Types/interfaces**: Extract to shared type definitions
+- **Custom hooks**: Extract React hooks for stateful logic
+
+Define the target location and API for each extraction.
+
+## Step 3: Extract & Migrate
+
+Prompt:
+> Execute one extraction at a time:
+- Create the new reusable module/component
+- Update all instances to use the extracted version
+- Remove the duplicated code
+- Add tests for the extracted functionality
+- Update imports and dependencies
+
+Verify all affected functionality still works correctly.
+
+## Step 4: Documentation & Adoption
+
+Prompt:
+> After extraction:
+- Document the new reusable component/function
+- Update coding standards/guidelines
+- Consider creating examples or demos
+- Plan for team adoption and training
+
+Wait for user approval before proceeding to next extraction.
+
+## Success Metrics
+- Reduced code duplication percentage
+- Increased reusability across the codebase
+- Centralized business logic and utilities
+- Improved maintainability and consistency
+- Faster feature development using extracted components

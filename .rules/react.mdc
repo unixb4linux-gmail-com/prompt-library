@@ -1,0 +1,230 @@
+---
+description:
+globs:
+alwaysApply: false
+---
+# React Development Rules
+
+## Core Philosophy
+- Write clean, maintainable, and scalable code
+- Follow SOLID principles and functional programming patterns
+- Emphasize type safety with TypeScript
+- Practice component-driven development
+- Focus on readability over performance optimization
+
+## Component Architecture
+
+### Component Structure
+- Use functional components with TypeScript interfaces
+- Define components using the `function` keyword (not `const`)
+- Extract reusable logic into custom hooks
+- Implement proper component composition
+- Use React.memo() strategically for performance
+
+```typescript
+// ✅ Good
+function UserProfile({ user }: UserProfileProps) {
+  return <div>{user.name}</div>
+}
+
+// ❌ Avoid
+const UserProfile = ({ user }: UserProfileProps) => {
+  return <div>{user.name}</div>
+}
+```
+
+### File Structure
+- Exported component first
+- Subcomponents
+- Custom hooks
+- Helper functions
+- Static content
+- TypeScript interfaces/types (at file end)
+
+## Naming Conventions
+
+### General Rules
+- **PascalCase**: Components, Types, Interfaces
+- **camelCase**: Variables, functions, methods, hooks, properties, props
+- **kebab-case**: File names, directory names
+- **Event handlers**: Prefix with 'handle' (handleClick, handleSubmit)
+- **Boolean variables**: Prefix with verbs (isLoading, hasError, canSubmit)
+- **Custom hooks**: Prefix with 'use' (useAuth, useForm)
+
+### File Naming
+- Components: `user-profile.tsx`
+- Hooks: `use-auth.tsx`
+- Utilities: `format-date.ts`
+- Types: `user.types.ts`
+
+## Code Style
+
+### JavaScript/TypeScript
+- Use early returns for error conditions and code clarity
+- Omit semicolons
+- Use single quotes for strings
+- Use strict equality (===)
+- Use descriptive variable names with auxiliary verbs
+- Prefer iteration and modularization over duplication
+
+### JSX Guidelines
+- Use declarative JSX patterns
+- Keep JSX minimal and readable
+- Avoid unnecessary curly braces in conditionals
+- Use Tailwind classes for styling (avoid inline styles or CSS)
+- Implement proper accessibility features (tabindex, aria-labels, keyboard events)
+
+```jsx
+// ✅ Good - Early return pattern
+function UserCard({ user }: UserCardProps) {
+  if (!user) return <div>No user found</div>
+
+  return (
+    <div className="p-4 bg-white rounded-lg">
+      <h2>{user.name}</h2>
+    </div>
+  )
+}
+
+// ✅ Good - Accessibility
+<button
+  className="px-4 py-2 bg-blue-500 text-white"
+  onClick={handleClick}
+  onKeyDown={handleKeyDown}
+  tabIndex={0}
+  aria-label="Submit form"
+>
+  Submit
+</button>
+```
+
+## TypeScript Usage
+
+### Best Practices
+- Use TypeScript for all code
+- Prefer interfaces over types for object shapes
+- Avoid enums; use objects or const assertions instead
+- Avoid `any` or `unknown` unless absolutely necessary
+- Avoid type assertions with `as` or `!`
+- Look for existing type definitions in codebase
+
+```typescript
+// ✅ Good - Interface
+interface User {
+  id: string
+  name: string
+  email: string
+}
+
+// ✅ Good - Const assertion instead of enum
+const UserRole = {
+  ADMIN: 'admin',
+  USER: 'user',
+  GUEST: 'guest'
+} as const
+
+type UserRoleType = typeof UserRole[keyof typeof UserRole]
+```
+
+## Hooks and State Management
+
+### Custom Hooks
+- Extract complex logic into custom hooks
+- Follow the "use" naming convention
+- Return objects instead of arrays for multiple values
+- Implement proper cleanup in useEffect
+
+```typescript
+function useAuth() {
+  const [isAuthenticated, setIsAuthenticated] = useState(false)
+  const [user, setUser] = useState<User | null>(null)
+
+  return {
+    isAuthenticated,
+    user,
+    login: handleLogin,
+    logout: handleLogout
+  }
+}
+```
+
+### Performance Optimization
+- Use useCallback for memoizing callback functions
+- Implement useMemo for expensive computations
+- Avoid inline function definitions in JSX
+- Implement code splitting with dynamic imports
+- Use proper key props in lists (avoid index as key)
+
+## Error Handling
+
+### Error Patterns
+- Handle errors at the beginning of functions
+- Use early returns for error conditions
+- Place happy path last for improved readability
+- Avoid unnecessary else statements
+- Use guard clauses for preconditions
+- Implement proper error boundaries
+
+```typescript
+function processUser(user: User | null) {
+  // Handle errors first
+  if (!user) {
+    console.error('User is required')
+    return { success: false, error: 'User not found' }
+  }
+
+  if (!user.email) {
+    console.error('User email is required')
+    return { success: false, error: 'Invalid user data' }
+  }
+
+  // Happy path last
+  return { success: true, data: processUserData(user) }
+}
+```
+
+## Styling and UI
+
+### Tailwind CSS
+- Use utility-first approach
+- Implement mobile-first responsive design
+- Use Tailwind classes instead of custom CSS
+- Implement proper component variants with CVA (Class Variance Authority)
+
+### Component Props
+- Use "class:" instead of ternary operator when possible
+- Implement proper prop interfaces
+- Use the RORO pattern (Receive Object, Return Object)
+
+## Testing Guidelines
+
+- Implement unit tests for utility functions and hooks
+- Use integration tests for complex components
+- Test user interactions and accessibility
+- Mock external dependencies appropriately
+
+## Accessibility Standards
+
+- Ensure keyboard navigation support
+- Implement proper ARIA labels and roles
+- Maintain color contrast ratios (WCAG standards)
+- Include focus management
+- Support screen readers
+
+## File Organization
+
+```
+components/
+  auth-wizard/
+    auth-wizard.tsx
+    auth-wizard.types.ts
+    auth-wizard.test.tsx
+    index.ts
+```
+
+## Import/Export Patterns
+
+- Favor named exports for components
+- Use default exports sparingly
+- Group imports: external libraries, internal modules, relative imports
+- Use barrel exports (index.ts) for clean imports
