@@ -80,4 +80,22 @@ if [ -d ".vscode" ]; then
   fi
 fi
 
+# Update .gitignore in the target directory to ignore copied items
+GITIGNORE_PATH="$TARGET_DIR/.gitignore"
+IGNORE_ENTRIES=(".github/prompts/" ".rules/" ".vscode/")
+
+if [ "$DRY_RUN" = true ]; then
+  echo "[DRY RUN] Would update $GITIGNORE_PATH to ignore: ${IGNORE_ENTRIES[*]}"
+else
+  touch "$GITIGNORE_PATH"
+  for entry in "${IGNORE_ENTRIES[@]}"; do
+    if ! grep -qxF "$entry" "$GITIGNORE_PATH"; then
+      echo "$entry" >> "$GITIGNORE_PATH"
+      [ "$VERBOSE" = true ] && echo "Added $entry to $GITIGNORE_PATH"
+    else
+      [ "$VERBOSE" = true ] && echo "$entry already in $GITIGNORE_PATH"
+    fi
+  done
+fi
+
 echo "✅ All prompt and rule files processed for $TARGET_DIR"
