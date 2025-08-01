@@ -3,11 +3,11 @@
 # Enhanced copy-prompts.sh with robust argument parsing, quoting, error handling, and shellcheck compliance
 DRY_RUN=false
 VERBOSE=false
-CONFIRM_OVERWRITE=false
+CONFIRM_OVERWRITE=true
 TARGET_DIR=""
 
 usage() {
-  echo "Usage: $0 [-n|--dry-run] [-v|--verbose] [-c|--confirm] /path/to/target-repo"
+  echo "Usage: $0 [-n|--dry-run] [-v|--verbose] /path/to/target-repo"
   exit 1
 }
 
@@ -16,7 +16,6 @@ while [[ $# -gt 0 ]]; do
   case "$1" in
     -n|--dry-run) DRY_RUN=true ; shift ;;
     -v|--verbose) VERBOSE=true ; shift ;;
-    -c|--confirm) CONFIRM_OVERWRITE=true ; shift ;;
     --) shift ; break ;;
     -*) usage ;;
     *) TARGET_DIR="$1" ; shift ;;
@@ -38,17 +37,15 @@ fi
 copy_file() {
   local src="$1"
   local dest="$2"
-  if [[ -e "$dest" ]] && [[ "$CONFIRM_OVERWRITE" = false ]]; then
-    read -p "File $dest exists. Overwrite? [y/N]: " yn
-    case $yn in
-      [Yy]*) ;;
-      *) echo "Skipped $dest"; return 0 ;;
-    esac
+  # Remove existing file or directory before copying
+  if [[ -e "$dest" ]]; then
+    rm -rf "$dest"
+    [ "$VERBOSE" = true ] && echo "Removed existing $dest"
   fi
   if [ "$DRY_RUN" = true ]; then
     echo "[DRY RUN] Would copy $src to $dest"
   else
-    cp "$src" "$dest"
+    cp -r "$src" "$dest"
     if [[ $? -ne 0 ]]; then
       echo "Error copying $src to $dest" >&2
       return 1
