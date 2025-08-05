@@ -1,3 +1,10 @@
+
+---
+author: daryl
+category: devops, agent, scaffold
+description: Generic AI code test automation rules for self-testing agents
+---
+
 # Rule Set: self_test_code_agent
 # Scope: Generic AI code test automation
 # Author: daryl

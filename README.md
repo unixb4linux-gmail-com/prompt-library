@@ -2,6 +2,20 @@
 
 A collection of reusable prompt engineering files for DevOps, automation, and code generation.
 
+
+## CI & Automation
+
+- Automated linting and validation is run on every push and PR via GitHub Actions:
+  - Shell scripts are checked with shellcheck.
+  - Markdown files are linted for style.
+  - All prompt and rule files are checked for required YAML frontmatter.
+
+- Run `scripts/generate_index.py` to generate `PROMPT_RULE_INDEX.md` (an index of all prompts and rules).
+
+- All prompt and rule files now include YAML frontmatter for metadata (author, category, description).
+
+- Example output/test case files for prompts are provided in the same directory as the prompt, with the suffix `.example.md` or `.test.md`.
+
 ## Usage
 
 - Copy prompts and rules into any target repo:
