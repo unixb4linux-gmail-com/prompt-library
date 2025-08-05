@@ -1,4 +1,13 @@
+> **Directive:**
+> If any step in this prompt requires modification of the repository contents (file creation, editing, or deletion), you must first prompt the user to create a new branch for the work or specify an existing branch to use. Only proceed with changes after the user provides direction.
+> 
+> Before making changes, check which branch is currently checked out. Check if the branch is up to date with its remote. If the branch is current, offer to continue. If it is not current, offer to sync (pull) the branch before continuing.
 <!--
+
+> **Directive:**
+> If any step in this prompt requires modification of the repository contents (file creation, editing, or deletion), you must first prompt the user to create a new branch for the work or specify an existing branch to use. Only proceed with changes after the user provides direction.
+> 
+> Before making changes, check which branch is currently checked out. Check if the branch is up to date with its remote. If the branch is current, offer to continue. If it is not current, offer to sync (pull) the branch before continuing.
 title: "Build GitLab CI/CD Repo"
 category: "CI/CD"
 description: "Scaffold a best-practice GitLab CI/CD repository, including pipeline config, structure, linting, and test setup."
