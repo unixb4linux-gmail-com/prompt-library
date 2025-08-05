@@ -1,0 +1,77 @@
+<!--
+title: "Build ArgoCD Manifests Repo"
+category: "Kubernetes & GitOps"
+description: "Scaffold a best-practice ArgoCD manifests repository, including structure, linting, and test setup."
+-->
+
+# 🚀 Build ArgoCD Manifests Repository
+
+You are a GitOps Engineer. Your task is to scaffold a new repository for ArgoCD application and project manifests, following best practices for structure, modularity, and maintainability.
+
+---
+
+## 🎯 Step 1: Define Project Context
+
+Ask:
+- “What applications or services will be managed by ArgoCD?”
+- “Should environments (dev, staging, prod) be separated?”
+- “Are there any required RBAC or sync policies?”
+
+---
+
+## 🏗️ Step 2: Scaffold Base Structure
+
+Create the following structure:
+
+```
+argocd-manifests/
+├── applications/
+│   ├── app-dev.yaml
+│   ├── app-staging.yaml
+│   └── app-prod.yaml
+├── projects/
+│   └── team-project.yaml
+├── overlays/
+│   ├── dev/
+│   ├── staging/
+│   └── prod/
+├── README.md
+```
+
+---
+
+## 🛠️ Step 3: Initialize with Tools
+
+- Add example Application and AppProject manifests.
+- Add overlays for each environment (using Kustomize if desired).
+- Document ArgoCD usage and customization in `README.md`.
+
+---
+
+## 🧪 Step 4: Linting & Testing
+
+- Use `kubeval` or `kubectl apply --dry-run=client` to validate manifests.
+- Add a script or Makefile for linting and validation.
+- Document how to run linting and tests.
+
+---
+
+## 🔒 Step 5: Security Best Practices
+
+- Avoid hardcoded secrets in manifests (use Kubernetes Secrets).
+- Use RBAC in AppProject and scope permissions tightly.
+- Document how to use ArgoCD RBAC and audit logs.
+
+---
+
+## 🧾 Output Format
+
+```markdown
+## 📦 Scaffolded Structure
+
+## 🛠️ Initialization Steps
+
+## 🧪 Linting & Testing Setup
+
+## 🔒 Security Practices
+```

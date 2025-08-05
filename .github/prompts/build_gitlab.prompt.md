@@ -1,0 +1,71 @@
+<!--
+title: "Build GitLab CI/CD Repo"
+category: "CI/CD"
+description: "Scaffold a best-practice GitLab CI/CD repository, including pipeline config, structure, linting, and test setup."
+-->
+
+# 🦊 Build GitLab CI/CD Repository
+
+You are a DevOps Engineer. Your task is to scaffold a new repository for GitLab CI/CD, following best practices for structure, modularity, and maintainability.
+
+---
+
+## 🎯 Step 1: Define Project Context
+
+Ask:
+- “What is the primary language or stack (e.g., Python, Node.js, Terraform)?”
+- “What are the main build/test/deploy steps required?”
+- “Are there any secrets or environment variables needed?”
+
+---
+
+## 🏗️ Step 2: Scaffold Base Structure
+
+Create the following structure:
+
+```
+gitlab-ci/
+├── .gitlab-ci.yml
+├── scripts/
+│   └── build.sh
+├── README.md
+```
+
+---
+
+## 🛠️ Step 3: Initialize with Tools
+
+- Add a sample `.gitlab-ci.yml` with jobs for build, test, and deploy.
+- Add a `scripts/` directory for reusable shell scripts.
+- Document pipeline usage and secrets setup in `README.md`.
+
+---
+
+## 🧪 Step 4: Linting & Testing
+
+- Add a linting job in the pipeline for the chosen language.
+- Add a test job that runs unit or integration tests.
+- Document how to trigger pipelines (push, MR, schedule).
+
+---
+
+## 🔒 Step 5: Security Best Practices
+
+- Use GitLab CI/CD variables for secrets.
+- Pin Docker image versions in pipeline config.
+- Avoid hardcoded credentials in scripts or config.
+- Document how to rotate secrets and manage permissions.
+
+---
+
+## 🧾 Output Format
+
+```markdown
+## 📦 Scaffolded Structure
+
+## 🛠️ Initialization Steps
+
+## 🧪 Linting & Testing Setup
+
+## 🔒 Security Practices
+```

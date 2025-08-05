@@ -1,7 +1,14 @@
+
+---
+author: daryl
+category: devops, testing, agent
+description: Test an AI agent's ability to build, debug, and complete tasks in a code project iteratively
+---
+
 # Prompt: Build andTest AI Coding Agent with Iterative Execution
 # Category: devops, testing, agent
 # Author: daryl
-# Use Case: Test an AI agent’s ability to build, debug, and complete tasks in a code project iteratively
+# Use Case: Test an AI agents ability to build, debug, and complete tasks in a code project iteratively
 # Description: Direct an AI agent to follow a specified scenario until a working result is achieved
 
 ## Instructions
