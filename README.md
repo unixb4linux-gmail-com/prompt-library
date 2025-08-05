@@ -45,6 +45,68 @@ Prompts are reusable scenario files for AI agents. They are organized by technol
 - `.github/prompts/write_tests.prompt.md`: Generate tests for your codebase.
 - `.github/prompts/deploy_aks_terraform.prompt.md`: Deploy to AKS using Terraform.
 
+**Build & Analyze Prompts (by Technology)**
+
+*Ansible*
+- `.github/prompts/analyze_ansible_manifests.prompt.md`: Audit Ansible playbooks, roles, and inventory.
+- `.github/prompts/build_ansible_manifests.prompt.md`: Scaffold a best-practice Ansible repo.
+
+*Helm*
+- `.github/prompts/analyze_helm_manifests.prompt.md`: Audit Helm charts and structure.
+- `.github/prompts/build_helm_manifests.prompt.md`: Scaffold a best-practice Helm chart repo.
+
+*Snyk*
+- `.github/prompts/analyze_snyk_manifests.prompt.md`: Audit Snyk configuration.
+- `.github/prompts/build_snyk_manifests.prompt.md`: Scaffold a Snyk integration repo.
+
+*Prometheus & Grafana*
+- `.github/prompts/analyze_prometheus_grafana_manifests.prompt.md`: Audit Prometheus/Grafana manifests.
+- `.github/prompts/build_prometheus_grafana_manifests.prompt.md`: Scaffold a monitoring repo for Prometheus/Grafana.
+
+*Bitbucket Pipelines*
+- `.github/prompts/analyze_bitbucket_pipeline.prompt.md`: Review Bitbucket Pipelines.
+- `.github/prompts/build_bitbucket_pipeline.prompt.md`: Scaffold a Bitbucket Pipelines repo.
+
+*GitLab CI/CD*
+- `.github/prompts/analyze_gitlab.prompt.md`: Review GitLab CI/CD pipelines.
+- `.github/prompts/build_gitlab.prompt.md`: Scaffold a GitLab CI/CD repo.
+
+*Jenkins*
+- `.github/prompts/analyze_jenkins_prompt.md`: Review Jenkins pipelines and security.
+- `.github/prompts/build_jenkins_prompt.md`: Scaffold a Jenkins pipeline repo.
+
+*Terraform*
+- `.github/prompts/analyze_terraform_evaluation.prompt.md`: Audit Terraform modules and security.
+- `.github/prompts/build_terraform_evaluation.prompt.md`: Scaffold a Terraform module repo.
+
+*Kubernetes Manifests*
+- `.github/prompts/analyze_kubernetes_manifests.prompt.md`: Audit Kubernetes manifests.
+- `.github/prompts/build_kubernetes_manifests.prompt.md`: Scaffold a Kubernetes manifests repo.
+
+*Kubernetes Policy*
+- `.github/prompts/analyze_kubernetes_policy_manifests.prompt.md`: Audit Kubernetes policy manifests.
+- `.github/prompts/build_kubernetes_policy_manifests.prompt.md`: Scaffold a Kubernetes policy repo.
+
+*ArgoCD*
+- `.github/prompts/analyze_argocd_manifests.prompt.md`: Audit ArgoCD manifests.
+- `.github/prompts/build_argocd_manifests.prompt.md`: Scaffold an ArgoCD manifests repo.
+
+*Vault*
+- `.github/prompts/analyze_vault_manifests.prompt.md`: Audit HashiCorp Vault manifests.
+- `.github/prompts/build_vault_manifests.prompt.md`: Scaffold a Vault manifests repo.
+
+*AWS EKS*
+- `.github/prompts/analyze_eks.prompt.md`: Audit AWS EKS cluster and manifests.
+- `.github/prompts/build_eks.prompt.md`: Scaffold an AWS EKS cluster repo.
+
+*Azure AKS*
+- `.github/prompts/analyze_aks.prompt.md`: Audit Azure AKS cluster and manifests.
+- `.github/prompts/build_aks.prompt.md`: Scaffold an Azure AKS cluster repo.
+
+*GitHub Actions*
+- `.github/prompts/analyze_github_workflows.prompt.md`: Review GitHub Actions workflows.
+- `.github/prompts/build_github_workflows.prompt.md`: Scaffold a GitHub Actions workflow repo.
+
 **Codebase & CI/CD Analysis**
 - `.github/prompts/analyze_codebase.prompt.md`: Audit the entire repository for architecture, security, and best practices.
 - `.github/prompts/analyze_github_workflows.prompt.md`: Review GitHub Actions workflows.
@@ -92,6 +154,11 @@ Rules define conventions and agent behaviors for different stacks. All rules are
 - `generic/` — Generic prompts and rules for agent self-testing.
 - `terraform/` — Terraform-specific prompts and rules.
 - `copy-prompts.sh` — Utility script for copying prompts/rules to other repos.
+
+## Recent Updates
+
+- Added build/analyze prompts for Ansible, Helm, Snyk, Prometheus/Grafana, Bitbucket, GitLab, Jenkins, Terraform, Kubernetes, Kubernetes Policy, ArgoCD, Vault, AWS EKS, and Azure AKS.
+
 
 ## Contributing
 

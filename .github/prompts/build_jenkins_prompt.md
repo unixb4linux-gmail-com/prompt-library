@@ -1,0 +1,71 @@
+<!--
+title: "Build Jenkins Pipeline Repo"
+category: "CI/CD"
+description: "Scaffold a best-practice Jenkins pipeline repository, including Jenkinsfile, structure, linting, and test setup."
+-->
+
+# 🧪 Build Jenkins Pipeline Repository
+
+You are a DevOps Engineer. Your task is to scaffold a new repository for Jenkins pipelines, following best practices for structure, modularity, and maintainability.
+
+---
+
+## 🎯 Step 1: Define Project Context
+
+Ask:
+- “What is the primary language or stack (e.g., Python, Node.js, Terraform)?”
+- “What are the main build/test/deploy steps required?”
+- “Are there any secrets or environment variables needed?”
+
+---
+
+## 🏗️ Step 2: Scaffold Base Structure
+
+Create the following structure:
+
+```
+jenkins-pipeline/
+├── Jenkinsfile
+├── scripts/
+│   └── build.sh
+├── README.md
+```
+
+---
+
+## 🛠️ Step 3: Initialize with Tools
+
+- Add a sample `Jenkinsfile` with stages for build, test, and deploy.
+- Add a `scripts/` directory for reusable shell scripts.
+- Document pipeline usage and secrets setup in `README.md`.
+
+---
+
+## 🧪 Step 4: Linting & Testing
+
+- Add a linting stage in the pipeline for the chosen language.
+- Add a test stage that runs unit or integration tests.
+- Document how to trigger pipelines (push, PR, schedule).
+
+---
+
+## 🔒 Step 5: Security Best Practices
+
+- Use Jenkins credentials plugin for secrets.
+- Pin Docker image versions in pipeline config.
+- Avoid hardcoded credentials in scripts or config.
+- Document how to rotate secrets and manage permissions.
+
+---
+
+## 🧾 Output Format
+
+```markdown
+## 📦 Scaffolded Structure
+
+## 🛠️ Initialization Steps
+
+## 🧪 Linting & Testing Setup
+
+## 🔒 Security Practices
+```
