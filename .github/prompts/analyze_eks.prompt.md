@@ -9,6 +9,8 @@ description: "Audit AWS EKS cluster configuration, manifests, IAM, and security 
 -->
 
 # ☁️ Analyze AWS EKS Cluster & Manifests
+# Directive:
+If any step in this prompt requires modification of the repository contents (file creation, editing, or deletion), you must first prompt the user to create a new branch for the work or specify an existing branch to use. Only proceed with changes after the user provides direction.
 
 You are a Cloud Platform Engineer. Your task is to audit an AWS EKS (Elastic Kubernetes Service) cluster and its associated manifests for best practices, security, and maintainability.
 

@@ -5,6 +5,8 @@ description: "Scaffold a best-practice Kubernetes policy manifests repository, i
 -->
 
 # 🛡️ Build Kubernetes Policy Manifests Repository
+# Directive:
+If any step in this prompt requires modification of the repository contents (file creation, editing, or deletion), you must first prompt the user to create a new branch for the work or specify an existing branch to use. Only proceed with changes after the user provides direction.
 
 You are a Platform Security Engineer. Your task is to scaffold a new repository for Kubernetes policy manifests (e.g., OPA, Kyverno, Gatekeeper), following best practices for structure, modularity, and maintainability.
 

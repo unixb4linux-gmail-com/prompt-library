@@ -11,7 +11,9 @@ description: Test an AI agent's ability to build, debug, and complete tasks in a
 # Use Case: Test an AI agents ability to build, debug, and complete tasks in a code project iteratively
 # Description: Direct an AI agent to follow a specified scenario until a working result is achieved
 
+
 ## Instructions
+If any step in this prompt requires modification of the repository contents (file creation, editing, or deletion), you must first prompt the user to create a new branch for the work or specify an existing branch to use. Only proceed with changes after the user provides direction.
 
 
 You are an AI coding assistant with full access to the project directory and the ability to run commands, edit files, and validate outcomes. Your goal is to test your own logic and tooling by performing the following user-defined scenario, using structured inputs:

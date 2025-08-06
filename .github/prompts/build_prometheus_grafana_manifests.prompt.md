@@ -9,6 +9,8 @@ description: "Scaffold a best-practice Prometheus and Grafana monitoring reposit
 -->
 
 # 📊 Build Prometheus & Grafana Monitoring Repository
+# Directive:
+If any step in this prompt requires modification of the repository contents (file creation, editing, or deletion), you must first prompt the user to create a new branch for the work or specify an existing branch to use. Only proceed with changes after the user provides direction.
 
 You are a Platform Engineer. Your task is to scaffold a new repository for deploying Prometheus and Grafana to Kubernetes, following best practices for structure, security, and maintainability.
 

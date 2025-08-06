@@ -9,5 +9,7 @@ description: "Generate unit and integration tests for a codebase."
 -->
 
 # Prompt: Write Tests for Codebase
+# Directive:
+If any step in this prompt requires modification of the repository contents (file creation, editing, or deletion), you must first prompt the user to create a new branch for the work or specify an existing branch to use. Only proceed with changes after the user provides direction.
 
 Analyze the codebase and generate comprehensive unit and integration tests. Use the appropriate testing framework for the language. Include coverage reports if possible.
