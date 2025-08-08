@@ -59,12 +59,21 @@ This ensures all repository modifications are performed safely, with explicit us
 
 Prompts are reusable scenario files for AI agents. They are organized by technology and use case:
 
+
 ### General & Generic
 
-
 - `generic/build_test_code_agent.prompt.md`: Test an AI agent's ability to build and validate code projects.
+- `.github/prompts/onboard_devops_new_client.prompt.md`: Step-by-step onboarding guide for new DevOps consultants joining a client project.
 
+### Discovery & Recon Prompts
 
+- `.github/prompts/recon_tools_local.prompt.md`: Enumerate installed DevOps tools, versions, and config footprints.
+- `.github/prompts/recon_accounts_sessions.prompt.md`: Summarize professional git identities, CLI sessions, and work app presence.
+- `.github/prompts/recon_cloud_credentials.prompt.md`: Locate and summarize professional cloud credentials and profiles.
+- `.github/prompts/recon_cicd_integrations.prompt.md`: Identify CI/CD configurations in local repos, including triggers and secret references.
+- `.github/prompts/recon_k8s_and_containers.prompt.md`: Inventory Kubernetes contexts and local container runtimes.
+- `.github/prompts/recon_iac_automation.prompt.md`: Discover infrastructure-as-code (IaC) assets and summarize modules, providers, and backends.
+- `.github/prompts/recon_devops_master.prompt.md`: Interactive, comprehensive DevOps recon covering tools, accounts, cloud, CI/CD, K8s, and IaC.
 
 ### Terraform (Build & Test)
 
