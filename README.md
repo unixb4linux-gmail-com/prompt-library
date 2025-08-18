@@ -39,6 +39,9 @@ This ensures all repository modifications are performed safely, with explicit us
   - Use `-n` or `--dry-run` to preview actions without copying files.
   - Use `-v` or `--verbose` for detailed output.
   - Use `-c` or `--confirm` to auto-confirm overwrites.
+  - Use `--no-gitignore-prompts` to skip adding `.github/prompts/` to the target repo's `.gitignore` (default is to include it).
+
+  After the script runs, if `.github/prompts/` was added to `.gitignore`, you will be interactively prompted to keep or remove the entry.
 
 - Prompts will be placed in: `.github/prompts/`
 - Rules will be placed in: `.rules/`
@@ -237,7 +240,7 @@ Rules define conventions and agent behaviors for different stacks. All rules are
 
 ## Utility Scripts
 
-- `copy-prompts.sh`: Copies all prompts and rules into a target repo, updates `.gitignore`, and optionally copies `.vscode`. Supports dry-run, verbose, and auto-confirm modes.
+- `copy-prompts.sh`: Copies all prompts and rules into a target repo, updates `.gitignore` (by default adds `.github/prompts/`, `.rules/`, and `.vscode/`), and optionally copies `.vscode`. Supports dry-run, verbose, auto-confirm, and the `--no-gitignore-prompts` flag to skip adding `.github/prompts/` to `.gitignore`. After running, you will be prompted to keep or remove the `.github/prompts/` entry if it was added.
 
 ## Directory Structure
 
