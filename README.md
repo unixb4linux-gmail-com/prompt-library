@@ -18,14 +18,24 @@ A collection of reusable prompt engineering files for DevOps, automation, and co
 
 ## Usage
 
-## Branch and Sync Safety in Prompts
 
+## Prompt Best Practices
 
-All prompt files in `.github/prompts/` now include a **branch and sync safety directive**:
+All prompt files now include the following best-practice instructions:
+
+> **Best Practices:**
+> - Ask clarifying questions before proceeding if any requirements or context are unclear.
+> - Ask for permission before running commands, editing, or creating files. Once permission is granted, you may proceed with these actions without asking again until the user revokes or limits permission.
+
+This ensures that AI agents:
+- Always clarify ambiguous requirements before taking action.
+- Only run commands, edit, or create files after explicit user permission (and do not repeatedly ask unless permission is revoked).
+
+Additionally, all prompt files in `.github/prompts/` include a **branch and sync safety directive**:
 
 > **Directive:**
 > If any step in this prompt requires modification of the repository contents (file creation, editing, or deletion), you must first prompt the user to create a new branch for the work or specify an existing branch to use. Only proceed with changes after the user provides direction.
->
+> 
 > Before making changes, check which branch is currently checked out. Check if the branch is up to date with its remote. If the branch is current, offer to continue. If it is not current, offer to sync (pull) the branch before continuing.
 
 This ensures all repository modifications are performed safely, with explicit user direction and up-to-date branches.
