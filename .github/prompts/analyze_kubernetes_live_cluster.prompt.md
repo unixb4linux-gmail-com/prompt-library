@@ -1,5 +1,8 @@
 ````markdown
 <!--
+Best Practices:
+- Ask clarifying questions before proceeding if any requirements or context are unclear.
+- Ask for permission before running commands, editing, or creating files. Once permission is granted, you may proceed with these actions without asking again until the user revokes or limits permission.
 title: "Analyze Live Kubernetes Cluster via Kubectl"
 category: "Cluster Health & Security"
 description: "Evaluate a live Kubernetes cluster by inspecting workloads, RBAC, security controls, and observability using kubectl and supporting tools"

@@ -12,8 +12,14 @@ description: Test an AI agent's ability to build, debug, and complete tasks in a
 # Description: Direct an AI agent to follow a specified scenario until a working result is achieved
 
 
+
 ## Instructions
 If any step in this prompt requires modification of the repository contents (file creation, editing, or deletion), you must first prompt the user to create a new branch for the work or specify an existing branch to use. Only proceed with changes after the user provides direction.
+
+
+**Ask clarifying questions before proceeding.**
+
+**Ask for permission before running commands, editing, or creating files. Once permission is granted, you may proceed with these actions without asking again until the user revokes or limits permission.**
 
 Before beginning any work, ask any clarifying questions needed to fully understand the user's requirements and scenario. Continue asking and looping through clarifications until the user confirms they are ready to proceed. Only start work after explicit confirmation.
 

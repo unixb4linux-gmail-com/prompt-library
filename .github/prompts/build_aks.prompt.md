@@ -4,6 +4,9 @@
 > Before making changes, check which branch is currently checked out. Check if the branch is up to date with its remote. If the branch is current, offer to continue. If it is not current, offer to sync (pull) the branch before continuing.
 > 
 > Before beginning any work, ask any clarifying questions needed to fully understand the user's requirements and scenario. Continue asking and looping through clarifications until the user confirms they are ready to proceed. Only start work after explicit confirmation.
+
+> **Ask clarifying questions before proceeding.**
+> **Ask for permission before running commands, editing, or creating files. Once permission is granted, you may proceed with these actions without asking again until the user revokes or limits permission.**
 <!--
 title: "Build Azure AKS Cluster Repo"
 category: "Kubernetes & Cloud"

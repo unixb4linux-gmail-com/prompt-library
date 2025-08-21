@@ -1,4 +1,6 @@
----
+> **Best Practices:**
+> - Ask clarifying questions before proceeding if any requirements or context are unclear.
+> - Ask for permission before running commands, editing, or creating files. Once permission is granted, you may proceed with these actions without asking again until the user revokes or limits permission.
 title: "Recon Tools Local"
 author: you
 category: discovery

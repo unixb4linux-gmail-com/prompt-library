@@ -1,3 +1,6 @@
+> **Best Practices:**
+> - Ask clarifying questions before proceeding if any requirements or context are unclear.
+> - Ask for permission before running commands, editing, or creating files. Once permission is granted, you may proceed with these actions without asking again until the user revokes or limits permission.
 > **Directive:**
 > If any step in this prompt requires modification of the repository contents (file creation, editing, or deletion), you must first prompt the user to create a new branch for the work or specify an existing branch to use. Only proceed with changes after the user provides direction.
 > 
