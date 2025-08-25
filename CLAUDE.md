@@ -31,11 +31,11 @@ This is a **Prompt Library** for DevOps automation that distributes AI prompts a
 
 ### Core Components
 
-**Prompt System** (`.github/prompts/`): 50+ prompt files organized by technology stack
-- **Analysis prompts**: `analyze_*.prompt.md` - Audit existing infrastructure/code
-- **Build prompts**: `build_*.prompt.md` - Scaffold new projects from scratch  
-- **Recon prompts**: `recon_*.prompt.md` - Discovery and enumeration tasks
-- **Specialized directories**: `terraform/`, `github-actions/`, `aks/` for focused workflows
+**Prompt System** (`.github/prompts/`): 55 prompt files organized by technology stack with advanced AI engineering
+- **Analysis prompts**: `analyze_*.prompt.md` - Audit existing infrastructure/code with evidence-based validation
+- **Build prompts**: `build_*.prompt.md` - Scaffold new projects from scratch with security-first patterns  
+- **Recon prompts**: `recon_*.prompt.md` - Discovery and enumeration tasks with smart scope management
+- **Specialized directories**: `terraform/`, for focused workflows
 
 **Rules System** (`.rules/`): Coding conventions and agent behaviors
 - **Language rules**: `python.mdc`, `react.mdc`, `nodejs.mdc`, etc.
@@ -60,12 +60,25 @@ category: "Technology Category"
 
 The `generate_index.py` script parses this metadata to maintain `PROMPT_RULE_INDEX.md`.
 
-### Best Practice Integration
+### AI Prompt Engineering Integration
 
-Every prompt includes standardized directives:
-- **Permission handling**: Ask for permission before file modifications
-- **Branch safety**: Require explicit branch selection for repository changes
+Every prompt includes advanced engineering patterns for maximum effectiveness:
+
+**Core Safety Framework**:
+- **Permission handling**: Ask for permission before file modifications with single confirmation flow
+- **Branch safety**: Require explicit branch selection for repository changes with sync validation  
 - **Security guidance**: Mask secrets in output, promote secure credential handling
+
+**Context Management System**:
+- **Smart scope adjustment**: Prioritize security-critical items when complexity exceeds capacity
+- **Domain-specific prioritization**: Tailored focus areas for each technology stack (security, performance, integration)
+- **Progressive disclosure**: Break overwhelming scenarios into manageable phases with user control
+
+**Analysis Validation Framework**:
+- **Evidence-based classification**: Mark all findings as "Confirmed" vs "Potential" with supporting evidence
+- **Confidence indicators**: Provide High/Medium/Low ratings for each recommendation with reasoning
+- **Specific referencing**: Require citations of actual configurations, files, or settings
+- **Access enhancement guidance**: Suggest additional access or tools to improve analysis accuracy
 
 ### VS Code Integration
 

@@ -19,26 +19,42 @@ A collection of reusable prompt engineering files for DevOps, automation, and co
 ## Usage
 
 
-## Prompt Best Practices
+## Prompt Engineering Best Practices
 
-All prompt files now include the following best-practice instructions:
+All 55 prompt files implement comprehensive AI prompt engineering best practices for maximum effectiveness:
+
+### **Core Safety & Permission Patterns**
 
 > **Best Practices:**
 > - Ask clarifying questions before proceeding if any requirements or context are unclear.
 > - Ask for permission before running commands, editing, or creating files. Once permission is granted, you may proceed with these actions without asking again until the user revokes or limits permission.
-
-This ensures that AI agents:
-- Always clarify ambiguous requirements before taking action.
-- Only run commands, edit, or create files after explicit user permission (and do not repeatedly ask unless permission is revoked).
-
-Additionally, all prompt files in `.github/prompts/` include a **branch and sync safety directive**:
 
 > **Directive:**
 > If any step in this prompt requires modification of the repository contents (file creation, editing, or deletion), you must first prompt the user to create a new branch for the work or specify an existing branch to use. Only proceed with changes after the user provides direction.
 > 
 > Before making changes, check which branch is currently checked out. Check if the branch is up to date with its remote. If the branch is current, offer to continue. If it is not current, offer to sync (pull) the branch before continuing.
 
-This ensures all repository modifications are performed safely, with explicit user direction and up-to-date branches.
+### **Advanced Context Management**
+
+All prompts include **Context Management** sections that handle complex scenarios:
+- **Smart scope adjustment**: Prioritize security-critical items when scope exceeds capacity
+- **Domain-specific guidance**: Tailored prioritization for each technology domain
+- **Progressive disclosure**: Break complex tasks into manageable phases
+- **User focus specification**: Allow users to specify focus areas for overwhelming scenarios
+
+### **Analysis Validation Framework**
+
+Every prompt implements **Analysis Validation** patterns for reliable results:
+- **Evidence-based findings**: Mark all findings as "Confirmed" vs "Potential" based on actual evidence
+- **Specific referencing**: Require citations of actual configurations, settings, or patterns  
+- **Confidence indicators**: Provide High/Medium/Low confidence ratings for each recommendation
+- **Access improvement guidance**: Suggest additional access or tools that would improve analysis accuracy
+
+### **Enhanced Output Quality**
+
+- **Structured recommendations**: Consistent format with confidence scoring and evidence citation
+- **Security-first prioritization**: Always prioritize security-critical findings and configurations
+- **Actionable guidance**: All recommendations include specific implementation steps and validation methods
 
 - Copy prompts and rules into any target repo:
 
@@ -308,16 +324,26 @@ Rules define conventions and agent behaviors for different stacks. All rules are
 
 ## Recent Updates
 
-- **Major Domain Coverage Expansion**: Added comprehensive prompts for previously missing tools including:
-  - **CI/CD Platforms**: CircleCI, Azure DevOps  
-  - **Observability**: Datadog, ELK Stack (Elasticsearch, Logstash, Kibana)
-  - **Security & Code Quality**: SonarQube, Trivy vulnerability scanner
-  - **Cloud & Serverless**: AWS Lambda, Google Cloud GKE
-  - **Platform Engineering**: Backstage developer portal
-  - **Discovery**: CircleCI reconnaissance and integration discovery
+### **AI Prompt Engineering Best Practices Rollout** ✨
 
-- Enhanced existing coverage with build/analyze prompts for Ansible, Helm, Snyk, Prometheus/Grafana, Bitbucket, GitLab, Jenkins, Terraform, Kubernetes, Kubernetes Policy, ArgoCD, Vault, AWS EKS, and Azure AKS.
+**Completed systematic enhancement of all 55 prompts with advanced AI prompt engineering patterns:**
 
+- **Context Management**: Smart scope adjustment, domain-specific prioritization, and progressive disclosure for complex scenarios
+- **Analysis Validation**: Evidence-based findings classification, confidence indicators, and specific reference requirements  
+- **Enhanced Reliability**: Consistent quality framework across all DevOps domains with security-first prioritization
+
+### **Major Domain Coverage Expansion**
+
+Added comprehensive prompts for previously missing tools including:
+
+- **CI/CD Platforms**: CircleCI, Azure DevOps  
+- **Observability**: Datadog, ELK Stack (Elasticsearch, Logstash, Kibana)
+- **Security & Code Quality**: SonarQube, Trivy vulnerability scanner
+- **Cloud & Serverless**: AWS Lambda, Google Cloud GKE
+- **Platform Engineering**: Backstage developer portal
+- **Discovery**: CircleCI reconnaissance and integration discovery
+
+Enhanced existing coverage with build/analyze prompts for Ansible, Helm, Snyk, Prometheus/Grafana, Bitbucket, GitLab, Jenkins, Terraform, Kubernetes, Kubernetes Policy, ArgoCD, Vault, AWS EKS, and Azure AKS.
 
 ## Contributing
 
