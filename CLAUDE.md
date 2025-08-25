@@ -31,7 +31,7 @@ This is a **Prompt Library** for DevOps automation that distributes AI prompts a
 
 ### Core Components
 
-**Prompt System** (`.github/prompts/`): 55 prompt files organized by technology stack with advanced AI engineering
+**Prompt System** (`.github/prompts/`): 56 prompt files organized by technology stack with advanced AI engineering
 - **Analysis prompts**: `analyze_*.prompt.md` - Audit existing infrastructure/code with evidence-based validation
 - **Build prompts**: `build_*.prompt.md` - Scaffold new projects from scratch with security-first patterns  
 - **Recon prompts**: `recon_*.prompt.md` - Discovery and enumeration tasks with smart scope management

@@ -21,7 +21,7 @@ A collection of reusable prompt engineering files for DevOps, automation, and co
 
 ## Prompt Engineering Best Practices
 
-All 55 prompt files implement comprehensive AI prompt engineering best practices for maximum effectiveness:
+All 56 prompt files implement comprehensive AI prompt engineering best practices for maximum effectiveness:
 
 ### **Core Safety & Permission Patterns**
 
@@ -273,7 +273,14 @@ Prompts are reusable scenario files for AI agents. They are organized by technol
 
 - `.github/prompts/analyze_backstage.prompt.md`: Audit Backstage developer portal, catalog, plugins, and platform engineering implementation.
 
+**SRE & Incident Response**
+
+#### Incident Management
+
+- `.github/prompts/analyze_incident_management.prompt.md`: Audit incident management processes, tools, alerting, escalation policies, and response procedures for SRE best practices.
+
 **Codebase & CI/CD Analysis**
+
 - `.github/prompts/analyze_codebase.prompt.md`: Audit the entire repository for architecture, security, and best practices.
 - `.github/prompts/analyze_github_workflows.prompt.md`: Review GitHub Actions workflows.
 - `.github/prompts/analyze_gitlab.prompt.md`: Review GitLab CI/CD pipelines.
@@ -326,7 +333,7 @@ Rules define conventions and agent behaviors for different stacks. All rules are
 
 ### **AI Prompt Engineering Best Practices Rollout** ✨
 
-**Completed systematic enhancement of all 55 prompts with advanced AI prompt engineering patterns:**
+**Completed systematic enhancement of all 56 prompts with advanced AI prompt engineering patterns:**
 
 - **Context Management**: Smart scope adjustment, domain-specific prioritization, and progressive disclosure for complex scenarios
 - **Analysis Validation**: Evidence-based findings classification, confidence indicators, and specific reference requirements  
