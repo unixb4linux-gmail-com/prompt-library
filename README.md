@@ -87,6 +87,7 @@ Prompts are reusable scenario files for AI agents. They are organized by technol
 - `.github/prompts/recon_k8s_and_containers.prompt.md`: Inventory Kubernetes contexts and local container runtimes.
 - `.github/prompts/recon_iac_automation.prompt.md`: Discover infrastructure-as-code (IaC) assets and summarize modules, providers, and backends.
 - `.github/prompts/recon_devops_master.prompt.md`: Interactive, comprehensive DevOps recon covering tools, accounts, cloud, CI/CD, K8s, and IaC.
+- `.github/prompts/recon_circleci.prompt.md`: Discover and inventory CircleCI configurations, contexts, and integrations.
 
 ### Terraform (Build & Test)
 
@@ -208,9 +209,53 @@ Prompts are reusable scenario files for AI agents. They are organized by technol
 #### GitHub Actions
 
 - `.github/prompts/analyze_github_workflows.prompt.md`: Review GitHub Actions workflows.
-
 - `.github/prompts/build_github_workflows.prompt.md`: Scaffold a GitHub Actions workflow repo.
 
+#### CircleCI
+
+- `.github/prompts/analyze_circleci.prompt.md`: Comprehensive audit of CircleCI workflows, orbs, and security.
+- `.github/prompts/build_circleci.prompt.md`: Scaffold a comprehensive CircleCI pipeline repository.
+
+#### Azure DevOps
+
+- `.github/prompts/analyze_azure_devops.prompt.md`: Audit Azure DevOps YAML pipelines, variable groups, and service connections.
+- `.github/prompts/build_azure_devops.prompt.md`: Scaffold comprehensive Azure DevOps YAML pipelines with templates and security.
+
+**Observability & Monitoring**
+
+#### Datadog
+
+- `.github/prompts/analyze_datadog.prompt.md`: Comprehensive audit of Datadog monitoring, dashboards, alerts, APM, and infrastructure observability.
+
+#### ELK Stack
+
+- `.github/prompts/analyze_elk_stack.prompt.md`: Audit Elasticsearch, Logstash, Kibana setup, log aggregation, and search capabilities.
+
+**Security & Code Quality**
+
+#### SonarQube
+
+- `.github/prompts/analyze_sonarqube.prompt.md`: Audit SonarQube setup, quality gates, security rules, and DevSecOps integration.
+
+#### Trivy
+
+- `.github/prompts/analyze_trivy.prompt.md`: Audit Trivy vulnerability scanning, container security, and IaC security scanning.
+
+**Cloud & Serverless**
+
+#### AWS Lambda
+
+- `.github/prompts/analyze_aws_lambda.prompt.md`: Audit AWS Lambda functions, serverless architecture, performance, and security.
+
+#### Google Cloud Platform
+
+- `.github/prompts/analyze_gcp_gke.prompt.md`: Audit Google Kubernetes Engine cluster setup, security, and networking.
+
+**Platform Engineering**
+
+#### Backstage
+
+- `.github/prompts/analyze_backstage.prompt.md`: Audit Backstage developer portal, catalog, plugins, and platform engineering implementation.
 
 **Codebase & CI/CD Analysis**
 - `.github/prompts/analyze_codebase.prompt.md`: Audit the entire repository for architecture, security, and best practices.
@@ -259,10 +304,19 @@ Rules define conventions and agent behaviors for different stacks. All rules are
 - `generic/` — Generic prompts and rules for agent self-testing.
 - `terraform/` — Terraform-specific prompts and rules.
 - `copy-prompts.sh` — Utility script for copying prompts/rules to other repos.
+- `CLAUDE.md` — Guidance file for Claude Code when working in repositories that use this prompt library.
 
 ## Recent Updates
 
-- Added build/analyze prompts for Ansible, Helm, Snyk, Prometheus/Grafana, Bitbucket, GitLab, Jenkins, Terraform, Kubernetes, Kubernetes Policy, ArgoCD, Vault, AWS EKS, and Azure AKS.
+- **Major Domain Coverage Expansion**: Added comprehensive prompts for previously missing tools including:
+  - **CI/CD Platforms**: CircleCI, Azure DevOps  
+  - **Observability**: Datadog, ELK Stack (Elasticsearch, Logstash, Kibana)
+  - **Security & Code Quality**: SonarQube, Trivy vulnerability scanner
+  - **Cloud & Serverless**: AWS Lambda, Google Cloud GKE
+  - **Platform Engineering**: Backstage developer portal
+  - **Discovery**: CircleCI reconnaissance and integration discovery
+
+- Enhanced existing coverage with build/analyze prompts for Ansible, Helm, Snyk, Prometheus/Grafana, Bitbucket, GitLab, Jenkins, Terraform, Kubernetes, Kubernetes Policy, ArgoCD, Vault, AWS EKS, and Azure AKS.
 
 
 ## Contributing
