@@ -13,7 +13,20 @@ category: "Observability"
 
 > **Best Practices:**
 > - Ask clarifying questions before proceeding if any requirements or context are unclear.
-> - Ask for permission before running commands, editing, or creates files. Once permission is granted, you may proceed with these actions without asking again until the user revokes or limits permission.
+> - Ask for permission before running commands, editing, or creating files. Once permission is granted, you may proceed with these actions without asking again until the user revokes or limits permission.
+
+> **Context Management:**
+> If the ELK Stack deployment is too complex for comprehensive analysis, prioritize:
+> 1. Production cluster health and security configurations
+> 2. Log ingestion performance and data retention policies
+> 3. Search performance and dashboard effectiveness
+> Ask user to specify focus areas if scope exceeds analysis capacity.
+
+> **Analysis Validation:**
+> - Mark findings as "Confirmed" vs "Potential" based on cluster metrics and configuration evidence
+> - Reference specific index patterns, pipeline configurations, or cluster settings when citing findings
+> - Provide confidence indicators: High/Medium/Low for each observability recommendation
+> - Include estimated performance impact and resource requirements for recommendations
 
 # 🔍 Analyze ELK Stack Configuration and Log Management
 

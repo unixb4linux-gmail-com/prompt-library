@@ -15,6 +15,19 @@ category: "CI/CD"
 > - Ask clarifying questions before proceeding if any requirements or context are unclear.
 > - Ask for permission before running commands, editing, or creating files. Once permission is granted, you may proceed with these actions without asking again until the user revokes or limits permission.
 
+> **Context Management:**
+> If the codebase is too large for comprehensive analysis, prioritize:
+> 1. Security-critical configurations first (contexts, secrets, orbs)
+> 2. Production deployment workflows
+> 3. Core integration patterns
+> Ask user to specify focus areas if scope exceeds analysis capacity.
+
+> **Analysis Validation:**
+> - Mark findings as "Confirmed" vs "Potential" based on evidence strength
+> - If configuration files are incomplete, note what additional files would be needed
+> - Reference specific configuration lines when citing issues or recommendations
+> - Provide confidence indicators: High/Medium/Low for each recommendation
+
 # 🔄 Analyze CircleCI Configuration and Pipeline Integration
 
 You are a DevOps Engineer and CI/CD strategist. Your task is to audit this repository's CircleCI pipeline configuration against modern best practices, CircleCI documentation, and industry standards like OWASP and DORA metrics.
@@ -57,6 +70,40 @@ Analyze `.circleci/config.yml` and related configuration files. Evaluate:
 * Is caching effectively used for dependencies and build artifacts?
 * Are workflows optimized for parallelism and efficiency?
 * How are different branches and tags handled?
+
+**Configuration Examples:**
+
+✅ **Good Practice:**
+```yaml
+workflows:
+  version: 2
+  build_and_deploy:
+    jobs:
+      - build:
+          context: shared-secrets  # Using contexts for secrets
+          filters:
+            branches:
+              ignore: /^draft\/.*/
+      - security_scan:
+          requires: [build]
+      - deploy:
+          requires: [build, security_scan]
+          context: production-deploy
+          filters:
+            branches:
+              only: main
+```
+
+❌ **Anti-Pattern to Flag:**
+```yaml
+jobs:
+  build:
+    environment:
+      API_KEY: "sk-1234567890abcdef"  # Hardcoded secret
+      AWS_ACCESS_KEY: "AKIA..."      # Exposed credentials
+    steps:
+      - run: echo $API_KEY           # Secret in logs
+```
 
 ### 🛡️ Security & Best Practices
 
@@ -112,30 +159,75 @@ Analyze `.circleci/config.yml` and related configuration files. Evaluate:
 
 ## Output Format
 
-Respond using this structured format:
+Respond using this structured format with evidence citations and confidence indicators:
 
 ```markdown
 ## 📌 Purpose Summary
 [High-level pipeline goals and structure]
 
 ## ✅ Configuration Review
-[Job structure, workflows, orbs usage, caching strategy]
+**Jobs & Workflows** (Confidence: High/Medium/Low)
+- [Finding]: [Evidence from .circleci/config.yml:line_number]
+- [Recommendation]: [Specific improvement with confidence level]
 
-## 🛡️ Security Assessment
-[Secrets management, orb security, access controls, compliance]
+**Orbs & Dependencies** (Confidence: High/Medium/Low)
+- [Analysis with specific orb versions and security assessment]
+
+## 🛡️ Security Assessment  
+**Secrets Management** (Confidence: High/Medium/Low)
+- ✅ **Confirmed**: Context usage in workflow (line 15: `context: production-secrets`)
+- ⚠️ **Potential Issue**: Possible hardcoded value (line 23: `API_KEY: "..."`)
+- 🔧 **Recommendation**: Migrate to contexts (High confidence)
+
+**Orb Security** (Confidence: High/Medium/Low)
+- [Version analysis with specific security findings]
 
 ## 🚀 Performance Analysis
-[Parallelism, caching, resource usage, build times]
+**Parallelism** (Confidence: High/Medium/Low)
+- Current: [X] parallel jobs identified
+- Bottleneck: [Specific workflow stage with evidence]
+- Impact: [Quantified improvement potential]
+
+**Caching Strategy** (Confidence: High/Medium/Low)
+- Cache hit ratio: [Analysis based on configuration]
+- Optimization opportunity: [Specific cache key improvements]
 
 ## 🔗 Integration Findings
-[Discovered tool integrations and their implementation quality]
+[Only include sections relevant to discovered integrations]
+
+**AWS Integration** (if found)
+- Configuration quality: [Assessment with line references]
+
+**Docker Integration** (if found)  
+- Security posture: [Analysis with specific findings]
 
 ## 📊 Monitoring & Metrics
-[Test reporting, deployment tracking, alerting setup]
+[Include only if monitoring configurations are found]
 
-## 🎯 Recommendations
-[Specific improvements with CircleCI documentation links]
+## 🎯 Prioritized Recommendations
+
+**🔴 Critical (High Confidence)**
+1. [Security issue]: Line X - [specific fix needed]
+2. [Performance issue]: [quantified impact and solution]
+
+**🟡 Important (Medium Confidence)**
+1. [Improvement]: [specific enhancement with documentation link]
+
+**🟢 Enhancement (Low-Medium Confidence)**
+1. [Nice-to-have]: [optimization opportunity]
+
+**📋 Additional Investigation Needed**
+- [ ] Verify [finding] by checking [specific file/configuration]
+- [ ] Confirm [assumption] with team regarding [context]
 ```
+
+## Smart Scope Adjustment
+
+Adapt your analysis focus based on what you discover:
+- If no `.circleci/config.yml` found → Focus on discovering CI/CD alternatives
+- If basic configuration found → Emphasize security and performance opportunities
+- If complex setup found → Deep-dive into integration patterns and optimization
+- If legacy configuration found → Prioritize modernization recommendations
 
 ## CircleCI Resources & References
 

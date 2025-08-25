@@ -15,6 +15,19 @@ category: "Observability"
 > - Ask clarifying questions before proceeding if any requirements or context are unclear.
 > - Ask for permission before running commands, editing, or creating files. Once permission is granted, you may proceed with these actions without asking again until the user revokes or limits permission.
 
+> **Context Management:**
+> If the observability stack is too complex for comprehensive analysis, prioritize:
+> 1. Critical service monitoring and alerting configurations
+> 2. Security-related dashboards and threat detection
+> 3. Performance-critical APM integrations
+> Ask user to specify focus areas if scope exceeds analysis capacity.
+
+> **Analysis Validation:**
+> - Mark findings as "Confirmed" vs "Potential" based on evidence strength
+> - Reference specific dashboard names, monitor IDs, or configuration files when citing findings
+> - Provide confidence indicators: High/Medium/Low for each recommendation
+> - Note when additional Datadog API access would improve analysis accuracy
+
 # 📊 Analyze Datadog Observability Configuration
 
 You are an SRE and Observability Engineer specializing in Datadog. Your task is to audit this repository's Datadog configuration, monitoring setup, alerting strategy, and integration with the application stack.
@@ -71,6 +84,29 @@ Analyze Datadog configuration files, dashboards, monitors, and integration setup
 * Is distributed tracing capturing complete request flows?
 * Are error rates and performance metrics comprehensive?
 * Is profiling enabled for performance optimization?
+
+**APM Configuration Examples:**
+
+✅ **Good Practice:**
+```yaml
+# datadog.yaml - Proper APM setup
+apm_config:
+  enabled: true
+  env: production
+  service: user-service
+  version: 1.2.3
+  profiling:
+    enabled: true
+  logs_injection: true  # Correlate logs with traces
+```
+
+❌ **Anti-Pattern to Flag:**
+```yaml
+# Missing environment/version tags
+apm_config:
+  enabled: true
+  # No service identification or profiling
+```
 
 ### 📊 Dashboards & Visualization
 
@@ -154,36 +190,81 @@ Analyze Datadog configuration files, dashboards, monitors, and integration setup
 
 ## Output Format
 
-Respond using this structured format:
+Respond using this structured format with evidence citations and confidence indicators:
 
 ```markdown
 ## 📌 Purpose Summary
 [Observability goals, Datadog products in use, monitoring scope]
 
 ## ✅ Infrastructure & Configuration
-[Agent setup, integrations, tagging, metrics collection]
+**Agent Setup** (Confidence: High/Medium/Low)
+- ✅ **Confirmed**: Agent version X.Y.Z found in datadog.yaml:line_number
+- ⚠️ **Potential Issue**: [Specific configuration concern with line reference]
+- 🔧 **Recommendation**: [Actionable improvement with confidence level]
+
+**Tagging Strategy** (Confidence: High/Medium/Low)
+- Current tags: [List discovered tags with consistency analysis]
+- Missing critical tags: [env, service, version assessment]
 
 ## 🔍 APM & Distributed Tracing
-[Instrumentation quality, service mapping, error tracking]
+**Service Coverage** (Confidence: High/Medium/Low)
+- Instrumented services: [X] services identified
+- Coverage gaps: [Specific services missing APM]
+- Trace completeness: [Analysis of distributed tracing effectiveness]
 
 ## 📊 Dashboards & Visualization
-[Dashboard organization, SLI/SLO tracking, visualization quality]
+[Only include if dashboards are discovered or referenced]
+
+**SLI/SLO Implementation** (Confidence: High/Medium/Low)
+- Service level objectives: [Specific SLOs found or missing]
+- Business impact alignment: [Assessment of SLO-business correlation]
 
 ## 🚨 Alerting Strategy
-[Alert configuration, thresholds, escalation, incident management]
+**Alert Quality** (Confidence: High/Medium/Low)
+- Critical alerts: [Count and assessment of P0/P1 alerts]
+- Alert noise level: [Analysis of alert frequency and actionability]
+- Escalation paths: [Review of notification routing]
 
 ## 🔗 Integration Findings
-[Cloud providers, infrastructure, CI/CD, third-party tool integration]
+[Only include sections relevant to discovered integrations]
+
+**AWS Integration** (if found)
+- Integration depth: [CloudWatch, ECS, Lambda coverage analysis]
+
+**Kubernetes Integration** (if found)
+- Cluster visibility: [Pod, node, service monitoring assessment]
 
 ## 📝 Log Management
-[Log collection, parsing, analysis, correlation with APM]
+[Include only if log management configurations are found]
 
 ## 🎯 Synthetic & RUM Monitoring
-[API monitoring, browser tests, user experience tracking]
+[Include only if synthetic tests or RUM are configured]
 
-## 🎯 Recommendations
-[Specific improvements with Datadog best practice links]
+## 🎯 Prioritized Recommendations
+
+**🔴 Critical (High Confidence)**
+1. [Alert/monitoring gap]: [Specific impact and fix needed]
+2. [Performance issue]: [Quantified impact and solution]
+
+**🟡 Important (Medium Confidence)**
+1. [Coverage improvement]: [Enhancement with business value]
+
+**🟢 Enhancement (Low-Medium Confidence)**
+1. [Optimization opportunity]: [Nice-to-have improvement]
+
+**📋 Additional Investigation Needed**
+- [ ] Verify [finding] by accessing Datadog dashboard: [URL/ID]
+- [ ] Confirm [assumption] with team regarding [monitoring scope]
+- [ ] Review [metric] historical data for trend analysis
 ```
+
+## Smart Scope Adjustment
+
+Adapt your analysis focus based on what you discover:
+- If minimal Datadog configuration found → Focus on basic setup and quick wins
+- If advanced setup found → Deep-dive into optimization and advanced features
+- If legacy implementation found → Prioritize modernization opportunities
+- If missing critical monitoring → Emphasize coverage gaps and business impact
 
 ## Datadog Resources & References
 
