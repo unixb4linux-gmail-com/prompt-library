@@ -1,6 +1,19 @@
 > **Best Practices:**
 > - Ask clarifying questions before proceeding if any requirements or context are unclear.
 > - Ask for permission before running commands, editing, or creating files. Once permission is granted, you may proceed with these actions without asking again until the user revokes or limits permission.
+
+> **Context Management:**
+> If the GitLab CI/CD setup is too complex for comprehensive analysis, prioritize:
+> 1. Security-critical pipeline configurations and secret management
+> 2. Production deployment workflows and approval processes  
+> 3. Integration effectiveness with testing and security scanning
+> Ask user to specify focus areas if scope exceeds analysis capacity.
+
+> **Analysis Validation:**
+> - Mark findings as "Confirmed" vs "Potential" based on .gitlab-ci.yml evidence and pipeline history
+> - Reference specific pipeline stages, job configurations, or variable settings when citing findings
+> - Provide confidence indicators: High/Medium/Low for each CI/CD recommendation
+> - Note when additional GitLab project access would improve analysis accuracy
 > **Directive:**
 > If any step in this prompt requires modification of the repository contents (file creation, editing, or deletion), you must first prompt the user to create a new branch for the work or specify an existing branch to use. Only proceed with changes after the user provides direction.
 > 

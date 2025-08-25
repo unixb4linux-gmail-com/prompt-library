@@ -3,6 +3,19 @@
 > - Ask clarifying questions before proceeding if any requirements or context are unclear.
 > - Ask for permission before running commands, editing, or creating files. Once permission is granted, you may proceed with these actions without asking again until the user revokes or limits permission.
 
+> **Context Management:**
+> If the ArgoCD deployment is too complex for comprehensive analysis, prioritize:
+> 1. Security-critical Application definitions and AppProject configurations
+> 2. Production GitOps workflows and sync policy effectiveness
+> 3. Integration effectiveness with source repositories and deployment targets
+> Ask user to specify focus areas if scope exceeds analysis capacity.
+
+> **Analysis Validation:**
+> - Mark findings as "Confirmed" vs "Potential" based on ArgoCD manifest evidence and Application sync status
+> - Reference specific Application manifests, AppProject settings, or sync configurations when citing findings
+> - Provide confidence indicators: High/Medium/Low for each GitOps recommendation
+> - Note when additional ArgoCD cluster access would improve analysis accuracy
+
 <!--
 title: "Analyze ArgoCD Manifests and GitOps Configuration"
 category: "Kubernetes + GitOps"

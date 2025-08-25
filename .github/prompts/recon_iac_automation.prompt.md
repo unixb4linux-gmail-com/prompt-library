@@ -1,6 +1,19 @@
 > **Best Practices:**
 > - Ask clarifying questions before proceeding if any requirements or context are unclear.
 > - Ask for permission before running commands, editing, or creating files. Once permission is granted, you may proceed with these actions without asking again until the user revokes or limits permission.
+
+> **Context Management:**
+> If the IaC automation landscape is too complex for comprehensive analysis, prioritize:
+> 1. Security-critical Infrastructure as Code configurations and state management
+> 2. Production deployment automation and GitOps workflow effectiveness
+> 3. Integration patterns between different IaC tools and cloud providers
+> Ask user to specify focus areas if scope exceeds analysis capacity.
+
+> **Analysis Validation:**
+> - Mark findings as "Confirmed" vs "Potential" based on configuration file evidence and tool version compatibility
+> - Reference specific module configurations, provider settings, or automation patterns when citing findings
+> - Provide confidence indicators: High/Medium/Low for each IaC security and maintainability recommendation
+> - Note when additional tool execution or state file access would improve analysis accuracy
 title: "Recon IaC Automation"
 author: you
 category: discovery

@@ -7,6 +7,19 @@
 
 > **Ask clarifying questions before proceeding.**
 > **Ask for permission before running commands, editing, or creating files. Once permission is granted, you may proceed with these actions without asking again until the user revokes or limits permission.**
+
+> **Context Management:**
+> If the GitLab CI/CD requirements are too complex for comprehensive scaffold, prioritize:
+> 1. Security-critical pipeline configurations and secret management
+> 2. Production deployment workflows and approval gate effectiveness
+> 3. Integration effectiveness with GitLab features and external services
+> Ask user to specify focus areas if scope exceeds scaffold capacity.
+
+> **Analysis Validation:**
+> - Mark implementation choices as "Best Practice" vs "Alternative" based on GitLab documentation and CI/CD standards
+> - Reference specific pipeline configurations, security patterns, or deployment strategies when making recommendations
+> - Provide confidence indicators: High/Medium/Low for each CI/CD architectural decision
+> - Note when additional project requirements or deployment contexts would improve scaffold quality
 <!--
 
 > **Directive:**

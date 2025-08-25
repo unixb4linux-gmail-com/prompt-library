@@ -9,6 +9,19 @@ If any step in this prompt requires modification of the repository contents (fil
 
 > **Ask clarifying questions before proceeding.**
 > **Ask for permission before running commands, editing, or creating files. Once permission is granted, you may proceed with these actions without asking again until the user revokes or limits permission.**
+
+> **Context Management:**
+> If the GitHub Actions setup is too complex for comprehensive analysis, prioritize:
+> 1. Security-critical workflow configurations and secret management practices
+> 2. Production deployment workflows and approval gate effectiveness
+> 3. Integration patterns with testing frameworks and deployment targets
+> Ask user to specify focus areas if scope exceeds analysis capacity.
+
+> **Analysis Validation:**
+> - Mark findings as "Confirmed" vs "Potential" based on workflow file evidence and execution history
+> - Reference specific workflow configurations, security settings, or integration patterns when citing findings
+> - Provide confidence indicators: High/Medium/Low for each CI/CD security and performance recommendation
+> - Note when additional GitHub repository access or workflow execution data would improve analysis accuracy
 Perfect. Here’s the enhanced **GitLab CI evaluation prompt** with explicit evaluations for:
 
 * **Auto-scaling runners** (for performance, efficiency, and cost)

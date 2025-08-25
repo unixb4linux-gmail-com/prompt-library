@@ -1,6 +1,19 @@
 > **Best Practices:**
 > - Ask clarifying questions before proceeding if any requirements or context are unclear.
 > - Ask for permission before running commands, editing, or creating files. Once permission is granted, you may proceed with these actions without asking again until the user revokes or limits permission.
+
+> **Context Management:**
+> If the credential landscape is too complex for comprehensive analysis, prioritize:
+> 1. Security-critical cloud service accounts and production credentials
+> 2. Active development and CI/CD service accounts with elevated privileges
+> 3. Integration effectiveness with deployment pipelines and automation
+> Ask user to specify focus areas if scope exceeds analysis capacity.
+
+> **Analysis Validation:**
+> - Mark findings as "Confirmed" vs "Potential" based on credential file presence and successful authentication tests
+> - Reference specific credential files, environment variables, or CLI configuration when citing findings
+> - Provide confidence indicators: High/Medium/Low for each credential security recommendation
+> - Note when additional account access or credential rotation would improve security posture
 title: "Recon Cloud Credentials"
 author: you
 category: discovery

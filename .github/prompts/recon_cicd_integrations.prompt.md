@@ -1,6 +1,19 @@
 > **Best Practices:**
 > - Ask clarifying questions before proceeding if any requirements or context are unclear.
 > - Ask for permission before running commands, editing, or creating files. Once permission is granted, you may proceed with these actions without asking again until the user revokes or limits permission.
+
+> **Context Management:**
+> If the CI/CD integration landscape is too complex for comprehensive reconnaissance, prioritize:
+> 1. Security-critical pipeline configurations and secret management patterns
+> 2. Production deployment workflows and environment-specific configurations
+> 3. Integration patterns between different CI/CD systems and repository structures
+> Ask user to specify focus areas if scope exceeds reconnaissance capacity.
+
+> **Analysis Validation:**
+> - Mark findings as "Confirmed" vs "Potential" based on configuration file evidence and workflow validation
+> - Reference specific CI/CD files, secret references, or integration patterns when citing findings
+> - Provide confidence indicators: High/Medium/Low for each CI/CD security and operational recommendation
+> - Note when additional repository access or CI/CD platform access would improve reconnaissance accuracy
 title: "Recon CICD Integrations"
 author: you
 category: discovery

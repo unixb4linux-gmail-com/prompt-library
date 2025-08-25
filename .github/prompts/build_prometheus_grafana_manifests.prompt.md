@@ -13,6 +13,19 @@ description: "Scaffold a best-practice Prometheus and Grafana monitoring reposit
 # 📊 Build Prometheus & Grafana Monitoring Repository
 > **Ask clarifying questions before proceeding.**
 > **Ask for permission before running commands, editing, or creating files. Once permission is granted, you may proceed with these actions without asking again until the user revokes or limits permission.**
+
+> **Context Management:**
+> If the monitoring stack requirements are too complex for comprehensive scaffold, prioritize:
+> 1. Security-critical monitoring configurations and authentication patterns
+> 2. Production-ready dashboard structures and alerting rule definitions
+> 3. Integration effectiveness with Kubernetes environments and observability tools
+> Ask user to specify focus areas if scope exceeds scaffold capacity.
+
+> **Analysis Validation:**
+> - Mark implementation choices as "Best Practice" vs "Alternative" based on Prometheus and Grafana documentation
+> - Reference specific monitoring patterns, dashboard configurations, or security practices when making recommendations
+> - Provide confidence indicators: High/Medium/Low for each observability architecture decision
+> - Note when additional monitoring requirements or cluster context would improve scaffold quality
 # Directive:
 If any step in this prompt requires modification of the repository contents (file creation, editing, or deletion), you must first prompt the user to create a new branch for the work or specify an existing branch to use. Only proceed with changes after the user provides direction.
 

@@ -2,6 +2,19 @@
 Best Practices:
 - Ask clarifying questions before proceeding if any requirements or context are unclear.
 - Ask for permission before running commands, editing, or creating files. Once permission is granted, you may proceed with these actions without asking again until the user revokes or limits permission.
+
+> **Context Management:**
+> If the Bitbucket Pipelines setup is too complex for comprehensive analysis, prioritize:
+> 1. Security-critical pipeline configurations and secret management practices
+> 2. Production deployment workflows and approval gate effectiveness
+> 3. Integration effectiveness with testing frameworks and deployment targets
+> Ask user to specify focus areas if scope exceeds analysis capacity.
+
+> **Analysis Validation:**
+> - Mark findings as "Confirmed" vs "Potential" based on bitbucket-pipelines.yml evidence and execution history
+> - Reference specific pipeline steps, deployment configurations, or security settings when citing findings
+> - Provide confidence indicators: High/Medium/Low for each CI/CD security and performance recommendation
+> - Note when additional Bitbucket project access would improve analysis accuracy
 title: "Evaluate Bitbucket Pipelines Integration"
 category: "CI/CD Evaluation"
 description: "Audit Bitbucket Pipelines setup against industry standards, security best practices, and performance benchmarks"

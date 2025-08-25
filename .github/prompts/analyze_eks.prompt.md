@@ -7,6 +7,19 @@
 
 > **Ask clarifying questions before proceeding.**
 > **Ask for permission before running commands, editing, or creating files. Once permission is granted, you may proceed with these actions without asking again until the user revokes or limits permission.**
+
+> **Context Management:**
+> If the EKS deployment is too complex for comprehensive analysis, prioritize:
+> 1. Security-critical cluster configurations and IAM role management
+> 2. Production node group settings and auto-scaling policy effectiveness
+> 3. Integration effectiveness with AWS services and monitoring solutions
+> Ask user to specify focus areas if scope exceeds analysis capacity.
+
+> **Analysis Validation:**
+> - Mark findings as "Confirmed" vs "Potential" based on EKS configuration evidence and manifest validation
+> - Reference specific cluster settings, node configurations, or AWS integration configs when citing findings
+> - Provide confidence indicators: High/Medium/Low for each security and scalability recommendation
+> - Note when additional AWS account access would improve analysis accuracy
 <!--
 title: "Analyze AWS EKS Cluster and Manifests"
 category: "Kubernetes & Cloud"

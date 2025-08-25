@@ -7,6 +7,19 @@
 
 > **Ask clarifying questions before proceeding.**
 > **Ask for permission before running commands, editing, or creating files. Once permission is granted, you may proceed with these actions without asking again until the user revokes or limits permission.**
+
+> **Context Management:**
+> If the Helm chart structure is too complex for comprehensive analysis, prioritize:
+> 1. Security-critical template configurations and RBAC definitions
+> 2. Production-ready chart patterns and value validation
+> 3. Integration effectiveness with Kubernetes environments and deployment workflows
+> Ask user to specify focus areas if scope exceeds analysis capacity.
+
+> **Analysis Validation:**
+> - Mark findings as "Confirmed" vs "Potential" based on chart evidence and template validation
+> - Reference specific chart patterns, template configurations, or security practices when citing findings
+> - Provide confidence indicators: High/Medium/Low for each chart security and maintainability recommendation
+> - Note when additional Helm execution or Kubernetes cluster access would improve analysis accuracy
 ````markdown
 <!--
 title: "Analyze Helm Manifests and Chart Structure"

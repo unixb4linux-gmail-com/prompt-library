@@ -1,6 +1,19 @@
 > **Best Practices:**
 > - Ask clarifying questions before proceeding if any requirements or context are unclear.
-> - Ask for permission before running commands, editing, or creating files. Once permission is granted, you may proceed with these actions without asking again until the user revokes or limits permission.
+> - Ask for permission before running commands, editing, or create files. Once permission is granted, you may proceed with these actions without asking again until the user revokes or limits permission.
+
+> **Context Management:**
+> If the EKS cluster requirements are too complex for comprehensive scaffold, prioritize:
+> 1. Security-critical cluster configurations and IAM role management
+> 2. Production-ready node group settings and auto-scaling policies
+> 3. Integration effectiveness with AWS services and monitoring solutions
+> Ask user to specify focus areas if scope exceeds scaffold capacity.
+
+> **Analysis Validation:**
+> - Mark implementation choices as "Best Practice" vs "Alternative" based on AWS EKS documentation and Well-Architected Framework
+> - Reference specific AWS services, security configurations, or deployment patterns when making recommendations
+> - Provide confidence indicators: High/Medium/Low for each architecture and security decision
+> - Note when additional AWS expertise or production requirements would improve scaffold quality
 
 <!--
 title: "Build AWS EKS Cluster Repo"

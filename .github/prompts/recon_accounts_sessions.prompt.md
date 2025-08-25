@@ -1,6 +1,19 @@
 > **Best Practices:**
 > - Ask clarifying questions before proceeding if any requirements or context are unclear.
 > - Ask for permission before running commands, editing, or creating files. Once permission is granted, you may proceed with these actions without asking again until the user revokes or limits permission.
+
+> **Context Management:**
+> If the account and session landscape is too complex for comprehensive analysis, prioritize:
+> 1. Security-critical professional accounts with privileged access
+> 2. Active development workflows and version control identities
+> 3. Integration effectiveness with deployment and collaboration tools
+> Ask user to specify focus areas if scope exceeds analysis capacity.
+
+> **Analysis Validation:**
+> - Mark findings as "Confirmed" vs "Potential" based on active session verification and configuration file presence
+> - Reference specific identity configurations, session tokens, or CLI authentication when citing findings
+> - Provide confidence indicators: High/Medium/Low for each identity security recommendation
+> - Note when additional session validation or identity verification would improve security assessment
 title: "Recon Accounts Sessions"
 author: you
 category: discovery

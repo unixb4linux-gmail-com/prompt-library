@@ -3,6 +3,19 @@
 Best Practices:
 - Ask clarifying questions before proceeding if any requirements or context are unclear.
 - Ask for permission before running commands, editing, or creating files. Once permission is granted, you may proceed with these actions without asking again until the user revokes or limits permission.
+
+> **Context Management:**
+> If the live cluster is too complex for comprehensive analysis, prioritize:
+> 1. Security-critical workloads and elevated privilege configurations
+> 2. Production system health and resource utilization patterns
+> 3. Integration effectiveness of security controls and monitoring systems
+> Ask user to specify focus areas if scope exceeds analysis capacity.
+
+> **Analysis Validation:**
+> - Mark findings as "Confirmed" vs "Potential" based on kubectl output and cluster state evidence
+> - Reference specific workload configurations, RBAC settings, or security policies when citing findings
+> - Provide confidence indicators: High/Medium/Low for each security and operational recommendation
+> - Note when additional cluster permissions or security tool access would improve analysis accuracy
 title: "Analyze Live Kubernetes Cluster via Kubectl"
 category: "Cluster Health & Security"
 description: "Evaluate a live Kubernetes cluster by inspecting workloads, RBAC, security controls, and observability using kubectl and supporting tools"

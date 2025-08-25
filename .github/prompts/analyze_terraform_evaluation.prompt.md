@@ -2,6 +2,19 @@
 > - Ask clarifying questions before proceeding if any requirements or context are unclear.
 > - Ask for permission before running commands, editing, or creating files. Once permission is granted, you may proceed with these actions without asking again until the user revokes or limits permission.
 
+> **Context Management:**
+> If the Terraform codebase is too large for comprehensive analysis, prioritize:
+> 1. Security-critical configurations (IAM, networking, encryption)
+> 2. Production environment modules and state management
+> 3. Resource provisioning and cost optimization opportunities
+> Ask user to specify focus areas if scope exceeds analysis capacity.
+
+> **Analysis Validation:**
+> - Mark findings as "Confirmed" vs "Potential" based on Terraform configuration evidence
+> - Reference specific .tf files, resource blocks, or variable definitions when citing findings
+> - Provide confidence indicators: High/Medium/Low for each infrastructure recommendation
+> - Include estimated cost impact for resource recommendations when calculable
+
 ````markdown
 <!--
 title: "Analyze Terraform Infrastructure Code"

@@ -7,6 +7,19 @@
 
 > **Ask clarifying questions before proceeding.**
 > **Ask for permission before running commands, editing, or creating files. Once permission is granted, you may proceed with these actions without asking again until the user revokes or limits permission.**
+
+> **Context Management:**
+> If the Helm chart requirements are too complex for comprehensive scaffold, prioritize:
+> 1. Security-critical chart configurations and RBAC definitions
+> 2. Production-ready templating patterns and value validation
+> 3. Integration effectiveness with Kubernetes environments and deployment workflows
+> Ask user to specify focus areas if scope exceeds scaffold capacity.
+
+> **Analysis Validation:**
+> - Mark implementation choices as "Best Practice" vs "Alternative" based on Helm documentation and Kubernetes standards
+> - Reference specific chart patterns, template configurations, or security practices when making recommendations
+> - Provide confidence indicators: High/Medium/Low for each chart architecture decision
+> - Note when additional application requirements or Kubernetes context would improve scaffold quality
 <!--
 title: "Build Helm Chart Repository"
 category: "Kubernetes"

@@ -9,6 +9,19 @@ author: "claude-code"
 - Ask clarifying questions before proceeding if any requirements or context are unclear.
 - Ask for permission before running commands, editing, or creating files. Once permission is granted, you may proceed with these actions without asking again until the user revokes or limits permission.
 
+> **Context Management:**
+> If the incident management setup is too complex for comprehensive analysis, prioritize:
+> 1. Security-critical alerting configurations and escalation policy effectiveness
+> 2. Production incident response workflows and communication procedures
+> 3. Integration effectiveness between monitoring, alerting, and response tools
+> Ask user to specify focus areas if scope exceeds analysis capacity.
+
+> **Analysis Validation:**
+> - Mark findings as "Confirmed" vs "Potential" based on platform configuration evidence and response procedure documentation
+> - Reference specific alerting rules, escalation policies, or integration setups when citing findings
+> - Provide confidence indicators: High/Medium/Low for each incident management and SRE recommendation
+> - Note when additional platform access or incident history data would improve analysis accuracy
+
 **Directive:**
 If any step in this prompt requires modification of the repository contents (file creation, editing, or deletion), you must first prompt the user to create a new branch for the work or specify an existing branch to use. Only proceed with changes after the user provides direction.
 

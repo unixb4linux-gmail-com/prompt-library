@@ -7,6 +7,19 @@
 
 > **Ask clarifying questions before proceeding.**
 > **Ask for permission before running commands, editing, or creating files. Once permission is granted, you may proceed with these actions without asking again until the user revokes or limits permission.**
+
+> **Context Management:**
+> If the AKS cluster requirements are too complex for comprehensive scaffold, prioritize:
+> 1. Security-critical cluster configurations and managed identity setup
+> 2. Production-ready networking and node pool configurations
+> 3. Integration effectiveness with Azure services and monitoring solutions
+> Ask user to specify focus areas if scope exceeds scaffold capacity.
+
+> **Analysis Validation:**
+> - Mark implementation choices as "Best Practice" vs "Alternative" based on Azure documentation and Well-Architected Framework
+> - Reference specific Azure resources, IaC configurations, or security patterns when making recommendations
+> - Provide confidence indicators: High/Medium/Low for each infrastructure and security decision
+> - Note when additional Azure expertise or application requirements would improve scaffold quality
 <!--
 title: "Build Azure AKS Cluster Repo"
 category: "Kubernetes & Cloud"

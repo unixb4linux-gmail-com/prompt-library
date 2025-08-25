@@ -2,6 +2,19 @@
 > - Ask clarifying questions before proceeding if any requirements or context are unclear.
 > - Ask for permission before running commands, editing, or creating files. Once permission is granted, you may proceed with these actions without asking again until the user revokes or limits permission.
 
+> **Context Management:**
+> If the policy enforcement setup is too complex for comprehensive analysis, prioritize:
+> 1. Security-critical policy constraints and admission control effectiveness
+> 2. Production workload compliance and violation reporting
+> 3. Integration effectiveness between policy engines and cluster security posture
+> Ask user to specify focus areas if scope exceeds analysis capacity.
+
+> **Analysis Validation:**
+> - Mark findings as "Confirmed" vs "Potential" based on policy manifest evidence and violation reports
+> - Reference specific ConstraintTemplates, ClusterPolicies, or enforcement configurations when citing findings
+> - Provide confidence indicators: High/Medium/Low for each policy security and effectiveness recommendation
+> - Note when additional cluster access or policy testing would improve analysis accuracy
+
 ````markdown
 <!--
 title: "Analyze OPA Gatekeeper and Kyverno Manifests"

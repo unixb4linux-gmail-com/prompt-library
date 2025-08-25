@@ -1,6 +1,19 @@
 > **Best Practices:**
 > - Ask clarifying questions before proceeding if any requirements or context are unclear.
 > - Ask for permission before running commands, editing, or creating files. Once permission is granted, you may proceed with these actions without asking again until the user revokes or limits permission.
+
+> **Context Management:**
+> If the DevOps tooling landscape is too complex for comprehensive reconnaissance, prioritize:
+> 1. Security-critical tools and credentials with production access
+> 2. Active CI/CD pipelines and infrastructure automation tools
+> 3. Integration patterns between different DevOps tools and cloud providers
+> Ask user to specify focus areas if scope exceeds reconnaissance capacity.
+
+> **Analysis Validation:**
+> - Mark findings as "Confirmed" vs "Potential" based on tool presence, configuration evidence, and successful authentication tests
+> - Reference specific tool versions, credential files, or integration configurations when citing findings
+> - Provide confidence indicators: High/Medium/Low for each tooling security and operational recommendation
+> - Note when additional tool execution or remote system access would improve reconnaissance accuracy
 title: "Recon: DevOps (Master – Safe, Non-Destructive)"
 author: you
 category: discovery

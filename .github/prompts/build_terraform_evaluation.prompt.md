@@ -7,6 +7,19 @@
 
 > **Ask clarifying questions before proceeding.**
 > **Ask for permission before running commands, editing, or creating files. Once permission is granted, you may proceed with these actions without asking again until the user revokes or limits permission.**
+
+> **Context Management:**
+> If the Terraform module requirements are too complex for comprehensive scaffold, prioritize:
+> 1. Security-critical resource configurations and state management patterns
+> 2. Production-ready module structure and variable validation
+> 3. Integration effectiveness with CI/CD pipelines and testing frameworks
+> Ask user to specify focus areas if scope exceeds scaffold capacity.
+
+> **Analysis Validation:**
+> - Mark implementation choices as "Best Practice" vs "Alternative" based on Terraform documentation and infrastructure standards
+> - Reference specific resource configurations, module patterns, or security practices when making recommendations
+> - Provide confidence indicators: High/Medium/Low for each infrastructure design decision
+> - Note when additional cloud provider expertise or application requirements would improve scaffold quality
 <!--
 title: "Build Terraform Module Repo"
 category: "Infrastructure as Code"

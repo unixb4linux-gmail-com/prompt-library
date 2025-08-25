@@ -1,6 +1,19 @@
 > **Best Practices:**
 > - Ask clarifying questions before proceeding if any requirements or context are unclear.
 > - Ask for permission before running commands, editing, or creating files. Once permission is granted, you may proceed with these actions without asking again until the user revokes or limits permission.
+
+> **Context Management:**
+> If the local tooling landscape is too complex for comprehensive analysis, prioritize:
+> 1. Security-critical tools with elevated privileges and credential access
+> 2. Production deployment tools and version management effectiveness
+> 3. Integration patterns between different DevOps tools and authentication methods
+> Ask user to specify focus areas if scope exceeds analysis capacity.
+
+> **Analysis Validation:**
+> - Mark findings as "Confirmed" vs "Potential" based on tool presence and version compatibility evidence
+> - Reference specific tool versions, configuration paths, or authentication setups when citing findings
+> - Provide confidence indicators: High/Medium/Low for each tooling security and integration recommendation
+> - Note when additional tool execution or configuration file access would improve analysis accuracy
 title: "Recon Tools Local"
 author: you
 category: discovery

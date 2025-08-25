@@ -2,6 +2,19 @@
 > - Ask clarifying questions before proceeding if any requirements or context are unclear.
 > - Ask for permission before running commands, editing, or creating files. Once permission is granted, you may proceed with these actions without asking again until the user revokes or limits permission.
 
+> **Context Management:**
+> If the Kubernetes environment is too complex for comprehensive analysis, prioritize:
+> 1. Security-critical manifests (RBAC, NetworkPolicies, PodSecurityPolicies)
+> 2. Production workload configurations (Deployments, Services, Ingress)
+> 3. Resource management and scaling configurations
+> Ask user to specify focus areas if scope exceeds analysis capacity.
+
+> **Analysis Validation:**
+> - Mark findings as "Confirmed" vs "Potential" based on manifest evidence
+> - Reference specific manifest files, resource names, or YAML configurations when citing findings
+> - Provide confidence indicators: High/Medium/Low for each recommendation
+> - Note when additional cluster access would improve analysis accuracy
+
 ````markdown
 <!--
 title: "Analyze Kubernetes Manifests and Deployment"

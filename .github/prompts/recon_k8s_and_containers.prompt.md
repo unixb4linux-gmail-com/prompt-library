@@ -1,6 +1,19 @@
 > **Best Practices:**
 > - Ask clarifying questions before proceeding if any requirements or context are unclear.
 > - Ask for permission before running commands, editing, or creating files. Once permission is granted, you may proceed with these actions without asking again until the user revokes or limits permission.
+
+> **Context Management:**
+> If the Kubernetes and container landscape is too complex for comprehensive analysis, prioritize:
+> 1. Security-critical cluster contexts and production environment access
+> 2. Active container workloads and image security assessment
+> 3. Integration effectiveness between local development and remote cluster environments
+> Ask user to specify focus areas if scope exceeds analysis capacity.
+
+> **Analysis Validation:**
+> - Mark findings as "Confirmed" vs "Potential" based on cluster connectivity and container runtime evidence
+> - Reference specific cluster contexts, container images, or runtime configurations when citing findings
+> - Provide confidence indicators: High/Medium/Low for each security and operational recommendation
+> - Note when additional cluster access or container runtime permissions would improve analysis accuracy
 title: "Recon K8s and Containers"
 author: you
 category: discovery
