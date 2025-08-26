@@ -1,3 +1,9 @@
+---
+version: "1.0.0"
+created_date: "2025-08-26"
+last_updated: "2025-08-26"
+---
+
 ````markdown
 > **Best Practices:**
 > - Ask clarifying questions before proceeding if any requirements or context are unclear.

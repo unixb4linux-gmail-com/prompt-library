@@ -1,7 +1,11 @@
 ---
-title: "Build Azure DevOps Pipeline Repository"
-description: "Scaffold comprehensive Azure DevOps YAML pipelines with templates, security, and multi-stage deployments"
-category: "CI/CD"
+title: Build Azure DevOps Pipeline Repository
+description: Scaffold comprehensive Azure DevOps YAML pipelines with templates, security,
+  and multi-stage deployments
+category: CI/CD
+version: 1.0.0
+created_date: '2025-08-26'
+last_updated: '2025-08-26'
 ---
 
 > **Directive:**

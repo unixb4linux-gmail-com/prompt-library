@@ -1,8 +1,12 @@
 ---
-title: "Analyze Incident Management Setup"
-category: "SRE & Incident Response"
-description: "Audit incident management processes, tools, alerting, escalation policies, and response procedures for SRE best practices"
-author: "claude-code"
+title: Analyze Incident Management Setup
+category: SRE & Incident Response
+description: Audit incident management processes, tools, alerting, escalation policies,
+  and response procedures for SRE best practices
+author: claude-code
+version: 1.0.0
+created_date: '2025-08-26'
+last_updated: '2025-08-26'
 ---
 
 **Best Practices:**

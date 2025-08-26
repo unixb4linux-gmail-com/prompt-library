@@ -1,7 +1,11 @@
 ---
-title: "Analyze Trivy Security Scanner Configuration"
-description: "Comprehensive audit of Trivy vulnerability scanning, container security, IaC security, and DevSecOps integration"
-category: "Security Scanning"
+title: Analyze Trivy Security Scanner Configuration
+description: Comprehensive audit of Trivy vulnerability scanning, container security,
+  IaC security, and DevSecOps integration
+category: Security Scanning
+version: 1.0.0
+created_date: '2025-08-26'
+last_updated: '2025-08-26'
 ---
 
 > **Directive:**

@@ -2,6 +2,15 @@
 
 A collection of reusable prompt engineering files for DevOps, automation, and code generation.
 
+## Versioning
+
+**All 57 prompt files are now versioned using semantic versioning (SemVer).**
+
+- **Current Version**: All prompts start at `v1.0.0` as of 2025-08-26
+- **Version Format**: `MAJOR.MINOR.PATCH` (following [Semantic Versioning](https://semver.org/))
+- **Metadata**: Each prompt includes `version`, `created_date`, and `last_updated` in YAML frontmatter
+- **Version Management**: Use `scripts/version_prompts.py` to update version information across all prompts
+
 
 ## CI & Automation
 
@@ -11,8 +20,9 @@ A collection of reusable prompt engineering files for DevOps, automation, and co
   - All prompt and rule files are checked for required YAML frontmatter.
 
 - Run `scripts/generate_index.py` to generate `PROMPT_RULE_INDEX.md` (an index of all prompts and rules).
+- Run `scripts/version_prompts.py` to add or update version information across all prompt files.
 
-- All prompt and rule files now include YAML frontmatter for metadata (author, category, description).
+- All prompt and rule files now include YAML frontmatter for metadata (author, category, description, version, dates).
 
 - Example output/test case files for prompts are provided in the same directory as the prompt, with the suffix `.example.md` or `.test.md`.
 
@@ -21,7 +31,7 @@ A collection of reusable prompt engineering files for DevOps, automation, and co
 
 ## Prompt Engineering Best Practices
 
-All 56 prompt files implement comprehensive AI prompt engineering best practices for maximum effectiveness:
+All 57 prompt files implement comprehensive AI prompt engineering best practices for maximum effectiveness:
 
 ### **Core Safety & Permission Patterns**
 
@@ -320,20 +330,34 @@ Rules define conventions and agent behaviors for different stacks. All rules are
 
 - `copy-prompts.sh`: Copies all prompts and rules into a target repo, updates `.gitignore` (by default adds `.github/prompts/`, `.rules/`, and `.vscode/`), and optionally copies `.vscode`. Supports dry-run, verbose, auto-confirm, and the `--no-gitignore-prompts` flag to skip adding `.github/prompts/` to `.gitignore`. After running, you will be prompted to keep or remove the `.github/prompts/` entry if it was added.
 
+- `scripts/generate_index.py`: Generates the comprehensive `PROMPT_RULE_INDEX.md` file by parsing YAML frontmatter from all prompt and rule files.
+
+- `scripts/version_prompts.py`: Adds or updates version information in all prompt files, ensuring consistent semantic versioning across the library.
+
 ## Directory Structure
 
 - `.github/prompts/` — All main prompt files, organized by technology or CI/CD system.
 - `.rules/` — All rulesets for agent behavior and code conventions.
 - `generic/` — Generic prompts and rules for agent self-testing.
 - `terraform/` — Terraform-specific prompts and rules.
+- `scripts/` — Index generation, versioning, and distribution utilities.
 - `copy-prompts.sh` — Utility script for copying prompts/rules to other repos.
 - `CLAUDE.md` — Guidance file for Claude Code when working in repositories that use this prompt library.
 
 ## Recent Updates
 
+### **Prompt Versioning System Implementation** 🏷️ _(2025-08-26)_
+
+**Implemented comprehensive semantic versioning across all 57 prompt files:**
+
+- ✅ **Version Management**: All prompts now include `version`, `created_date`, and `last_updated` fields in YAML frontmatter
+- ✅ **Semantic Versioning**: Following [SemVer](https://semver.org/) format (MAJOR.MINOR.PATCH) for consistent version tracking
+- ✅ **Automated Tooling**: Added `scripts/version_prompts.py` for systematic version management across the library
+- ✅ **Enhanced Metadata**: Improved YAML frontmatter structure for better automation and documentation generation
+
 ### **AI Prompt Engineering Best Practices Rollout** ✨
 
-**Completed systematic enhancement of all 56 prompts with advanced AI prompt engineering patterns:**
+**Completed systematic enhancement of all 57 prompts with advanced AI prompt engineering patterns:**
 
 - **Context Management**: Smart scope adjustment, domain-specific prioritization, and progressive disclosure for complex scenarios
 - **Analysis Validation**: Evidence-based findings classification, confidence indicators, and specific reference requirements  

@@ -1,7 +1,11 @@
 ---
-title: "Recon CircleCI Integration"
-description: "Discover and inventory CircleCI configurations, contexts, and integrations across repositories"
-category: "discovery"
+title: Recon CircleCI Integration
+description: Discover and inventory CircleCI configurations, contexts, and integrations
+  across repositories
+category: discovery
+version: 1.0.0
+created_date: '2025-08-26'
+last_updated: '2025-08-26'
 ---
 
 > **Best Practices:**

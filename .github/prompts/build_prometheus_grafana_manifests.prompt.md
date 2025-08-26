@@ -1,3 +1,9 @@
+---
+version: "1.0.0"
+created_date: "2025-08-26"
+last_updated: "2025-08-26"
+---
+
 > **Directive:**
 > If any step in this prompt requires modification of the repository contents (file creation, editing, or deletion), you must first prompt the user to create a new branch for the work or specify an existing branch to use. Only proceed with changes after the user provides direction.
 > 

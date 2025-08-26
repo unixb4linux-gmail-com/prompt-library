@@ -1,7 +1,11 @@
 ---
-title: "Analyze AWS Lambda Serverless Configuration"
-description: "Comprehensive audit of AWS Lambda functions, serverless architecture, performance, security, and cost optimization"
-category: "Cloud & Serverless"
+title: Analyze AWS Lambda Serverless Configuration
+description: Comprehensive audit of AWS Lambda functions, serverless architecture,
+  performance, security, and cost optimization
+category: Cloud & Serverless
+version: 1.0.0
+created_date: '2025-08-26'
+last_updated: '2025-08-26'
 ---
 
 > **Directive:**

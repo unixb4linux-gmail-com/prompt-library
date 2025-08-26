@@ -1,7 +1,11 @@
 ---
-title: "Analyze ELK Stack Configuration and Log Management"
-description: "Comprehensive audit of Elasticsearch, Logstash, Kibana setup, log aggregation, search, and observability"
-category: "Observability"
+title: Analyze ELK Stack Configuration and Log Management
+description: Comprehensive audit of Elasticsearch, Logstash, Kibana setup, log aggregation,
+  search, and observability
+category: Observability
+version: 1.0.0
+created_date: '2025-08-26'
+last_updated: '2025-08-26'
 ---
 
 > **Directive:**

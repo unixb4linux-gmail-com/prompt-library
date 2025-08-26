@@ -1,7 +1,11 @@
 ---
-title: "Analyze Google Cloud GKE Cluster Configuration"
-description: "Comprehensive audit of Google Kubernetes Engine cluster setup, security, networking, and workload optimization"
-category: "Kubernetes & Cloud"
+title: Analyze Google Cloud GKE Cluster Configuration
+description: Comprehensive audit of Google Kubernetes Engine cluster setup, security,
+  networking, and workload optimization
+category: Kubernetes & Cloud
+version: 1.0.0
+created_date: '2025-08-26'
+last_updated: '2025-08-26'
 ---
 
 > **Directive:**

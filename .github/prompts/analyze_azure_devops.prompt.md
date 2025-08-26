@@ -1,7 +1,11 @@
 ---
-title: "Analyze Azure DevOps Pipelines and Configuration"
-description: "Comprehensive audit of Azure DevOps YAML pipelines, variable groups, service connections, and DevSecOps integration"
-category: "CI/CD"
+title: Analyze Azure DevOps Pipelines and Configuration
+description: Comprehensive audit of Azure DevOps YAML pipelines, variable groups,
+  service connections, and DevSecOps integration
+category: CI/CD
+version: 1.0.0
+created_date: '2025-08-26'
+last_updated: '2025-08-26'
 ---
 
 > **Directive:**

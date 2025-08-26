@@ -1,7 +1,11 @@
 ---
-title: "Analyze CircleCI Configuration and Pipelines"
-description: "Comprehensive audit of CircleCI workflows, orbs, security, and CI/CD best practices"
-category: "CI/CD"
+title: Analyze CircleCI Configuration and Pipelines
+description: Comprehensive audit of CircleCI workflows, orbs, security, and CI/CD
+  best practices
+category: CI/CD
+version: 1.0.0
+created_date: '2025-08-26'
+last_updated: '2025-08-26'
 ---
 
 > **Directive:**

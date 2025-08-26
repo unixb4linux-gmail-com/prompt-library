@@ -1,7 +1,11 @@
 ---
-title: "Analyze Datadog Observability Configuration"
-description: "Comprehensive audit of Datadog monitoring, dashboards, alerts, APM, and infrastructure observability setup"
-category: "Observability"
+title: Analyze Datadog Observability Configuration
+description: Comprehensive audit of Datadog monitoring, dashboards, alerts, APM, and
+  infrastructure observability setup
+category: Observability
+version: 1.0.0
+created_date: '2025-08-26'
+last_updated: '2025-08-26'
 ---
 
 > **Directive:**

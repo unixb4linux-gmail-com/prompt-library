@@ -1,7 +1,11 @@
 ---
-title: "Analyze Backstage Developer Portal Configuration"
-description: "Comprehensive audit of Backstage developer portal, catalog, plugins, and platform engineering implementation"
-category: "Platform Engineering"
+title: Analyze Backstage Developer Portal Configuration
+description: Comprehensive audit of Backstage developer portal, catalog, plugins,
+  and platform engineering implementation
+category: Platform Engineering
+version: 1.0.0
+created_date: '2025-08-26'
+last_updated: '2025-08-26'
 ---
 
 > **Directive:**

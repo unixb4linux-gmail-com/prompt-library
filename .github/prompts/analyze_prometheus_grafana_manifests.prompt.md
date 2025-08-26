@@ -1,3 +1,9 @@
+---
+version: "1.0.0"
+created_date: "2025-08-26"
+last_updated: "2025-08-26"
+---
+
 # 📈 Prometheus + Grafana Observability Manifest Audit
 > **Ask clarifying questions before proceeding.**
 > **Ask for permission before running commands, editing, or creating files. Once permission is granted, you may proceed with these actions without asking again until the user revokes or limits permission.**

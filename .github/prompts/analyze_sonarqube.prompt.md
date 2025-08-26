@@ -1,7 +1,11 @@
 ---
-title: "Analyze SonarQube Code Quality and Security Configuration"
-description: "Comprehensive audit of SonarQube setup, quality gates, security rules, and DevSecOps integration"
-category: "Code Quality & Security"
+title: Analyze SonarQube Code Quality and Security Configuration
+description: Comprehensive audit of SonarQube setup, quality gates, security rules,
+  and DevSecOps integration
+category: Code Quality & Security
+version: 1.0.0
+created_date: '2025-08-26'
+last_updated: '2025-08-26'
 ---
 
 > **Directive:**

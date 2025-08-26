@@ -4,7 +4,8 @@
 - [Rule Set: copy-prompts](copy-prompts.rules.mdc)
 - [Prompt Library](README.md)
 - [Changelog](CHANGELOG.md)
-- [Prompt: Test AI Coding Agent with Iterative Command Execution](terraform/build_and_test_terraform.prompt.md)
+- [Test AI Coding Agent with Iterative Command Execution](terraform/build_and_test_terraform.prompt.md)  _(Category: devops, testing, agent)_
+    - Direct an AI assistant (e.g., Copilot) to iteratively build and test tooling based on a fixed scenario, until success is achieved
 - [Rule Set: build_and_test_terraform](terraform/build_and_test_terraform.rules.mdc)
 - [# Steps](.github/prompts/recon_cloud_credentials.prompt.md)
 - [# Steps](.github/prompts/recon_accounts_sessions.prompt.md)

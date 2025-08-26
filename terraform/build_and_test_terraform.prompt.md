@@ -1,9 +1,12 @@
 ---
-# Prompt: Test AI Coding Agent with Iterative Command Execution
-# Category: devops, testing, agent
-# Author: daryl
-# Use Case: Test AI agent’s ability to plan, code, run, and self-correct
-# Description: Direct an AI assistant (e.g., Copilot) to iteratively build and test tooling based on a fixed scenario, until success is achieved
+title: "Test AI Coding Agent with Iterative Command Execution"
+category: "devops, testing, agent"
+author: "daryl"
+description: "Direct an AI assistant (e.g., Copilot) to iteratively build and test tooling based on a fixed scenario, until success is achieved"
+version: "1.0.0"
+created_date: "2025-08-26"
+last_updated: "2025-08-26"
+---
 
 
 ## Instructions
