@@ -56,9 +56,11 @@ For detailed implementation guidance, see [PROMPT_HACKS_UPGRADE.md](PROMPT_HACKS
 ---
 
 # Prompt Library
+
 `scripts/version_prompts.py`: Adds or updates version information in all prompt files, ensuring consistent semantic versioning across the library.
 
 ## Directory Structure
+
 - `.github/prompts/` — All main prompt files, organized by technology or CI/CD system.
 - `.rules/` — All rulesets for agent behavior and code conventions.
 - `generic/` — Generic prompts and rules for agent self-testing.
@@ -70,6 +72,7 @@ For detailed implementation guidance, see [PROMPT_HACKS_UPGRADE.md](PROMPT_HACKS
 ## Recent Updates
 
 ### **Prompt Versioning System Implementation** 🏷️ _(2025-08-26)_
+
 **Implemented comprehensive semantic versioning across all 57 prompt files:**
 - ✅ **Version Management**: All prompts now include `version`, `created_date`, and `last_updated` fields in YAML frontmatter
 - ✅ **Semantic Versioning**: Following [SemVer](https://semver.org/) format (MAJOR.MINOR.PATCH) for consistent version tracking
@@ -77,12 +80,14 @@ For detailed implementation guidance, see [PROMPT_HACKS_UPGRADE.md](PROMPT_HACKS
 - ✅ **Enhanced Metadata**: Improved YAML frontmatter structure for better automation and documentation generation
 
 ### **AI Prompt Engineering Best Practices Rollout** ✨
+
 **Completed systematic enhancement of all 57 prompts with advanced AI prompt engineering patterns:**
 - **Context Management**: Smart scope adjustment, domain-specific prioritization, and progressive disclosure for complex scenarios
 - **Analysis Validation**: Evidence-based findings classification, confidence indicators, and specific reference requirements  
 - **Enhanced Reliability**: Consistent quality framework across all DevOps domains with security-first prioritization
 
 ### **Major Domain Coverage Expansion**
+
 Added comprehensive prompts for previously missing tools including:
 - **CI/CD Platforms**: CircleCI, Azure DevOps  
 - **Observability**: Datadog, ELK Stack (Elasticsearch, Logstash, Kibana)
@@ -94,6 +99,7 @@ Added comprehensive prompts for previously missing tools including:
 Enhanced existing coverage with build/analyze prompts for Ansible, Helm, Snyk, Prometheus/Grafana, Bitbucket, GitLab, Jenkins, Terraform, Kubernetes, Kubernetes Policy, ArgoCD, Vault, AWS EKS, and Azure AKS.
 
 ## Contributing
+
 Contributions are welcome! Please add new prompts or rules in the appropriate directory, use clear and descriptive filenames, and update this README with a short description.
 
-Test commit 3 to trigger CI run.
+Test commit 4 to trigger CI run.
