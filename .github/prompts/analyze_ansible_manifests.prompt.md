@@ -1,12 +1,11 @@
-# Analyze Ansible Manifests
-
 ---
 version: "1.0.0"
 created_date: "2025-08-26"
 last_updated: "2025-08-26"
 ---
 
->
+# Analyze Ansible Manifests
+
 > **Directive:**
 > If any step in this prompt requires modification of the repository
 > contents (file creation, editing, or deletion), you must first prompt
@@ -21,13 +20,11 @@ last_updated: "2025-08-26"
 > understand the user's requirements and scenario. Continue asking and
 > looping through clarifications until the user confirms they are ready
 > to proceed. Only start work after explicit confirmation.
-
-**Ask clarifying questions before proceeding.**
-
-**Ask for permission before running commands, editing, or creating files.
-Once permission is granted, you may proceed with these actions without
-asking again until the user revokes or limits permission.**
-
+> **Ask clarifying questions before proceeding.**
+> **Ask for permission before running commands, editing, or creating files.
+> Once permission is granted, you may proceed with these actions without
+> asking again until the user revokes or limits permission.**
+>
 > **Context Management:**
 > If the Ansible automation is too complex for comprehensive analysis,
 > prioritize:
@@ -39,7 +36,7 @@ asking again until the user revokes or limits permission.**
 >    provisioning
 >
 > Ask user to specify focus areas if scope exceeds analysis capacity.
-
+>
 > **Analysis Validation:**
 >
 > - Mark findings as "Confirmed" vs "Potential" based on playbook
@@ -48,4 +45,3 @@ asking again until the user revokes or limits permission.**
 >   security practices when citing findings
 > - Provide confidence indicators: High/Medium/Low for each automation
 >   security and maintainability recommendation
->
