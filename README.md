@@ -1,5 +1,4 @@
 # Advanced Prompt Engineering Practices
-
 This branch introduces comprehensive enhancements to prompt engineering methodologies, implementing seven key practices that significantly improve AI assistant reliability, explainability, and developer workflow efficiency.
 
 ## Key Enhancements
@@ -105,3 +104,5 @@ Enhanced existing coverage with build/analyze prompts for Ansible, Helm, Snyk, P
 ## Contributing
 
 Contributions are welcome! Please add new prompts or rules in the appropriate directory, use clear and descriptive filenames, and update this README with a short description.
+
+Test commit to trigger CI run.
