@@ -1,10 +1,15 @@
 # AKS Security Hardening Checklist
 
 ## Purpose
-Guide users through security hardening of Azure Kubernetes Service (AKS) clusters using industry best practices. This checklist ensures robust security posture, compliance, and integration with NGINX and Cloudflare.
+
+Guide users through security hardening of Azure Kubernetes Service (AKS) 
+clusters using industry best practices. This checklist ensures robust security 
+posture, compliance, and integration with NGINX and Cloudflare.
 
 ## Instructions
-- Review each item in the checklist and apply as appropriate to your AKS environment.
+
+- Review each item in the checklist and apply as appropriate to your AKS 
+  environment.
 - Use the provided commands and links for reference.
 - For NGINX and Cloudflare, follow the integration steps at the end.
 
@@ -22,33 +27,40 @@ Guide users through security hardening of Azure Kubernetes Service (AKS) cluster
 - [ ] Enable audit logging and monitor logs for suspicious activity
 - [ ] Use Azure Policy for Kubernetes to enforce security standards
 - [ ] Scan container images for vulnerabilities before deployment
-- [ ] Limit pod permissions (avoid privileged containers, use PodSecurityPolicies or OPA Gatekeeper)
+- [ ] Limit pod permissions (avoid privileged containers, use 
+      PodSecurityPolicies or OPA Gatekeeper)
 - [ ] Encrypt secrets at rest using customer-managed keys
 - [ ] Enable automatic scaling and resource limits for workloads
 
 ## NGINX and Cloudflare Integration
 
 ### NGINX Ingress Controller
+
 - Deploy NGINX Ingress Controller using Helm:
-  ```sh
-  helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx
-  helm repo update
-  helm install nginx-ingress ingress-nginx/ingress-nginx --namespace ingress-nginx --create-namespace
-  ```
+
+```sh
+helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx
+helm repo update
+helm install nginx-ingress ingress-nginx/ingress-nginx --namespace ingress-nginx --create-namespace
+```
+
 - Enforce TLS 1.2+ in NGINX config:
-  ```yaml
-  apiVersion: networking.k8s.io/v1
-  kind: Ingress
-  metadata:
-    annotations:
-      nginx.ingress.kubernetes.io/ssl-protocols: "TLSv1.2 TLSv1.3"
-  ...
-  ```
+
+```yaml
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    nginx.ingress.kubernetes.io/ssl-protocols: "TLSv1.2 TLSv1.3"
+...
+```
 
 ### Cloudflare Integration
-- Point your domain’s DNS to Cloudflare and configure proxying.
+
+- Point your domain's DNS to Cloudflare and configure proxying.
 - Set up Cloudflare Origin Certificates and upload to AKS secrets.
-- Restrict AKS ingress to accept traffic only from Cloudflare IPs (use network policies or Azure NSGs).
+- Restrict AKS ingress to accept traffic only from Cloudflare IPs (use 
+  network policies or Azure NSGs).
 - Enable Web Application Firewall (WAF) and DDoS protection in Cloudflare.
 
 ## Examples
