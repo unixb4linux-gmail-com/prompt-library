@@ -96,4 +96,4 @@ Enhanced existing coverage with build/analyze prompts for Ansible, Helm, Snyk, P
 ## Contributing
 Contributions are welcome! Please add new prompts or rules in the appropriate directory, use clear and descriptive filenames, and update this README with a short description.
 
-Test commit 2 to trigger CI run.
+Test commit 3 to trigger CI run.
