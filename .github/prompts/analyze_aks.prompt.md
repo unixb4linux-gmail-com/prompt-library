@@ -7,6 +7,7 @@ last_updated: "2025-08-26"
 # Analyze Azure AKS
 
 > **Best Practices:**
+>
 > - Ask clarifying questions before proceeding if any requirements or
 >   context are unclear.
 > - Ask for permission before running commands, editing, or creating
@@ -14,15 +15,19 @@ last_updated: "2025-08-26"
 >   without asking again until the user revokes or limits permission.
 
 > **Context Management:**
+>
 > If the AKS deployment is too complex for comprehensive analysis,
 > prioritize:
+>
 > 1. Security-critical cluster configurations and managed identity
 >    settings
 > 2. Production node pool configurations and scaling policies
 > 3. Integration effectiveness with Azure services and networking
+>
 > Ask user to specify focus areas if scope exceeds analysis capacity.
 
 > **Analysis Validation:**
+>
 > - Mark findings as "Confirmed" vs "Potential" based on AKS
 >   configuration evidence and manifest validation
 > - Reference specific cluster settings, node pool configurations, or
