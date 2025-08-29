@@ -1,4 +1,4 @@
-# ☁️ Analyze Azure AKS Cluster & Manifests
+# Analyze Azure AKS
 
 ---
 version: "1.0.0"
@@ -36,10 +36,14 @@ last_updated: "2025-08-26"
 > - Note when additional Azure subscription access would improve analysis
 >   accuracy
 
-<!--title: "Analyze Azure AKS Cluster and Manifests"
+<!--
+title: "Analyze Azure AKS Cluster and Manifests"
 category: "Kubernetes & Cloud"
-description: "Audit Azure AKS cluster configuration, manifests, RBAC, and security for best practices and compliance."
+description: "Audit Azure AKS cluster configuration, manifests, RBAC, and
+security for best practices and compliance."
 -->
+
+# ☁️ Analyze Azure AKS Cluster & Manifests
 
 You are a Cloud Platform Engineer. Your task is to audit an Azure AKS
 (Azure Kubernetes Service) cluster and its associated manifests for best
@@ -64,7 +68,7 @@ cd {{manifests_path}}
 ## 📦 AKS Structure Expected
 
 | Component | Purpose |
-|-----------|----------|
+| --- | --- |
 | AKS Cluster | Managed Kubernetes control plane |
 | Node Pools | Worker nodes (VMSS, spot, user/system) |
 | Managed Identity/RBAC | Access control for nodes, users, workloads |
@@ -87,8 +91,7 @@ Compare to:
 
 - [AKS Best Practices Guide](
   https://learn.microsoft.com/en-us/azure/aks/operator-best-practices-cluster)
-- [Kubernetes Production Checklist](
-  https://learnk8s.io/production-best-practices)
+- [Kubernetes Production Checklist](https://learnk8s.io/production-best-practices)
 
 Evaluate:
 
@@ -106,7 +109,7 @@ Compare to:
 - [AKS Security Best Practices](
   https://learn.microsoft.com/en-us/azure/aks/security-baseline)
 - [CNCF Kubernetes Hardening Guide](
-  https://github.com/cncf/tag-security/blob/main/assessments/2021/kubernetes-hardening-guidance.md)
+  https://github.com/cncf/tag-security/blob/main/assessments/projects/kubernetes/self-assessment.md)
 
 Evaluate:
 
@@ -134,7 +137,7 @@ Recommend:
 
 ## 🧾 Output Format
 
-```markdown
+```
 ## 📌 Purpose Summary
 
 ## ✅ Functional Review
