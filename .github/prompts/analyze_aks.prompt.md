@@ -7,37 +7,31 @@ last_updated: "2025-08-26"
 # Analyze Azure AKS
 
 > **Best Practices:**
-> 
+>
 > - Ask clarifying questions before proceeding if any requirements or
 >   context are unclear.
-> 
 > - Ask for permission before running commands, editing, or creating
 >   files. Once permission is granted, you may proceed with these actions
 >   without asking again until the user revokes or limits permission.
-
+>
 > **Context Management:**
 > If the AKS deployment is too complex for comprehensive analysis,
 > prioritize:
-> 
+>
 > 1. Security-critical cluster configurations and managed identity settings
-> 
 > 2. Production node pool configurations and scaling policies
-> 
 > 3. Integration effectiveness with Azure services and networking
-> 
+>
 > Ask user to specify focus areas if scope exceeds analysis capacity.
-
+>
 > **Analysis Validation:**
-> 
+>
 > - Mark findings as "Confirmed" vs "Potential" based on AKS
 >   configuration evidence and manifest validation
-> 
 > - Reference specific cluster settings, node pool configurations, or
 >   Azure integration configs when citing findings
-> 
 > - Provide confidence indicators: High/Medium/Low for each security and
 >   scalability recommendation
-> 
 > - Note when additional Azure subscription access would improve
 >   analysis accuracy
 
@@ -66,8 +60,8 @@ Once confirmed:
 
 Compare to:
 
-- [AKS Best Practices Guide](https://learn.microsoft.com/en-us/azure/aks/5784a9b9)
-- [Kubernetes Production Checklist](https://learnk8s.io/7359f1e8)
+- [AKS Best Practices Guide](https://learn.microsoft.com/en-us/azure/aks/operator-best-practices)
+- [Kubernetes Production Checklist](https://learnk8s.io/production-best-practices)
 
 Evaluate:
 
@@ -97,7 +91,7 @@ Evaluate:
 
 Compare to:
 
-- [AKS Add-ons Catalog](https://learn.microsoft.com/en-us/azure/aks/22fdd7b6)
+- [AKS Add-ons Catalog](https://learn.microsoft.com/en-us/azure/aks/integrations)
 - [Cluster Autoscaler](https://learn.microsoft.com/en-us/azure/aks/cluster-autoscaler)
 
 Recommend:
@@ -115,11 +109,14 @@ Recommend:
 ## ✅ Functional Review
 
 ## 🛠️ Best Practice Suggestions
-*Comparison: [AKS Best Practices Guide](https://learn.microsoft.com/en-us/azure/aks/5784a9b9)*
+
+*Comparison: [AKS Best Practices Guide](https://learn.microsoft.com/en-us/azure/aks/operator-best-practices)*
 
 ## 🔒 Security Observations
+
 *Comparison: [AKS Security Best Practices](https://learn.microsoft.com/en-us/azure/aks/security-baseline)*
 
 ## 🚀 Enhancement Opportunities
-*Comparison: [AKS Add-ons Catalog](https://learn.microsoft.com/en-us/azure/aks/22fdd7b6)*
+
+*Comparison: [AKS Add-ons Catalog](https://learn.microsoft.com/en-us/azure/aks/integrations)*
 ```
