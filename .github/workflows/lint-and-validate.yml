@@ -1,11 +1,9 @@
 name: Lint and Validate
-
 on:
   push:
-    branches: [ main, enhance-audit-suggestions ]
+    branches: [ main, enhance-audit-suggestions, fix/github-actions ]
   pull_request:
     branches: [ main ]
-
 jobs:
   lint-shell:
     runs-on: ubuntu-latest
@@ -15,7 +13,6 @@ jobs:
         run: |
           sudo apt-get update && sudo apt-get install -y shellcheck
           shellcheck copy-prompts.sh
-
   lint-markdown:
     runs-on: ubuntu-latest
     steps:
@@ -24,7 +21,6 @@ jobs:
         uses: DavidAnson/markdownlint-cli2-action@v15
         with:
           globs: '**/*.md'
-
   validate-prompts:
     runs-on: ubuntu-latest
     steps:
