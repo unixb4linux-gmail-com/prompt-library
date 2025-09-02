@@ -66,11 +66,27 @@ For detailed implementation guidance, see [PROMPT_HACKS_UPGRADE.md](PROMPT_HACKS
 - `.rules/` — All rulesets for agent behavior and code conventions.
 - `generic/` — Generic prompts and rules for agent self-testing.
 - `terraform/` — Terraform-specific prompts and rules.
+- `mlops/` — Machine Learning Operations prompts for MLflow, model pipelines, and automation.
+- `aiops/` — AI Operations prompts for monitoring, observability, and incident response.
 - `scripts/` — Index generation, versioning, and distribution utilities.
 - `copy-prompts.sh` — Utility script for copying prompts/rules to other repos.
 - `CLAUDE.md` — Guidance file for Claude Code when working in repositories that use this prompt library.
 
 ## Recent Updates
+
+### **MLOps and AIOps Prompt Library Extension** 🤖 _(2025-01-02)_
+
+**Added comprehensive MLOps and AIOps prompt collections to address operational maturity gaps:**
+
+- ✅ **MLOps Coverage**: Complete machine learning lifecycle automation including model registry, pipeline automation, and governance
+- ✅ **AIOps Implementation**: Full observability stack with Prometheus/Grafana, automated incident response, and SRE practices
+- ✅ **Gap Analysis Framework**: Systematic maturity assessment tools for identifying and prioritizing operational improvements
+- ✅ **Production-Ready Guides**: Kubernetes-native implementations with Docker, CI/CD integration, and security best practices
+- ✅ **Advanced Automation**: End-to-end pipeline orchestration using Kubeflow, MLflow, and cloud-native technologies
+
+**New Prompt Categories:**
+- **mlops/**: MLflow model registry, feature engineering, automated training pipelines, model governance
+- **aiops/**: Prometheus monitoring, Grafana dashboards, automated remediation, SLO/SLI implementation
 
 ### **Prompt Versioning System Implementation** 🏷️ _(2025-08-26)_
 
@@ -99,6 +115,8 @@ Added comprehensive prompts for previously missing tools including:
 - **Cloud & Serverless**: AWS Lambda, Google Cloud GKE
 - **Platform Engineering**: Backstage developer portal
 - **Discovery**: CircleCI reconnaissance and integration discovery
+- **MLOps**: MLflow model registry, automated ML pipelines, feature stores, model monitoring
+- **AIOps**: Prometheus/Grafana observability, automated incident response, SRE practices
 
 Enhanced existing coverage with build/analyze prompts for Ansible, Helm, Snyk, Prometheus/Grafana, Bitbucket, GitLab, Jenkins, Terraform, Kubernetes, Kubernetes Policy, ArgoCD, Vault, AWS EKS, and Azure AKS.
 
