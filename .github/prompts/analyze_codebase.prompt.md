@@ -1,5 +1,5 @@
 ---
-version: "1.1.0"
+version: "1.2.0"
 created_date: "2025-08-26"
 last_updated: "2025-08-29"
 enhancement_level: "advanced"

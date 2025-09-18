@@ -1,3 +1,4 @@
 {
-  "chat.promptFiles": true
+  "chat.promptFiles": true,
+  "claudeCodeChat.permissions.yoloMode": true
 }
