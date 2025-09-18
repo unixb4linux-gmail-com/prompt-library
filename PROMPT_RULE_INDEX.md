@@ -2,22 +2,28 @@
 
 - [CLAUDE.md](CLAUDE.md)
 - [Rule Set: copy-prompts](copy-prompts.rules.mdc)
-- [Prompt Library](README.md)
+- [🚀 Prompt Hacks Upgrade: Advanced AI Techniques Implementation](PROMPT_HACKS_UPGRADE.md)
+- [Advanced Prompt Engineering Practices](README.md)
 - [Changelog](CHANGELOG.md)
+- [MLOps Gap Analysis and Implementation Roadmap](mlops/analyze_mlops_gaps.prompt.md)
+- [MLflow Model Registry Implementation Guide](mlops/implement_mlflow_registry.prompt.md)
+- [MLOps Pipeline Automation Implementation Guide](mlops/mlops_pipeline_automation.prompt.md)
 - [Test AI Coding Agent with Iterative Command Execution](terraform/build_and_test_terraform.prompt.md)  _(Category: devops, testing, agent)_
     - Direct an AI assistant (e.g., Copilot) to iteratively build and test tooling based on a fixed scenario, until success is achieved
 - [Rule Set: build_and_test_terraform](terraform/build_and_test_terraform.rules.mdc)
+- [AIOps Gap Analysis and Implementation Strategy](aiops/analyze_aiops_gaps.prompt.md)
+- [Prometheus & Grafana AIOps Implementation Guide](aiops/implement_prometheus_grafana.prompt.md)
 - [# Steps](.github/prompts/recon_cloud_credentials.prompt.md)
 - [# Steps](.github/prompts/recon_accounts_sessions.prompt.md)
 - [Analyze CircleCI Configuration and Pipelines](.github/prompts/analyze_circleci.prompt.md)  _(Category: CI/CD)_
     - Comprehensive audit of CircleCI workflows, orbs, security, and CI/CD best practices
 - [Prompt: Setup Python API Project](.github/prompts/setup_python_api.prompt.md)
-- [🚀 ArgoCD Application & GitOps Manifest Audit](.github/prompts/analyze_argocd_manifests.prompt.md)
+- [ArgoCD Application & GitOps Manifest Audit](.github/prompts/analyze_argocd_manifests.prompt.md)
 - [Analyze Trivy Security Scanner Configuration](.github/prompts/analyze_trivy.prompt.md)  _(Category: Security Scanning)_
     - Comprehensive audit of Trivy vulnerability scanning, container security, IaC security, and DevSecOps integration
 - [# Steps](.github/prompts/recon_iac_automation.prompt.md)
 - [🧪 Comprehensive Audit of Jenkins Pipelines and Architecture](.github/prompts/analyze_jenkins_prompt.md)
-- [☁️ Analyze Azure AKS Cluster & Manifests](.github/prompts/analyze_aks.prompt.md)
+- [Analyze Azure AKS](.github/prompts/analyze_aks.prompt.md)
 - [🔐 Build Vault Manifests Repository](.github/prompts/build_vault_manifests.prompt.md)
 - [🧪 Comprehensive Audit of GitLab CI/CD Usage and Integration](.github/prompts/analyze_gitlab.prompt.md)
 - [# Steps](.github/prompts/recon_k8s_and_containers.prompt.md)
@@ -44,6 +50,8 @@
 - [Analyze ELK Stack Configuration and Log Management](.github/prompts/analyze_elk_stack.prompt.md)  _(Category: Observability)_
     - Comprehensive audit of Elasticsearch, Logstash, Kibana setup, log aggregation, search, and observability
 - [🧺s Comprehensive Audit of Bitbucket Pipelines](.github/prompts/analyze_bitbucket_pipeline.prompt.md)
+- [Interactive Learning Trainer](.github/prompts/train_interactive_learning.prompt.md)  _(Category: Training & Education)_
+    - Comprehensive interactive training prompt for technology learning with progressive mastery
 - [☸️ Build Kubernetes Manifests Repository](.github/prompts/build_kubernetes_manifests.prompt.md)
 - [🚀 Build ArgoCD Manifests Repository](.github/prompts/build_argocd_manifests.prompt.md)
 - [⚙️ Build Ansible Playbook & Role Repository](.github/prompts/build_ansible_manifests.prompt.md)
@@ -58,7 +66,7 @@
 - [⚙️ Build GitHub Actions Workflow Repository](.github/prompts/build_github_workflows.prompt.md)
 - [🛡️ Build Snyk Security Integration Repository](.github/prompts/build_snyk_manifests.prompt.md)
 - [📈 Prometheus + Grafana Observability Manifest Audit](.github/prompts/analyze_prometheus_grafana_manifests.prompt.md)
-- [🔍 Analyze Entire Codebase with Branch Selection](.github/prompts/analyze_codebase.prompt.md)
+- [🔍 Advanced Codebase Analysis with Enhanced AI Techniques](.github/prompts/analyze_codebase.prompt.md)
 - [📊 Build Prometheus & Grafana Monitoring Repository](.github/prompts/build_prometheus_grafana_manifests.prompt.md)
 - [Analyze AWS Lambda Serverless Configuration](.github/prompts/analyze_aws_lambda.prompt.md)  _(Category: Cloud & Serverless)_
     - Comprehensive audit of AWS Lambda functions, serverless architecture, performance, security, and cost optimization
@@ -75,7 +83,7 @@
 - [# Requirements](.github/prompts/build_azure_ai_poc.md)
 - [Directive:](.github/prompts/analyze_github_workflows.prompt.md)
 - [🛠️ Build Helm Chart Repository](.github/prompts/build_helm_manifests.prompt.md)
-- [⚙️ Ansible Playbook & Role Manifest Audit](.github/prompts/analyze_ansible_manifests.prompt.md)
+- [Analyze Ansible Manifests](.github/prompts/analyze_ansible_manifests.prompt.md)
 - [🧵 Comprehensive Helm Chart & Manifest Audit](.github/prompts/analyze_helm_manifests.prompt.md)
 - [# Steps](.github/prompts/recon_cicd_integrations.prompt.md)
 - [Terraform Module Documentation Generator](.github/prompts/terraform/module-doc.md)
