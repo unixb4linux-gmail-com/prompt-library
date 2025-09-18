@@ -33,8 +33,8 @@ def extract_metadata(filepath):
                 title = meta.get('title')
                 description = meta.get('description')
                 category = meta.get('category')
-        except Exception:
-            pass
+        except Exception as e:
+            print(f"Error parsing YAML in {filepath}: {e}")
     # Fallback: first non-empty heading
     if not title:
         for line in lines:
