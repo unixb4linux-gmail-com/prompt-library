@@ -1,4 +1,7 @@
 ---
+title: "GitLab CI/CD Pipeline Audit"
+description: "Comprehensive audit of GitLab CI/CD pipelines with DAST/SAST integration and auto-scaling runner evaluation"
+category: "GitLab"
 version: "1.0.0"
 created_date: "2025-08-26"
 last_updated: "2025-08-26"

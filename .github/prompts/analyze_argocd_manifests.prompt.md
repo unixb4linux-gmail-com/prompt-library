@@ -1,4 +1,7 @@
 ---
+title: "ArgoCD Application & GitOps Manifest Audit"
+description: "Comprehensive audit of ArgoCD applications, AppProjects, and GitOps deployment patterns for security and best practices compliance"
+category: "GitOps"
 version: "1.0.0"
 created_date: "2025-08-26"
 last_updated: "2025-08-26"

@@ -1,4 +1,7 @@
 ---
+title: "Azure AKS Cluster Analysis"
+description: "Comprehensive analysis of Azure Kubernetes Service clusters for security, best practices, and operational excellence"
+category: "Azure"
 version: "1.0.0"
 created_date: "2025-08-26"
 last_updated: "2025-08-26"

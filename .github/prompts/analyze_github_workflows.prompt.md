@@ -1,4 +1,7 @@
 ---
+title: "GitHub Actions Workflow Analysis"
+description: "Comprehensive evaluation of GitHub Actions workflows for security, performance, and CI/CD best practices"
+category: "GitHub Actions"
 version: "1.0.0"
 created_date: "2025-08-26"
 last_updated: "2025-08-26"
