@@ -1,4 +1,8 @@
 ---
+title: "Cloud Credential Reconnaissance"
+description: "Locate and summarize professional cloud credentials; optionally confirm active identity via read-only calls"
+category: "Security"
+author: "you"
 version: "1.0.0"
 created_date: "2025-08-26"
 last_updated: "2025-08-26"
@@ -20,11 +24,6 @@ last_updated: "2025-08-26"
 > - Reference specific credential files, environment variables, or CLI configuration when citing findings
 > - Provide confidence indicators: High/Medium/Low for each credential security recommendation
 > - Note when additional account access or credential rotation would improve security posture
-title: "Recon Cloud Credentials"
-author: you
-category: discovery
-description: "Locate and summarize professional cloud credentials; optionally confirm active identity via read-only calls."
----
 
 
 > **Global Safety**

@@ -1,4 +1,7 @@
 ---
+title: "DevOps Client Onboarding Guide"
+description: "Step-by-step onboarding framework for DevOps consultants joining new client environments"
+category: "Consulting"
 version: "1.0.0"
 created_date: "2025-08-26"
 last_updated: "2025-08-26"

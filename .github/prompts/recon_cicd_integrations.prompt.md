@@ -1,4 +1,8 @@
 ---
+title: "CI/CD Integration Reconnaissance"
+description: "Identify CI/CD configurations in local repos—names, triggers, envs, and secret references (names only)"
+category: "CI/CD"
+author: "you"
 version: "1.0.0"
 created_date: "2025-08-26"
 last_updated: "2025-08-26"
@@ -20,11 +24,6 @@ last_updated: "2025-08-26"
 > - Reference specific CI/CD files, secret references, or integration patterns when citing findings
 > - Provide confidence indicators: High/Medium/Low for each CI/CD security and operational recommendation
 > - Note when additional repository access or CI/CD platform access would improve reconnaissance accuracy
-title: "Recon CICD Integrations"
-author: you
-category: discovery
-description: "Identify CI/CD configurations in local repos—names, triggers, envs, and secret references (names only)."
----
 
 
 > **Global Safety**

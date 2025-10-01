@@ -1,7 +1,6 @@
 # Prompt & Rule Index
 
 - [CLAUDE.md](CLAUDE.md)
-- [Rule Set: copy-prompts](copy-prompts.rules.mdc)
 - [🚀 Prompt Hacks Upgrade: Advanced AI Techniques Implementation](PROMPT_HACKS_UPGRADE.md)
 - [Advanced Prompt Engineering Practices](README.md)
 - [Changelog](CHANGELOG.md)
@@ -10,25 +9,29 @@
 - [MLOps Pipeline Automation Implementation Guide](mlops/mlops_pipeline_automation.prompt.md)
 - [Test AI Coding Agent with Iterative Command Execution](terraform/build_and_test_terraform.prompt.md)  _(Category: devops, testing, agent)_
     - Direct an AI assistant (e.g., Copilot) to iteratively build and test tooling based on a fixed scenario, until success is achieved
-- [Rule Set: build_and_test_terraform](terraform/build_and_test_terraform.rules.mdc)
 - [AIOps Gap Analysis and Implementation Strategy](aiops/analyze_aiops_gaps.prompt.md)
 - [Prometheus & Grafana AIOps Implementation Guide](aiops/implement_prometheus_grafana.prompt.md)
-- [# Steps](.github/prompts/recon_cloud_credentials.prompt.md)
-- [# Steps](.github/prompts/recon_accounts_sessions.prompt.md)
+- [Cloud Credential Reconnaissance](.github/prompts/recon_cloud_credentials.prompt.md)  _(Category: Security)_
+    - Locate and summarize professional cloud credentials; optionally confirm active identity via read-only calls
+- [Account and Session Reconnaissance](.github/prompts/recon_accounts_sessions.prompt.md)  _(Category: Security)_
+    - Summarize professional accounts and sessions; git identities, CLIs, and orgs (masked)
 - [Analyze CircleCI Configuration and Pipelines](.github/prompts/analyze_circleci.prompt.md)  _(Category: CI/CD)_
     - Comprehensive audit of CircleCI workflows, orbs, security, and CI/CD best practices
 - [Prompt: Setup Python API Project](.github/prompts/setup_python_api.prompt.md)
-- [ArgoCD Application & GitOps Manifest Audit](.github/prompts/analyze_argocd_manifests.prompt.md)
+- [ArgoCD Application & GitOps Manifest Audit](.github/prompts/analyze_argocd_manifests.prompt.md)  _(Category: GitOps)_
+    - Comprehensive audit of ArgoCD applications, AppProjects, and GitOps deployment patterns for security and best practices compliance
 - [Analyze Trivy Security Scanner Configuration](.github/prompts/analyze_trivy.prompt.md)  _(Category: Security Scanning)_
     - Comprehensive audit of Trivy vulnerability scanning, container security, IaC security, and DevSecOps integration
-- [# Steps](.github/prompts/recon_iac_automation.prompt.md)
-- [🧪 Comprehensive Audit of Jenkins Pipelines and Architecture](.github/prompts/analyze_jenkins_prompt.md)
-- [Analyze Azure AKS](.github/prompts/analyze_aks.prompt.md)
+- [Infrastructure as Code Reconnaissance](.github/prompts/recon_iac_automation.prompt.md)  _(Category: Infrastructure)_
+    - Locate Terraform/Ansible/Helm/Kustomize/Argo/Flux/Packer; summarize modules, providers, and backends (masked)
+- [Azure AKS Cluster Analysis](.github/prompts/analyze_aks.prompt.md)  _(Category: Azure)_
+    - Comprehensive analysis of Azure Kubernetes Service clusters for security, best practices, and operational excellence
 - [🔐 Build Vault Manifests Repository](.github/prompts/build_vault_manifests.prompt.md)
-- [🧪 Comprehensive Audit of GitLab CI/CD Usage and Integration](.github/prompts/analyze_gitlab.prompt.md)
-- [# Steps](.github/prompts/recon_k8s_and_containers.prompt.md)
+- [GitLab CI/CD Pipeline Audit](.github/prompts/analyze_gitlab.prompt.md)  _(Category: GitLab)_
+    - Comprehensive audit of GitLab CI/CD pipelines with DAST/SAST integration and auto-scaling runner evaluation
+- [Kubernetes and Container Reconnaissance](.github/prompts/recon_k8s_and_containers.prompt.md)  _(Category: Kubernetes)_
+    - Read-only Kubernetes contexts and local container runtime inventory; optional minimal cluster info on confirm
 - [📐 Comprehensive Terraform Infrastructure Evaluation](.github/prompts/analyze_terraform_evaluation.prompt.md)
-- [🧪 Build Jenkins Pipeline Repository](.github/prompts/build_jenkins_prompt.md)
 - [Analyze Backstage Developer Portal Configuration](.github/prompts/analyze_backstage.prompt.md)  _(Category: Platform Engineering)_
     - Comprehensive audit of Backstage developer portal, catalog, plugins, and platform engineering implementation
 - [🛡️ Kubernetes Policy-as-Code Manifest Audit (OPA & Kyverno)](.github/prompts/analyze_kubernetes_policy_manifests.prompt.md)
@@ -46,7 +49,11 @@
     - Comprehensive audit of Datadog monitoring, dashboards, alerts, APM, and infrastructure observability setup
 - [☸️ Comprehensive Kubernetes Configuration Audit](.github/prompts/analyze_kubernetes_manifests.prompt.md)
 - [🛰️ Live Kubernetes Cluster Evaluation Prompt (Kubectl-Based)](.github/prompts/analyze_kubernetes_live_cluster.prompt.md)
-- [# Steps](.github/prompts/recon_tools_local.prompt.md)
+- [Local DevOps Tools Reconnaissance](.github/prompts/recon_tools_local.prompt.md)  _(Category: Tooling)_
+    - Enumerate DevOps tooling; record versions, config paths, and contexts without making changes
+- [🧪 Build Jenkins Pipeline Repository](.github/prompts/build_jenkins.prompt.md)
+- [Comprehensive SADLC Assessment and Validation](.github/prompts/analyze_sadlc_comprehensive_assessment.prompt.md)  _(Category: Security Assessment)_
+    - Complete security assessment framework for SADLC validation against OWASP SAMM and NIST SSDF, pilot application security review, and findings generation
 - [Analyze ELK Stack Configuration and Log Management](.github/prompts/analyze_elk_stack.prompt.md)  _(Category: Observability)_
     - Comprehensive audit of Elasticsearch, Logstash, Kibana setup, log aggregation, search, and observability
 - [🧺s Comprehensive Audit of Bitbucket Pipelines](.github/prompts/analyze_bitbucket_pipeline.prompt.md)
@@ -55,6 +62,7 @@
 - [☸️ Build Kubernetes Manifests Repository](.github/prompts/build_kubernetes_manifests.prompt.md)
 - [🚀 Build ArgoCD Manifests Repository](.github/prompts/build_argocd_manifests.prompt.md)
 - [⚙️ Build Ansible Playbook & Role Repository](.github/prompts/build_ansible_manifests.prompt.md)
+- [# Requirements](.github/prompts/build_azure_ai_poc.prompt.md)
 - [🔐 Vault Kubernetes Manifest & Integration Audit](.github/prompts/analyze_vault_manifests.prompt.md)
 - [# Step 0: Confirm Readiness](.github/prompts/recon_devops_master.prompt.md)
 - [Prompt: Deploy AKS with Terraform](.github/prompts/deploy_aks_terraform.prompt.md)
@@ -64,6 +72,7 @@
 - [Analyze Incident Management Setup](.github/prompts/analyze_incident_management.prompt.md)  _(Category: SRE & Incident Response)_
     - Audit incident management processes, tools, alerting, escalation policies, and response procedures for SRE best practices
 - [⚙️ Build GitHub Actions Workflow Repository](.github/prompts/build_github_workflows.prompt.md)
+- [🧪 Comprehensive Audit of Jenkins Pipelines and Architecture](.github/prompts/analyze_jenkins.prompt.md)
 - [🛡️ Build Snyk Security Integration Repository](.github/prompts/build_snyk_manifests.prompt.md)
 - [📈 Prometheus + Grafana Observability Manifest Audit](.github/prompts/analyze_prometheus_grafana_manifests.prompt.md)
 - [🔍 Advanced Codebase Analysis with Enhanced AI Techniques](.github/prompts/analyze_codebase.prompt.md)
@@ -76,23 +85,31 @@
 - [☁️ Analyze AWS EKS Cluster & Manifests](.github/prompts/analyze_eks.prompt.md)
 - [Recon CircleCI Integration](.github/prompts/recon_circleci.prompt.md)  _(Category: discovery)_
     - Discover and inventory CircleCI configurations, contexts, and integrations across repositories
-- [## **PHASE 1 – Initial Orientation**](.github/prompts/onboard_devops_new_client.prompt.md)
+- [DevOps Client Onboarding Guide](.github/prompts/onboard_devops_new_client.prompt.md)  _(Category: Consulting)_
+    - Step-by-step onboarding framework for DevOps consultants joining new client environments
 - [☁️ Build Azure AKS Cluster Repository](.github/prompts/build_aks.prompt.md)
 - [📐 Build Terraform Module Repository](.github/prompts/build_terraform_evaluation.prompt.md)
 - [🦊 Build GitLab CI/CD Repository](.github/prompts/build_gitlab.prompt.md)
-- [# Requirements](.github/prompts/build_azure_ai_poc.md)
-- [Directive:](.github/prompts/analyze_github_workflows.prompt.md)
+- [GitHub Actions Workflow Analysis](.github/prompts/analyze_github_workflows.prompt.md)  _(Category: GitHub Actions)_
+    - Comprehensive evaluation of GitHub Actions workflows for security, performance, and CI/CD best practices
+- [Interactive SAMM Threat Assessment Conductor](.github/prompts/interactive_samm_threat_assessment.prompt.md)  _(Category: Security Assessment)_
+    - Systematic interactive assessment of OWASP SAMM Threat Assessment practices with progressive CSV output
 - [🛠️ Build Helm Chart Repository](.github/prompts/build_helm_manifests.prompt.md)
-- [Analyze Ansible Manifests](.github/prompts/analyze_ansible_manifests.prompt.md)
+- [Ansible Playbook and Role Analysis](.github/prompts/analyze_ansible_manifests.prompt.md)  _(Category: Ansible)_
+    - Security-focused analysis of Ansible playbooks, roles, and automation patterns for infrastructure management
 - [🧵 Comprehensive Helm Chart & Manifest Audit](.github/prompts/analyze_helm_manifests.prompt.md)
-- [# Steps](.github/prompts/recon_cicd_integrations.prompt.md)
+- [CI/CD Integration Reconnaissance](.github/prompts/recon_cicd_integrations.prompt.md)  _(Category: CI/CD)_
+    - Identify CI/CD configurations in local repos—names, triggers, envs, and secret references (names only)
 - [Terraform Module Documentation Generator](.github/prompts/terraform/module-doc.md)
 - [GitHub Actions CI Workflow Template for Containerized Apps](.github/prompts/github-actions/ci-template.md)
 - [AKS Security Hardening Checklist](.github/prompts/aks/hardening.md)
 - [React Development Rules](.rules/react.mdc)
+- [Rule Set: copy-prompts](.rules/copy-prompts.mdc)
 - [My Rules](.rules/README.md)
+- [Rule Set: self_test_code_agent](.rules/build-test-code-agent.mdc)
 - [React Component Development Rules](.rules/react-component.mdc)
 - [Ruby on Rails Development Rules](.rules/ruby-on-rails.mdc)
+- [Rule Set: build_and_test_terraform](.rules/build-and-test-terraform.mdc)
 - [Ruby Development Rules](.rules/ruby.mdc)
 - [Code Extraction Workflow](.rules/workflows/refactor-extract.mdc)
     - Identify and extract reusable components and functions
@@ -110,5 +127,4 @@
 - [Rule: Generating a Task List from a PRD](.rules/workflows/PRD-Based-Workflow/2-generate-tasks.mdc)
 - [Rule: Generating a Product Requirements Document (PRD)](.rules/workflows/PRD-Based-Workflow/1-creade-prd.mdc)
 - [Prompt: Build andTest AI Coding Agent with Iterative Execution](generic/build_test_code_agent.prompt.md)
-- [Rule Set: self_test_code_agent](generic/build_test_code_agent.rules.mdc)
 - [# Example Output](generic/build_test_code_agent.prompt.example.md)

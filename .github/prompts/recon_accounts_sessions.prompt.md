@@ -1,4 +1,8 @@
 ---
+title: "Account and Session Reconnaissance"
+description: "Summarize professional accounts and sessions; git identities, CLIs, and orgs (masked)"
+category: "Security"
+author: "you"
 version: "1.0.0"
 created_date: "2025-08-26"
 last_updated: "2025-08-26"
@@ -20,11 +24,6 @@ last_updated: "2025-08-26"
 > - Reference specific identity configurations, session tokens, or CLI authentication when citing findings
 > - Provide confidence indicators: High/Medium/Low for each identity security recommendation
 > - Note when additional session validation or identity verification would improve security assessment
-title: "Recon Accounts Sessions"
-author: you
-category: discovery
-description: "Summarize professional accounts and sessions; git identities, CLIs, and orgs (masked)."
----
 
 
 > **Global Safety**

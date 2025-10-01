@@ -1,4 +1,8 @@
 ---
+title: "Infrastructure as Code Reconnaissance"
+description: "Locate Terraform/Ansible/Helm/Kustomize/Argo/Flux/Packer; summarize modules, providers, and backends (masked)"
+category: "Infrastructure"
+author: "you"
 version: "1.0.0"
 created_date: "2025-08-26"
 last_updated: "2025-08-26"
@@ -20,11 +24,6 @@ last_updated: "2025-08-26"
 > - Reference specific module configurations, provider settings, or automation patterns when citing findings
 > - Provide confidence indicators: High/Medium/Low for each IaC security and maintainability recommendation
 > - Note when additional tool execution or state file access would improve analysis accuracy
-title: "Recon IaC Automation"
-author: you
-category: discovery
-description: "Locate Terraform/Ansible/Helm/Kustomize/Argo/Flux/Packer; summarize modules, providers, and backends (masked)."
----
 
 
 > **Global Safety**

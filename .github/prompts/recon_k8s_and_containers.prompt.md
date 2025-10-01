@@ -1,4 +1,8 @@
 ---
+title: "Kubernetes and Container Reconnaissance"
+description: "Read-only Kubernetes contexts and local container runtime inventory; optional minimal cluster info on confirm"
+category: "Kubernetes"
+author: "you"
 version: "1.0.0"
 created_date: "2025-08-26"
 last_updated: "2025-08-26"
@@ -20,11 +24,6 @@ last_updated: "2025-08-26"
 > - Reference specific cluster contexts, container images, or runtime configurations when citing findings
 > - Provide confidence indicators: High/Medium/Low for each security and operational recommendation
 > - Note when additional cluster access or container runtime permissions would improve analysis accuracy
-title: "Recon K8s and Containers"
-author: you
-category: discovery
-description: "Read-only Kubernetes contexts and local container runtime inventory; optional minimal cluster info on confirm."
----
 
 
 > **Global Safety**

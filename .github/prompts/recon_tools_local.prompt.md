@@ -1,4 +1,8 @@
 ---
+title: "Local DevOps Tools Reconnaissance"
+description: "Enumerate DevOps tooling; record versions, config paths, and contexts without making changes"
+category: "Tooling"
+author: "you"
 version: "1.0.0"
 created_date: "2025-08-26"
 last_updated: "2025-08-26"
@@ -20,11 +24,6 @@ last_updated: "2025-08-26"
 > - Reference specific tool versions, configuration paths, or authentication setups when citing findings
 > - Provide confidence indicators: High/Medium/Low for each tooling security and integration recommendation
 > - Note when additional tool execution or configuration file access would improve analysis accuracy
-title: "Recon Tools Local"
-author: you
-category: discovery
-description: "Enumerate DevOps tooling; record versions, config paths, and contexts without making changes."
----
 
 
 > **Global Safety**
