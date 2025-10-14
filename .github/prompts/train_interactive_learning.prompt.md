@@ -12,7 +12,7 @@ last_updated: "2025-09-18"
 > **Best Practices:**
 > - Ask clarifying questions before proceeding if any requirements or context are unclear.
 > - Ask for permission before running commands, editing, creating files, installing packages, or making any system modifications. Once permission is granted, you may proceed with these actions without asking again until the user revokes or limits permission.
-
+> - When explicitly instructed to execute a command, you should first confirm the command with the user and then execute it as instructed.
 > **Context Management:**
 > If the learning objectives are too complex for comprehensive training in one session, prioritize based on learner input:
 > 1. Ask learner to prioritize topics from their curriculum
