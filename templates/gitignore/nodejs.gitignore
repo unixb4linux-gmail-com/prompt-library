@@ -1,0 +1,188 @@
+# Node.js .gitignore Template
+# Comprehensive patterns for Node.js, React, Next.js, and JavaScript projects
+
+####################
+# Dependencies
+####################
+node_modules/
+jspm_packages/
+bower_components/
+
+####################
+# Package Manager Files
+####################
+# npm
+npm-debug.log*
+.npm/
+
+# Yarn
+yarn-debug.log*
+yarn-error.log*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions
+.pnp.*
+
+# pnpm
+pnpm-debug.log*
+.pnpm-debug.log*
+
+# Uncomment if NOT using Yarn Berry zero-installs:
+# .yarn/cache
+# .yarn/unplugged
+# .yarn/build-state.yml
+# .yarn/install-state.gz
+
+####################
+# Lock Files
+####################
+# Generally lock files SHOULD be committed for applications
+# Uncomment these ONLY for library projects:
+# package-lock.json
+# yarn.lock
+# pnpm-lock.yaml
+
+####################
+# Build Outputs
+####################
+dist/
+build/
+.next/
+out/
+.nuxt/
+.output/
+.cache/
+public/build/
+
+####################
+# Testing
+####################
+coverage/
+.nyc_output/
+*.lcov
+
+####################
+# TypeScript
+####################
+*.tsbuildinfo
+next-env.d.ts
+
+####################
+# Linting & Formatting
+####################
+.eslintcache
+.stylelintcache
+
+####################
+# Framework-Specific
+####################
+# Next.js
+/.next/
+/out/
+
+# Nuxt.js
+.nuxt
+dist
+
+# Gatsby
+.cache/
+public
+
+# VuePress
+.vuepress/dist
+
+# Vuepress v2.x temp and cache directory
+.temp
+
+# Docusaurus
+.docusaurus
+build
+
+# Serverless Framework
+.serverless/
+
+####################
+# Vercel
+####################
+.vercel
+.vercel.json
+
+####################
+# React Native
+####################
+# Buck
+buck-out/
+
+# Watchman
+.watchman/
+
+# Metro
+.metro-health-check*
+
+####################
+# Expo
+####################
+.expo/
+.expo-shared/
+web-build/
+
+####################
+# Storybook
+####################
+storybook-static/
+
+####################
+# Vite
+####################
+dist-ssr
+*.local
+
+####################
+# Webpack
+####################
+.webpack/
+
+####################
+# Parcel
+####################
+.parcel-cache/
+
+####################
+# Microbundle
+####################
+.rts2_cache_cjs/
+.rts2_cache_es/
+.rts2_cache_umd/
+
+####################
+# Optional npm cache directory
+####################
+.npm
+
+####################
+# Optional eslint cache
+####################
+.eslintcache
+
+####################
+# Optional stylelint cache
+####################
+.stylelintcache
+
+####################
+# Turborepo
+####################
+.turbo
+
+####################
+# SvelteKit
+####################
+.svelte-kit
+
+####################
+# Rush
+####################
+common/temp/

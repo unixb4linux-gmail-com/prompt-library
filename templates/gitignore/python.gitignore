@@ -1,0 +1,201 @@
+# Python .gitignore Template
+# Comprehensive patterns for Python projects
+
+####################
+# Byte-compiled / Optimized / DLL files
+####################
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+####################
+# C Extensions
+####################
+*.so
+
+####################
+# Distribution / Packaging
+####################
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+pip-wheel-metadata/
+
+####################
+# PyInstaller
+####################
+*.manifest
+*.spec
+
+####################
+# Installer logs
+####################
+pip-log.txt
+pip-delete-this-directory.txt
+
+####################
+# Unit test / Coverage reports
+####################
+htmlcov/
+.tox/
+.nox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.py,cover
+.hypothesis/
+.pytest_cache/
+cover/
+
+####################
+# Translations
+####################
+*.mo
+*.pot
+
+####################
+# Django
+####################
+*.log
+local_settings.py
+db.sqlite3
+db.sqlite3-journal
+/media
+/staticfiles
+
+####################
+# Flask
+####################
+instance/
+.webassets-cache
+
+####################
+# Scrapy
+####################
+.scrapy
+
+####################
+# Sphinx documentation
+####################
+docs/_build/
+docs/.build/
+
+####################
+# PyBuilder
+####################
+.pybuilder/
+target/
+
+####################
+# Jupyter Notebook
+####################
+.ipynb_checkpoints
+*/.ipynb_checkpoints/*
+
+####################
+# IPython
+####################
+profile_default/
+ipython_config.py
+
+####################
+# pyenv
+####################
+.python-version
+
+####################
+# pipenv
+####################
+Pipfile.lock
+
+####################
+# poetry
+####################
+poetry.lock
+# Uncomment if using Poetry and want to commit lock file:
+# !poetry.lock
+
+####################
+# PEP 582
+####################
+__pypackages__/
+
+####################
+# Celery
+####################
+celerybeat-schedule
+celerybeat.pid
+
+####################
+# SageMath
+####################
+*.sage.py
+
+####################
+# Virtual Environments
+####################
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+pythonenv*
+
+####################
+# Spyder IDE
+####################
+.spyderproject
+.spyproject
+
+####################
+# Rope
+####################
+.ropeproject
+
+####################
+# mkdocs
+####################
+/site
+
+####################
+# mypy
+####################
+.mypy_cache/
+.dmypy.json
+dmypy.json
+
+####################
+# Pyre type checker
+####################
+.pyre/
+
+####################
+# pytype static type analyzer
+####################
+.pytype/
+
+####################
+# Cython debug symbols
+####################
+cython_debug/

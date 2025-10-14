@@ -1,0 +1,153 @@
+# Security-Sensitive .gitignore Template
+# CRITICAL: These patterns MUST be included in every project to prevent
+# accidental exposure of credentials, secrets, and sensitive data.
+
+####################
+# Credentials & Keys
+####################
+# Generic credentials
+*.pem
+*.key
+*.p12
+*.pfx
+*.keystore
+*.jks
+credentials.json
+secrets.json
+.secrets
+/secrets
+secret.*
+
+# SSH Keys
+id_rsa
+id_rsa.pub
+id_ecdsa
+id_ecdsa.pub
+id_ed25519
+id_ed25519.pub
+*.ppk
+
+# PGP Keys
+*.asc
+*.gpg
+secring.*
+
+####################
+# Cloud Provider Credentials
+####################
+# AWS
+.aws/credentials
+.aws/config
+
+# Azure
+.azure/
+azureauth.json
+credentials.json
+
+# Google Cloud
+.gcloud/
+gcloud-service-key.json
+*-service-account*.json
+application_default_credentials.json
+
+# Kubernetes
+kubeconfig
+*.kubeconfig
+.kube/config
+
+####################
+# Infrastructure as Code Secrets
+####################
+# Terraform
+*.tfstate
+*.tfstate.*
+*.tfstate.backup
+*.tfvars
+*.tfvars.json
+# Note: .terraform.lock.hcl should generally be committed per Terraform docs
+# Uncomment if you have specific reasons not to:
+# .terraform.lock.hcl
+
+# Terraform plan files (may contain sensitive data)
+*tfplan*
+*.plan
+
+# CloudFormation parameters (may contain sensitive data)
+*parameters.json
+*params.json
+
+####################
+# Configuration Management Secrets
+####################
+# Chef
+.chef/*.pem
+.chef/encrypted_data_bag_secret
+
+# Ansible
+vault-password.txt
+*.vault
+
+####################
+# Database Files
+####################
+# SQLite (dev databases may contain sensitive data)
+*.db
+*.sqlite
+*.sqlite3
+*.db-journal
+*.db-shm
+*.db-wal
+
+# Database dumps
+*.sql
+*.dump
+
+####################
+# Application Configuration
+####################
+# .NET
+appsettings.json
+appsettings.*.json
+!appsettings.Development.json
+local.settings.json
+
+# Java
+application-local.properties
+application-secret.properties
+
+# Node.js/JavaScript
+config.local.js
+config.local.json
+.npmrc
+
+####################
+# Certificate Files
+####################
+*.crt
+*.cer
+*.der
+# Keep self-signed certs for local dev
+!localhost.crt
+!localhost.cer
+
+####################
+# Other Sensitive Data
+####################
+# Private keys for JWTs, encryption, etc.
+privatekey.*
+private-key.*
+
+# OAuth tokens
+.token
+oauth-token.json
+
+# API keys
+.apikey
+api-keys.json
+
+# Session data
+sessions/
+.sessions
+
+# Browser data (may contain tokens/cookies)
+*.crx

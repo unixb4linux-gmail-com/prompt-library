@@ -1,0 +1,157 @@
+# Ruby .gitignore Template
+# Comprehensive patterns for Ruby, Rails, and Chef projects
+
+####################
+# Ruby Version Managers
+####################
+.ruby-version
+.ruby-gemset
+.rvmrc
+
+####################
+# Bundler
+####################
+.bundle/
+vendor/bundle/
+vendor/cache/
+
+# Uncomment for library projects (commit Gemfile.lock for applications):
+# Gemfile.lock
+
+####################
+# Chef & Test Kitchen
+####################
+.vagrant
+.vagrant.d/
+.kitchen/
+.kitchen.local.yml
+Berksfile.lock
+Policyfile.lock.json
+.chef/
+.chef/*.pem
+.chef/encrypted_data_bag_secret
+/cookbooks
+chefignore
+
+####################
+# Package management
+####################
+pkg/
+*.gem
+
+####################
+# Documentation
+####################
+.yardoc/
+doc/
+rdoc/
+.inch/
+
+####################
+# Testing
+####################
+/spec/reports/
+/test/tmp/
+/test/version_tmp/
+coverage/
+.rspec_status
+
+####################
+# Rails
+####################
+*.rbc
+capybara-*.html
+.rspec
+/log/*
+/tmp/*
+!/log/.keep
+!/tmp/.keep
+/db/*.sqlite3
+/db/*.sqlite3-*
+/public/system
+/coverage/
+/spec/tmp
+**.orig
+rerun.txt
+pickle-email-*.html
+
+# Rails credentials (encrypted files should be committed)
+config/master.key
+config/credentials/*.key
+
+# Asset compilation
+/public/assets
+/public/packs
+/public/packs-test
+/node_modules
+/yarn-error.log
+yarn-debug.log*
+
+# Storage
+/storage/*
+!/storage/.keep
+
+####################
+# Sass
+####################
+.sass-cache/
+*.css.map
+
+####################
+# Environment
+####################
+.env
+.env.*
+!.env.example
+
+####################
+# Logs
+####################
+*.log
+
+####################
+# OS
+####################
+.DS_Store
+Thumbs.db
+
+####################
+# Editor/IDE
+####################
+*.swp
+*.swo
+*~
+.idea/
+.vscode/
+
+####################
+# RubyMine
+####################
+.rakeTasks
+.generators
+
+####################
+# SimpleCov
+####################
+coverage/
+.resultset.json
+
+####################
+# RSpec
+####################
+.rspec_status
+
+####################
+# Guard
+####################
+Guardfile
+
+####################
+# Pry
+####################
+.pry_history
+
+####################
+# Byebug
+####################
+.byebug_history

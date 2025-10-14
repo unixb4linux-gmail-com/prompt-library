@@ -1,0 +1,99 @@
+# Base .gitignore Template
+# This file contains patterns that should be ignored across all projects
+# regardless of technology stack.
+
+####################
+# IDE & Editors
+####################
+# VSCode
+.vscode/
+*.code-workspace
+
+# IntelliJ IDEA
+.idea/
+*.iml
+*.iws
+*.ipr
+
+# JetBrains Fleet
+.fleet/
+
+# Sublime Text
+*.sublime-project
+*.sublime-workspace
+
+# Vim
+*.swp
+*.swo
+*~
+*.un~
+
+# Emacs
+*~
+\#*\#
+.\#*
+
+####################
+# Operating Systems
+####################
+# macOS
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+.AppleDouble
+.LSOverride
+
+# Windows
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+ehthumbs_vista.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# Linux
+*~
+.directory
+.Trash-*
+
+####################
+# Logs
+####################
+*.log
+logs/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+####################
+# Environment & Secrets
+####################
+.env
+.env.local
+.env.*.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Keep example environment files
+!.env.example
+!.env.sample
+!.env.template
+
+####################
+# Temporary Files
+####################
+tmp/
+temp/
+*.tmp
+*.bak
+*.backup
+
+####################
+# Claude Code
+####################
+.claude/settings.local.json

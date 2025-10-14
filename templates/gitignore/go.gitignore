@@ -1,0 +1,140 @@
+# Go .gitignore Template
+# Comprehensive patterns for Go projects
+
+####################
+# Binaries for programs and plugins
+####################
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+
+####################
+# Test binaries
+####################
+*.test
+
+####################
+# Output of the go coverage tool
+####################
+*.out
+coverage.txt
+coverage.html
+coverage.xml
+*.coverprofile
+
+####################
+# Go workspace file
+####################
+go.work
+go.work.sum
+
+####################
+# Dependency directories
+####################
+vendor/
+
+####################
+# Go build cache
+####################
+.cache/
+
+####################
+# Build and distribution directories
+####################
+build/
+dist/
+bin/
+_bin/
+_build/
+_output/
+
+####################
+# Profiling data
+####################
+*.prof
+cpu.prof
+mem.prof
+*.pprof
+
+####################
+# Go debugger
+####################
+debug
+__debug_bin
+
+####################
+# IDEs and editors
+####################
+# GoLand
+.idea/
+*.iml
+
+# VSCode
+.vscode/
+
+####################
+# Air (live reload)
+####################
+tmp/
+.air.toml.local
+
+####################
+# Testing
+####################
+testdata/output/
+.testdata/
+*.test.json
+
+####################
+# Documentation
+####################
+docs/
+
+####################
+# Task runner
+####################
+.task/
+
+####################
+# Mockery
+####################
+mocks/
+*.mock.go
+
+####################
+# go-bindata
+####################
+bindata.go
+*-bindata.go
+
+####################
+# Protocol Buffers
+####################
+*.pb.go
+*.pb.gw.go
+
+####################
+# Wire (dependency injection)
+####################
+wire_gen.go
+
+####################
+# Swagger
+####################
+swagger/
+
+####################
+# Environment
+####################
+.env
+.env.local
+.envrc
+
+####################
+# Temporary files
+####################
+*.tmp
+*.swp
+*~
