@@ -1,0 +1,130 @@
+# Terraform .gitignore Template
+# Comprehensive patterns for Terraform infrastructure projects
+# Based on official Terraform recommendations and security best practices
+
+####################
+# Local .terraform directories
+####################
+**/.terraform/*
+.terraform/
+.terraform
+
+####################
+# State files (CRITICAL - Contains sensitive data)
+####################
+*.tfstate
+*.tfstate.*
+*.tfstate.backup
+
+####################
+# State directory for workspaces
+####################
+terraform.tfstate.d/
+
+####################
+# Crash log files
+####################
+crash.log
+crash.*.log
+
+####################
+# Variable files (CRITICAL - May contain secrets)
+####################
+# Exclude all .tfvars files which likely contain sensitive data
+*.tfvars
+*.tfvars.json
+
+# Keep example variable files
+!example.tfvars
+!*.tfvars.example
+!*.tfvars.sample
+
+# Alternative patterns for explicitly documented non-sensitive vars
+!terraform.tfvars.example
+!variables.auto.tfvars.example
+
+####################
+# Override files
+####################
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+
+####################
+# CLI configuration files
+####################
+.terraformrc
+terraform.rc
+
+####################
+# Dependency lock file
+####################
+# NOTE: Per Terraform docs, .terraform.lock.hcl SHOULD generally be committed
+# to ensure consistent provider versions across team members.
+# Uncomment ONLY if you have specific reasons not to commit it:
+# .terraform.lock.hcl
+
+####################
+# Plan files (May contain sensitive data)
+####################
+*tfplan*
+*.plan
+plan.out
+*.tfplan
+
+####################
+# Module cache
+####################
+.terraform.d/
+.terraform.lock.hcl.backup
+
+####################
+# Sentinel (Terraform Enterprise)
+####################
+.sentinel
+
+####################
+# Terragrunt
+####################
+.terragrunt-cache/
+terragrunt-cache/
+
+####################
+# Terraform Cloud / Enterprise
+####################
+.terraformignore
+
+####################
+# Backend configuration (may contain sensitive data)
+####################
+backend.tfvars
+backend-config.tfvars
+
+####################
+# Testing
+####################
+# Terraform testing files
+.terraform.test/
+
+# Terratest cache
+.test-data/
+.terraform-version
+
+####################
+# IDE specific for Terraform
+####################
+# Terraform language server
+.terraform-ls/
+
+####################
+# Generated documentation
+####################
+# terraform-docs
+terraform-docs/
+
+####################
+# Provider plugins (if manually managed)
+####################
+# Usually handled by .terraform/ but just in case:
+terraform-provider-*

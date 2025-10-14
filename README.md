@@ -78,11 +78,43 @@ For detailed implementation guidance, see [PROMPT_HACKS_UPGRADE.md](PROMPT_HACKS
 - `terraform/` — Terraform-specific prompts and rules.
 - `mlops/` — Machine Learning Operations prompts for MLflow, model pipelines, and automation.
 - `aiops/` — AI Operations prompts for monitoring, observability, and incident response.
-- `scripts/` — Index generation, versioning, and distribution utilities.
-- `copy-prompts.sh` — Utility script for copying prompts/rules to other repos.
+- `templates/gitignore/` — Comprehensive .gitignore templates for various technology stacks.
+- `scripts/` — Index generation, versioning, distribution utilities, and .gitignore validation.
+- `docs/` — Documentation including .gitignore template usage and best practices.
+- `copy-prompts.sh` — Enhanced utility script for distributing prompts, rules, and .gitignore templates.
 - `CLAUDE.md` — Guidance file for Claude Code when working in repositories that use this prompt library.
 
 ## Recent Updates
+
+### **.gitignore Templates and Validation System** 📋 _(2025-01-14)_
+
+**Comprehensive .gitignore template system with validation tooling:**
+
+- ✅ **Template Library**: 8 technology-specific templates (Python, Node.js, Terraform, Go, Java, Ruby, .NET, Chef) plus base and security layers
+- ✅ **Auto-Detection**: Intelligent project type detection based on file indicators
+- ✅ **Validation Tool**: Python script to audit .gitignore files against best practices with severity levels (CRITICAL/WARNING/INFO)
+- ✅ **Distribution Integration**: Enhanced `copy-prompts.sh` with `--with-gitignore` and `--auto-detect` options
+- ✅ **Security-First**: Mandatory patterns for credentials, secrets, cloud configs, and infrastructure state files
+- ✅ **Repository Audit**: Analyzed 164 real .gitignore files across ~/repos to identify patterns and gaps
+
+**New Features:**
+- **`templates/gitignore/`**: Layered template system (base + security + tech-specific)
+- **`scripts/validate_gitignore.py`**: Validation tool with exit codes for CI/CD integration
+- **`docs/GITIGNORE_TEMPLATES.md`**: Comprehensive documentation with examples and best practices
+
+**Usage Examples:**
+```bash
+# Copy prompts with auto-detected .gitignore templates
+./copy-prompts.sh --with-gitignore --auto-detect /path/to/repo
+
+# Validate existing .gitignore file
+python3 scripts/validate_gitignore.py .gitignore --type python
+
+# Audit all .gitignore files in a directory
+python3 scripts/validate_gitignore.py --scan ~/repos --auto-detect
+```
+
+See [docs/GITIGNORE_TEMPLATES.md](docs/GITIGNORE_TEMPLATES.md) for full documentation.
 
 ### **MLOps and AIOps Prompt Library Extension** 🤖 _(2025-01-02)_
 
