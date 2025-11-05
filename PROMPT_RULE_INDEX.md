@@ -128,3 +128,7 @@
 - [Rule: Generating a Product Requirements Document (PRD)](.rules/workflows/PRD-Based-Workflow/1-creade-prd.mdc)
 - [Prompt: Build andTest AI Coding Agent with Iterative Execution](generic/build_test_code_agent.prompt.md)
 - [# Example Output](generic/build_test_code_agent.prompt.example.md)
+
+## Comet Prompts
+- [Daily Check-in](comet/daily_checkin.prompt.md)  _(Category: Productivity, Comet Browser)_
+    - Scans communication and productivity platforms for tasks and provides a prioritized report.
