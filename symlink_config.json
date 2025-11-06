@@ -1,0 +1,16 @@
+{
+  "repositories": [
+    {
+      "path": "/home/daryl/repos/daryls_rules/my-project-repo",
+      "symlinks": {
+        ".github/prompts": [
+          "analyze_aks.prompt.md",
+          "build_aks.prompt.md"
+        ],
+        ".rules": [
+          "analyze-codebase.mdc"
+        ]
+      }
+    }
+  ]
+}
