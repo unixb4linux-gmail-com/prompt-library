@@ -64,17 +64,34 @@ category: "Productivity, Comet Browser"
 
 ## 📋 Enhanced Output Format
 
-The output will be a plain text report, listing each outstanding question or action item. Each item will be clearly delineated and include the following details:
+The output will be a structured report with clickable links to each Slack message, listing each outstanding question or action item. Each item will be clearly delineated and include the following details:
 
-**Slack Review Report**
+**Slack Review Report — With Clickable Links**
 
 ---
 **Sender**: [Name of the person who asked the question]
 **Date Asked**: [Timestamp of the message]
 **Request/Question**: [Concise summary of what they need]
 **Status**: [Outstanding/Resolved (with a brief note if resolved)]
+**Link**: [View in Slack](slack_message_permalink_here)
+---
 ---
 
----
+## 🔗 Implementation: Extracting Slack Message Permalinks
+
+**CRITICAL REQUIREMENT**: For each actionable item identified, the AI must extract and embed the **Slack message permalink** to enable direct navigation from the summary report to the original message/thread in Slack.
+
+**How to Extract Permalinks**:
+- [ ] When parsing messages in Slack, capture the message permalink for each actionable item.
+- [ ] Slack permalinks follow the format: `https://yourworkspace.slack.com/archives/CHANNEL_ID/pMESSAGE_TIMESTAMP`
+- [ ] These links can be obtained via the Slack API or by using the "Copy link" option on messages in the Slack interface.
+- [ ] Include the permalink in the **Link** field of each actionable item in the output report.
+
+**Benefits of Clickable Links**:
+- ✅ **Instant Context**: Click directly to the Slack message/thread for full conversation history.
+- ✅ **No Manual Searching**: Eliminates the need to manually find messages in Slack.
+- ✅ **Interactive Action Dashboard**: Transforms the text report into a true interactive action tracker.
+- ✅ **Enhanced Productivity**: Users can quickly jump to context and respond immediately.
+
 
 **Analysis Methodology Note**: This prompt guides the AI to autonomously access, parse, and analyze Slack communications from specified individuals, focusing on identifying and summarizing outstanding questions or action items directed to the user, and presenting them in a structured, actionable format without requiring further interaction.
