@@ -10,6 +10,8 @@
 - [Slack Messages Review and Action Item Extraction](comet/slack_messages_review.prompt.md)  _(Category: Productivity, Comet Browser)_
     - Analyzes Slack messages from specified individuals to identify and summarize outstanding questions or action items.
 - [📊 Productivity Task Analysis with AI Assistance](comet/daily_checkin.prompt.md)
+- [Outlook Inbox Review and Response Tracking](comet/outlook_inbox_review.prompt.md)  _(Category: Productivity, Comet Browser)_
+    - Analyzes Outlook inbox to identify messages pending a response, including sender details, subjects, timestamps, reasons for response, and direct clickable links to each message.
 - [Test AI Coding Agent with Iterative Command Execution](terraform/build_and_test_terraform.prompt.md)  _(Category: devops, testing, agent)_
     - Direct an AI assistant (e.g., Copilot) to iteratively build and test tooling based on a fixed scenario, until success is achieved
 - [.gitignore Templates and Validation](docs/GITIGNORE_TEMPLATES.md)

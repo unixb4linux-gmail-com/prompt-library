@@ -1,6 +1,13 @@
-| version | created_date | last_updated | enhancement_level | prompt_techniques | title | description | category |
-|---------|--------------|--------------|-------------------|-------------------|-------|-------------|----------|
-| 1.0.0 | 2025-11-06 | 2025-11-06 | intermediate | context_engineering<br>structured_output<br>explicit_role_assignment<br>link_extraction | Outlook Inbox Review and Response Tracking | Analyzes Outlook inbox to identify messages pending a response, including sender details, subjects, timestamps, reasons for response, and direct clickable links to each message. | Productivity, Comet Browser |
+---
+version: "1.0.0"
+created_date: "2025-11-06"
+last_updated: "2025-11-06"
+enhancement_level: "intermediate"
+prompt_techniques: ["context_engineering", "structured_output", "explicit_role_assignment", "link_extraction"]
+title: "Outlook Inbox Review and Response Tracking"
+description: "Analyzes Outlook inbox to identify messages pending a response, including sender details, subjects, timestamps, reasons for response, and direct clickable links to each message."
+category: "Productivity, Comet Browser"
+---
 
 > **Enhanced Prompt Engineering Directive:**
 >
