@@ -7,8 +7,12 @@
 - [MLOps Gap Analysis and Implementation Roadmap](mlops/analyze_mlops_gaps.prompt.md)
 - [MLflow Model Registry Implementation Guide](mlops/implement_mlflow_registry.prompt.md)
 - [MLOps Pipeline Automation Implementation Guide](mlops/mlops_pipeline_automation.prompt.md)
+- [Slack Messages Review and Action Item Extraction](comet/slack_messages_review.prompt.md)  _(Category: Productivity, Comet Browser)_
+    - Analyzes Slack messages from specified individuals to identify and summarize outstanding questions or action items.
+- [📊 Productivity Task Analysis with AI Assistance](comet/daily_checkin.prompt.md)
 - [Test AI Coding Agent with Iterative Command Execution](terraform/build_and_test_terraform.prompt.md)  _(Category: devops, testing, agent)_
     - Direct an AI assistant (e.g., Copilot) to iteratively build and test tooling based on a fixed scenario, until success is achieved
+- [.gitignore Templates and Validation](docs/GITIGNORE_TEMPLATES.md)
 - [AIOps Gap Analysis and Implementation Strategy](aiops/analyze_aiops_gaps.prompt.md)
 - [Prometheus & Grafana AIOps Implementation Guide](aiops/implement_prometheus_grafana.prompt.md)
 - [Cloud Credential Reconnaissance](.github/prompts/recon_cloud_credentials.prompt.md)  _(Category: Security)_
@@ -128,7 +132,3 @@
 - [Rule: Generating a Product Requirements Document (PRD)](.rules/workflows/PRD-Based-Workflow/1-creade-prd.mdc)
 - [Prompt: Build andTest AI Coding Agent with Iterative Execution](generic/build_test_code_agent.prompt.md)
 - [# Example Output](generic/build_test_code_agent.prompt.example.md)
-
-## Comet Prompts
-- [Daily Check-in](comet/daily_checkin.prompt.md)  _(Category: Productivity, Comet Browser)_
-    - Scans communication and productivity platforms for tasks and provides a prioritized report.
