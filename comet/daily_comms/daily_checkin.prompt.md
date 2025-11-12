@@ -1,9 +1,9 @@
 ---
-version: "1.0.0"
+version: 1.1.0"
 created_date: "2025-11-05"
-last_updated: "2025-11-05"
+last_updated: 2025-11-12"
 enhancement_level: "intermediate"
-prompt_techniques: ["context_engineering", "structured_output", "clarification_questions", "explicit_role_assignment"]
+prompt_techniques: ["context_engineering", "structured_output", "clarification_questions", "explicit_role_assignment", "link_extraction"]
 ---
 
 > **Enhanced Prompt Engineering Directive:**
@@ -55,6 +55,7 @@ prompt_techniques: ["context_engineering", "structured_output", "clarification_q
 **STEP 4: Output Generation (AI Action)**
 *Think through:* "How can I present the analyzed information clearly and concisely?"
 - [ ] Format the output as a clear, readable list or table.
+- [ ] - [ ] **Include clickable links**: Every task, conversation, email, meeting invitation, or actionable item must include a **direct clickable link** to the source (Jira URL, Slack permalink, email link, calendar event link, Teams message link, etc.)
 
 
 
@@ -71,6 +72,7 @@ The output will be a plain text report, sorted as requested, with each task clea
 **Assigned/Requested Date**: [Date]
 **Originator**: [Name]
 **Deadline**: [Date or N/A]
+**Direct Link**: [Clickable URL to source]
 ---
 
 ---
