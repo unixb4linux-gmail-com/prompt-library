@@ -39,7 +39,7 @@ This document is automatically generated. Do not edit manually.
 
 | Name | ID | Description | Version | Tags | Tools | Path |
 |---|---|---|---|---|---|---|
-| [{{name}}](_templates/prompt_template.md) | None | None | 0.1.0 |  |  | `_templates/prompt_template.md` |
+| [Prompt Template](_templates/prompt_template.md) | template-prompt | A template for creating new prompts with standardized metadata. | 0.1.0 | template, documentation | all | `_templates/prompt_template.md` |
 
 
 ## Aiops Prompts
@@ -62,9 +62,24 @@ This document is automatically generated. Do not edit manually.
 | Name | ID | Description | Version | Tags | Tools | Path |
 |---|---|---|---|---|---|---|
 | [⚓ Argo CD Application Health Review](comet/argocd_app_health_review.prompt.md) |  | No description provided. | N/A |  |  | `comet/argocd_app_health_review.prompt.md` |
-| [💬 Slack Messages Review and Action Item Extraction](comet/slack_messages_review.prompt.md) |  | Analyzes Slack messages from specified individuals to identify and summarize outstanding questions or action items. | 1.0.0 |  |  | `comet/slack_messages_review.prompt.md` |
-| [📊 Productivity Task Analysis with AI Assistance](comet/daily_checkin.prompt.md) |  | No description provided. | 1.0.0 |  |  | `comet/daily_checkin.prompt.md` |
-| [📧 Outlook Inbox Review and Response Tracking](comet/outlook_inbox_review.prompt.md) |  | Analyzes Outlook inbox to identify messages pending a response, including sender details, subjects, timestamps, reasons for response, and direct clickable links to each message. | 1.0.0 |  |  | `comet/outlook_inbox_review.prompt.md` |
+| [📄 Confluence Action Items and Tasks Review](comet/confluence_action_items_review.prompt.md) |  | No description provided. | N/A |  |  | `comet/confluence_action_items_review.prompt.md` |
+| [📊 Jira Action Items Review and Prioritization](comet/jira_action_items_review.prompt.md) |  | No description provided. | N/A |  |  | `comet/jira_action_items_review.prompt.md` |
+| [🔀 GitLab Attention Review](comet/gitlab_attention_review.prompt.md) |  | No description provided. | N/A |  |  | `comet/gitlab_attention_review.prompt.md` |
+| [🔍 GitLab Repository Discovery](comet/gitlab_repo_discovery.prompt.md) |  | No description provided. | N/A |  |  | `comet/gitlab_repo_discovery.prompt.md` |
+
+
+## Daily Comms Prompts
+
+| Name | ID | Description | Version | Tags | Tools | Path |
+|---|---|---|---|---|---|---|
+| [💬 Slack Messages Review and Action Item Extraction](comet/daily_comms/slack_messages_review.prompt.md) |  | Analyzes Slack messages from specified individuals to identify and summarize outstanding questions or action items. | 1.0.0 |  |  | `comet/daily_comms/slack_messages_review.prompt.md` |
+| [💬 Teams Outstanding Questions and Action Items Review](comet/daily_comms/teams_messages_review.prompt.md) |  | No description provided. | N/A |  |  | `comet/daily_comms/teams_messages_review.prompt.md` |
+| [📅 Google Calendar (unixb4linux) RSVP and Action Review](comet/daily_comms/google_calendar_rsvp.prompt.md) |  | No description provided. | N/A |  |  | `comet/daily_comms/google_calendar_rsvp.prompt.md` |
+| [📅 Outlook Calendar Action and RSVP Tracker](comet/daily_comms/outlook_calendar_rsvp.prompt.md) |  | No description provided. | N/A |  |  | `comet/daily_comms/outlook_calendar_rsvp.prompt.md` |
+| [📊 Jira Action Items Review and Prioritization](comet/daily_comms/jira_action_items_review.prompt.md) |  | No description provided. | N/A |  |  | `comet/daily_comms/jira_action_items_review.prompt.md` |
+| [📊 Productivity Task Analysis with AI Assistance](comet/daily_comms/daily_checkin.prompt.md) |  | No description provided. | 1.1.0" |  |  | `comet/daily_comms/daily_checkin.prompt.md` |
+| [📧 Gmail (unixb4linux) Inbox Review and Response Tracking](comet/daily_comms/gmail_inbox_review.prompt.md) |  | No description provided. | N/A |  |  | `comet/daily_comms/gmail_inbox_review.prompt.md` |
+| [📧 Outlook Inbox Review and Response Tracking](comet/daily_comms/outlook_inbox_review.prompt.md) |  | Analyzes Outlook inbox to identify messages pending a response, including sender details, subjects, timestamps, priority levels, reasons for response, and direct clickable links to each message. Includes meeting invitation tracking and intelligent prioritization. | 1.1.0 |  |  | `comet/daily_comms/outlook_inbox_review.prompt.md` |
 
 
 ## Docs Prompts
@@ -72,6 +87,7 @@ This document is automatically generated. Do not edit manually.
 | Name | ID | Description | Version | Tags | Tools | Path |
 |---|---|---|---|---|---|---|
 | [.gitignore Templates and Validation](docs/GITIGNORE_TEMPLATES.md) |  | No description provided. | N/A |  |  | `docs/GITIGNORE_TEMPLATES.md` |
+| [Multi-Repository Prompt Management Best Practices Guide](docs/MULTI_REPO_PROMPT_GUIDE.md) |  | No description provided. | N/A |  |  | `docs/MULTI_REPO_PROMPT_GUIDE.md` |
 
 
 ## Generic Prompts
@@ -122,6 +138,7 @@ This document is automatically generated. Do not edit manually.
 | [Prompt: Dockerize Application](.github/prompts/dockerize_app.prompt.md) |  | No description provided. | 1.0.0 |  |  | `.github/prompts/dockerize_app.prompt.md` |
 | [Prompt: Setup Python API Project](.github/prompts/setup_python_api.prompt.md) |  | No description provided. | 1.0.0 |  |  | `.github/prompts/setup_python_api.prompt.md` |
 | [Prompt: Write Tests for Codebase](.github/prompts/write_tests.prompt.md) |  | No description provided. | 1.0.0 |  |  | `.github/prompts/write_tests.prompt.md` |
+| [Setup Claude Auto-Awareness System](.github/prompts/setup_claude_auto_awareness.prompt.md) |  | Implement comprehensive Claude auto-awareness across all repositories with document standards, prompt library, and branch management | N/A |  |  | `.github/prompts/setup_claude_auto_awareness.prompt.md` |
 | [☁️ Analyze AWS EKS Cluster & Manifests](.github/prompts/analyze_eks.prompt.md) |  | No description provided. | 1.0.0 |  |  | `.github/prompts/analyze_eks.prompt.md` |
 | [☁️ Analyze Google Cloud GKE Cluster Configuration](.github/prompts/analyze_gcp_gke.prompt.md) |  | Comprehensive audit of Google Kubernetes Engine cluster setup, security, networking, and workload optimization | 1.0.0 |  |  | `.github/prompts/analyze_gcp_gke.prompt.md` |
 | [☁️ Build AWS EKS Cluster Repository](.github/prompts/build_eks.prompt.md) |  | No description provided. | 1.0.0 |  |  | `.github/prompts/build_eks.prompt.md` |
