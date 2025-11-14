@@ -70,6 +70,18 @@ For detailed implementation guidance, see [PROMPT_HACKS_UPGRADE.md](PROMPT_HACKS
 
 `scripts/version_prompts.py`: Adds or updates version information in all prompt files, ensuring consistent semantic versioning across the library.
 
+## Claude Auto-Awareness System
+
+This repository powers a **Claude Auto-Awareness System** that automatically makes all prompts, coding rules, and document standards available to Claude Code in every repository without manual intervention.
+
+**How It Works:**
+- Git templates (`.git_template/`) automatically configure new repositories
+- Symlinks provide central maintenance with distributed access
+- Shell integration (`gitclone`, `cd` hooks) auto-applies setup
+- Auto-setup script (`~/repos/claude_auto_setup.sh`) for existing repositories
+
+**Setup:** See `.github/prompts/setup_claude_auto_awareness.prompt.md` (v2.0 - macOS/Ubuntu compatible)
+
 ## Directory Structure
 
 - `.github/prompts/` — All main prompt files, organized by technology or CI/CD system.

@@ -2,9 +2,51 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
-## Core Commands
+## Claude Auto-Awareness System
 
-### Prompt Distribution
+This repository is part of a **Claude Auto-Awareness System** that automatically distributes prompts, coding rules, and document standards to all repositories via git templates and symlinks.
+
+### System Overview
+
+**Architecture:**
+- **Git Template**: `~/.git_template/` contains Claude settings, prompts, rules, and doc standards
+- **Symlinks**: Central maintenance with automatic distribution to all repositories
+- **Shell Integration**: Auto-applies setup when entering new repositories
+- **Auto-Setup Script**: `~/repos/claude_auto_setup.sh` for manual application
+
+**What's Included in Every Repo:**
+- `.claude/settings.local.json` - Claude configuration with git workflow permissions
+- `.github/prompts/` - 62+ AI prompts via symlinks
+- `.rules/` - Coding conventions and workflow patterns via symlinks
+- `.doc_standards/` - Document templates via symlinks
+
+### Core Commands
+
+#### Auto-Setup Management
+```bash
+# Test the auto-awareness configuration
+~/repos/claude_auto_setup.sh test
+
+# Apply Claude setup to a specific repository
+~/repos/claude_auto_setup.sh apply_single /path/to/repo
+
+# Apply Claude setup to all repositories in ~/repos
+~/repos/claude_auto_setup.sh apply_all
+```
+
+#### Shell Helper Functions
+```bash
+# Clone repository with automatic Claude setup
+gitclone <git-url>
+
+# Manually apply setup to current directory
+claude_setup_repo
+
+# Auto-setup triggers when cd'ing into unconfigured repos in ~/repos
+cd ~/repos/any-new-repo  # Automatically applies Claude setup
+```
+
+#### Prompt Distribution (Legacy/Manual)
 ```bash
 # Copy all prompts and rules to target repository
 ./copy-prompts.sh /path/to/target-repo
@@ -24,6 +66,9 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 # Regenerate the prompt index file
 python3 scripts/generate_index.py
 ```
+
+### Setup Prompt
+See `.github/prompts/setup_claude_auto_awareness.prompt.md` for complete system setup instructions (v2.0 - macOS/Ubuntu compatible).
 
 ## Repository Architecture
 
